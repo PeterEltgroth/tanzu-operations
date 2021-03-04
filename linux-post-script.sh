@@ -1,7 +1,7 @@
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operator/main/base-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operator/main/tanzu-on-aws/tanzu-kubernetes-grid/tkg-aws-management-cluster-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operator/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-gitlab-registry.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operator/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-harbor-registry.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/base-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-kubernetes-grid/tkg-aws-management-cluster-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-gitlab-registry.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-harbor-registry.sh
 
 mkdir scripts
 

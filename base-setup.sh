@@ -15,6 +15,10 @@ sudo snap install kubectl --classic
 #chmod +x /usr/local/bin/kubectl
 
 
+#HELM
+sudo snap install helm --classic
+
+
 #JQ
 sudo snap install jq
 #"yes" | sudo apt install jq
@@ -101,7 +105,7 @@ sudo usermod -aG docker $USER
 wget https://tanzustorage.blob.core.windows.net/tkg-1-dot-2/tkg-linux-amd64-v1.2.1-vmware.1.tar.gz
 tar -xzvf tkg-linux-amd64-v1.2.1-vmware.1.tar.gz
 rm tkg-linux-amd64-v1.2.1-vmware.1.tar.gz
-sudo mv tkg/tkg-linux-amd64-v1.2.1-vmware.1 /usr/local/bin/tkg
+sudo mv tkg/tkg-linux-amd64-v1.2.1+vmware.1 /usr/local/bin/tkg
 chmod +x /usr/local/bin/tkg
 
 tkg get management-cluster
