@@ -23,7 +23,7 @@ aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > 
 #export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm alpha bootstrap encode-aws-credentials)
 
 rm .tkg/${aws_config_name}.yaml
-tkg get management-cluster --config .tkg/${aws_config_name}.yaml
+sudo tkg get management-cluster --config .tkg/${aws_config_name}.yaml
 
 #APPEND SETTINGS TO .TKG/CONFIG.YAML
 echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
@@ -44,8 +44,6 @@ tkg config permissions aws
 
 #read -p "Management Cluster Name, i.e., tanzu-aws-mc-us-east-one: " mc_name
 #read -p "Plan: " plan
-
-tkg get management-cluster --config .tkg/${aws_config_name}.yaml
 
 sudo tkg init --name tanzu-aws-mc-us-west-2 --infrastructure aws --plan dev --config .tkg/${aws_config_name}.yaml
 
