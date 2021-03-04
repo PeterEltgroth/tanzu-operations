@@ -22,6 +22,9 @@ aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > 
 #export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | jq .AccessKey.SecretAccessKey -r)
 #export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm alpha bootstrap encode-aws-credentials)
 
+rm .tkg/${aws_config_name}.yaml
+tkg get management-cluster --config .tkg/${aws_config_name}.yaml
+
 #APPEND SETTINGS TO .TKG/CONFIG.YAML
 echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
 echo AWS_SECRET_ACCESS_KEY: $aws_secret_key >> .tkg/${aws_config_name}.yaml
