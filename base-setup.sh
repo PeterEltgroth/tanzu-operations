@@ -108,7 +108,7 @@ rm tkg-linux-amd64-v1.2.0-vmware.1.tar.gz
 sudo mv tkg/tkg-linux-amd64-v1.2.0+vmware.1 /usr/local/bin/tkg
 chmod +x /usr/local/bin/tkg
 
-#tkg get management-cluster
+tkg get management-cluster
 
 
 #velero

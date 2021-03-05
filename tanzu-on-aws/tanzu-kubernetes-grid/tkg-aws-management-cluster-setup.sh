@@ -22,8 +22,6 @@ aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > 
 #export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | jq .AccessKey.SecretAccessKey -r)
 #export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm alpha bootstrap encode-aws-credentials)
 
-sudo rm .tkg/${aws_config_name}.yaml
-sudo tkg get management-cluster --config .tkg/${aws_config_name}.yaml
 
 #APPEND SETTINGS TO .TKG/CONFIG.YAML
 sudo echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
@@ -36,8 +34,8 @@ sudo echo AWS_PRIVATE_NODE_CIDR: 10.0.0.0/24 >> .tkg/${aws_config_name}.yaml
 sudo echo AWS_SSH_KEY_NAME: default >> .tkg/${aws_config_name}.yaml
 sudo echo SERVICE_CIDR: 100.64.0.0/13 >> .tkg/${aws_config_name}.yaml
 sudo echo CLUSTER_CIDR: 100.96.0.0/11 >> .tkg/${aws_config_name}.yaml
-sudo echo CONTROL_PLANE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
-sudo echo NODE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
+sudo echo CONTROL_PLANE_MACHINE_TYPE: t3.2xlarge >> .tkg/${aws_config_name}.yaml
+sudo echo NODE_MACHINE_TYPE: t3.2xlarge >> .tkg/${aws_config_name}.yaml
 
 #CREATE CLOUD FORMATION STACK
 sudo tkg config permissions aws
@@ -45,7 +43,7 @@ sudo tkg config permissions aws
 #read -p "Management Cluster Name, i.e., tanzu-aws-mc-us-east-one: " mc_name
 #read -p "Plan: " plan
 
-sudo tkg init --name tanzu-aws-mc-us-west-2 --infrastructure aws --plan dev --config .tkg/${aws_config_name}.yaml
+sudo tkg init --name tanzu-aws-mc-us-west-two --infrastructure aws --plan dev --config .tkg/${aws_config_name}.yaml
 
 #kubectl logs deployment.apps/capa-controller-manager -n capa-system manager --kubeconfig ~/.kube-tkg/tmp/
 
