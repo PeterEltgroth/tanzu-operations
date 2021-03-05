@@ -1,5 +1,3 @@
-sudo -s
-
 read -p "Azure Username: " az_username
 read -p "Azure Password: " az_password
 read -p "Azure Subscription: " subscription
@@ -24,25 +22,25 @@ aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > 
 #export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | jq .AccessKey.SecretAccessKey -r)
 #export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm alpha bootstrap encode-aws-credentials)
 
-rm .tkg/${aws_config_name}.yaml
+sudo rm .tkg/${aws_config_name}.yaml
 sudo tkg get management-cluster --config .tkg/${aws_config_name}.yaml
 
 #APPEND SETTINGS TO .TKG/CONFIG.YAML
-echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
-echo AWS_SECRET_ACCESS_KEY: $aws_secret_key >> .tkg/${aws_config_name}.yaml
-echo AWS_REGION: $aws_region >> .tkg/${aws_config_name}.yaml
-echo AWS_NODE_AZ: $aws_az >> .tkg/${aws_config_name}.yaml
-echo AWS_VPC_CIDR: 10.0.0.0/16 >> .tkg/${aws_config_name}.yaml #can't be used if AWS_VPC_ID is set
-echo AWS_PUBLIC_NODE_CIDR: 10.0.1.0/24 >> .tkg/${aws_config_name}.yaml
-echo AWS_PRIVATE_NODE_CIDR: 10.0.0.0/24 >> .tkg/${aws_config_name}.yaml
-echo AWS_SSH_KEY_NAME: default >> .tkg/${aws_config_name}.yaml
-echo SERVICE_CIDR: 100.64.0.0/13 >> .tkg/${aws_config_name}.yaml
-echo CLUSTER_CIDR: 100.96.0.0/11 >> .tkg/${aws_config_name}.yaml
-echo CONTROL_PLANE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
-echo NODE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_SECRET_ACCESS_KEY: $aws_secret_key >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_REGION: $aws_region >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_NODE_AZ: $aws_az >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_VPC_CIDR: 10.0.0.0/16 >> .tkg/${aws_config_name}.yaml #can't be used if AWS_VPC_ID is set
+sudo echo AWS_PUBLIC_NODE_CIDR: 10.0.1.0/24 >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_PRIVATE_NODE_CIDR: 10.0.0.0/24 >> .tkg/${aws_config_name}.yaml
+sudo echo AWS_SSH_KEY_NAME: default >> .tkg/${aws_config_name}.yaml
+sudo echo SERVICE_CIDR: 100.64.0.0/13 >> .tkg/${aws_config_name}.yaml
+sudo echo CLUSTER_CIDR: 100.96.0.0/11 >> .tkg/${aws_config_name}.yaml
+sudo echo CONTROL_PLANE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
+sudo echo NODE_MACHINE_TYPE: t3.large >> .tkg/${aws_config_name}.yaml
 
 #CREATE CLOUD FORMATION STACK
-tkg config permissions aws
+sudo tkg config permissions aws
 
 #read -p "Management Cluster Name, i.e., tanzu-aws-mc-us-east-one: " mc_name
 #read -p "Plan: " plan
