@@ -1,3 +1,5 @@
+sudo -s
+
 read -p "Azure Username: " az_username
 read -p "Azure Password: " az_password
 read -p "Azure Subscription: " subscription
