@@ -17,13 +17,11 @@ export AWS_REGION=$aws_region
 aws ec2 delete-key-pair --key-name default
 aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > default.pem
 
-rm .tkg/${aws_config_name}.yaml
-sudo tkg get management-cluster --config .tkg/${aws_config_name}.yaml
-
 
 #APPEND SETTINGS TO .TKG/CONFIG.YAML
 echo AWS_ACCESS_KEY_ID: $aws_access_key >> .tkg/${aws_config_name}.yaml
 echo AWS_SECRET_ACCESS_KEY: $aws_secret_key >> .tkg/${aws_config_name}.yaml
+echo AWS_B64ENCODED_CREDENTIALS: $(printf "[default]\\n${AWS_REGION}\\n" | base64) >> .tkg/${aws_config_name}.yaml
 echo AWS_REGION: $aws_region >> .tkg/${aws_config_name}.yaml
 echo AWS_NODE_AZ: $aws_az >> .tkg/${aws_config_name}.yaml
 echo AWS_VPC_CIDR: 10.0.0.0/16 >> .tkg/${aws_config_name}.yaml #can't be used if AWS_VPC_ID is set
@@ -38,7 +36,7 @@ echo NODE_MACHINE_TYPE: t3.2xlarge >> .tkg/${aws_config_name}.yaml
 #CREATE CLOUD FORMATION STACK
 tkg config permissions aws
 
-sudo tkg init --name tanzu-aws-management-cluster-us-west-two --infrastructure aws --plan dev --config .tkg/${aws_config_name}.yaml
+echo "sudo tkg init --name tanzu-management-cluster-${aws_config_name} --infrastructure aws|azure|gcp|vsphere --plan dev --config .tkg/${aws_config_name}.yaml"
 
 #kubectl logs deployment.apps/capa-controller-manager -n capa-system manager --kubeconfig ~/.kube-tkg/tmp/
 
