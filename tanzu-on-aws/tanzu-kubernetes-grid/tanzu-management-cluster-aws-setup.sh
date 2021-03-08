@@ -36,7 +36,7 @@ echo NODE_MACHINE_TYPE: t3.2xlarge >> .tkg/${aws_config_name}.yaml
 #CREATE CLOUD FORMATION STACK
 tkg config permissions aws
 
-echo "sudo tkg init --name tanzu-management-cluster-${aws_config_name} --infrastructure aws|azure|gcp|vsphere --plan dev --config .tkg/${aws_config_name}.yaml"
+echo "sudo tkg init --name tanzu-management-cluster-${aws_config_name} --infrastructure aws --plan dev --config .tkg/${aws_config_name}.yaml"
 
 #kubectl logs deployment.apps/capa-controller-manager -n capa-system manager --kubeconfig ~/.kube-tkg/tmp/
 
