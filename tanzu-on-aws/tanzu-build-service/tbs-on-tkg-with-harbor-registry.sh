@@ -23,10 +23,11 @@ sudo ytt -f /tmp/values.yaml \
     | sudo kbld -f /tmp/images-relocated.lock -f- \
     | sudo kapp deploy -a $harbor_project -f- -y
 
-sudo kp import -f descriptor-100.0.45.yaml
+sudo kp import -f descriptor-100.0.60.yaml
 
 kp clusterbuilder list
 
 kp secret create harbor-registry-secret \
 	--registry $harbor_server \
 	--registry-user $harbor_username
+
