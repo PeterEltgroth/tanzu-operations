@@ -40,3 +40,5 @@ sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
 chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv
+
+echo REBOOT TO START DOCKER SERVICE
