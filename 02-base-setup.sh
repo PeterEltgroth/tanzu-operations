@@ -39,6 +39,6 @@ wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.s
 sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
 chmod +x /usr/local/bin/demo-magic.sh
 
-sudo apt install pv
+sudo apt install pv #required for demo-magic
 
-echo REBOOT TO START DOCKER SERVICE
+echo "REBOOT TO START DOCKER SERVICE"
