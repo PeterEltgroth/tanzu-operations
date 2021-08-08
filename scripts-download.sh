@@ -38,12 +38,12 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced
 
 mkdir tmc-policies
 
-mv namespace-spring-app.yaml tmc-policies/namespace-spring-app-dev.yaml
-mv namespace-spring-data.yaml tmc-policies/namespace-spring-data-dev.yaml
-mv namespace-spring-web.yaml tmc-policies/namespace-spring-web-dev.yaml
-mv namespace-spring-app.yaml tmc-policies/namespace-spring-app-prod.yaml
-mv namespace-spring-data.yaml tmc-policies/namespace-spring-data-prod.yaml
-mv namespace-spring-web.yaml tmc-policies/namespace-spring-web-prod.yaml
+mv namespace-spring-app-dev.yaml tmc-policies/namespace-spring-app-dev.yaml
+mv namespace-spring-data-dev.yaml tmc-policies/namespace-spring-data-dev.yaml
+mv namespace-spring-web-dev.yaml tmc-policies/namespace-spring-web-dev.yaml
+mv namespace-spring-app-prod.yaml tmc-policies/namespace-spring-app-prod.yaml
+mv namespace-spring-data-prod.yaml tmc-policies/namespace-spring-data-prod.yaml
+mv namespace-spring-web-prod.yaml tmc-policies/namespace-spring-web-prod.yaml
 mv network-database-policy.yaml tmc-policies/network-database-policy.yaml
 mv quota-development-policy.yaml tmc-policies/quota-development-policy.yaml
 mv registry-policy.yaml tmc-policies/registry-policy.yaml
