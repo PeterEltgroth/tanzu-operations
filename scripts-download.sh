@@ -30,6 +30,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/namespace-spring-app-prod.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/namespace-spring-data-prod.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/namespace-spring-web-prod.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/deployment-spring-music-quota.yaml
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/policies/network-database-policy.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/policies/quota-development-policy.yaml
