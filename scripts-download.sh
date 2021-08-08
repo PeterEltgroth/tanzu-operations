@@ -22,7 +22,7 @@ mv tbs-on-tkg-with-gitlab-registry.sh operations-setup/tbs-on-tkg-with-gitlab-re
 mv tbs-on-tkg-with-harbor-registry.sh operations-setup/tbs-on-tkg-with-harbor-registry.sh
 mv tmc-aws-setup.sh operations-setup/tmc-aws-setup.sh
 
-
+wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/reset.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/demo-live.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/namespace-spring-app-dev.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/namespace-spring-data-dev.yaml
