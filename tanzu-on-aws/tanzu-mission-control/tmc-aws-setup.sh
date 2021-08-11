@@ -8,3 +8,6 @@ kubectl apply -f ./k8s-attach-manifest.yaml
 tmc cluster namespace create -f tmc/namespace-spring-web-prod.yaml
 tmc cluster namespace create -f tmc/namespace-spring-app-prod.yaml
 tmc cluster namespace create -f tmc/namespace-spring-data-prod.yaml
+
+tmc workspace image-policy create -f tmc/registry-policy.yaml" # -i --dry-run
+
