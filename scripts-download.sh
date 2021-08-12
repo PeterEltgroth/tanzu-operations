@@ -1,6 +1,13 @@
-mkdir operations-setup
+rm reset.sh
+rm demo-live.sh
+
+rm -rf tmc
+rm -rf deploy
+rm -rf operations-setup
+
 mkdir tmc
 mkdir deploy
+mkdir operations-setup
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/base-setup.sh -O operations-setup/base-setup.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-setup.sh -O operations-setup/tkg-setup.sh

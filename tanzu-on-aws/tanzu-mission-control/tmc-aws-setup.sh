@@ -9,5 +9,5 @@ tmc cluster namespace create -f tmc/namespace-spring-web-prod.yaml
 tmc cluster namespace create -f tmc/namespace-spring-app-prod.yaml
 tmc cluster namespace create -f tmc/namespace-spring-data-prod.yaml
 
-tmc workspace image-policy create -f tmc/registry-policy.yaml" # -i --dry-run
+tmc workspace image-policy create -f tmc/registry-policy.yaml
 
