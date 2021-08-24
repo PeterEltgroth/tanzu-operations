@@ -1,33 +1,35 @@
 read -p "Harbor Server: " harbor_server
 read -p "Harbor Project: " harbor_project
-read -p "Harbor Repository Name (tbsimages): " harbor_repository
+read -p "Harbor Repository Name (build-service): " harbor_repository
 read -p "Harbor Username: " harbor_username
 read -p "Harbor Password: " harbor_password
 read -p "Pivotal Username: " pivot_username
 read -p "Pivotal Password: " pivot_password
 
-
 sudo docker login registry.pivotal.io -u $pivot_username -p $pivot_password
 sudo docker login $harbor_server -u $harbor_username -p $harbor_password
 
-sudo kbld relocate -f /tmp/images.lock \
-		--lock-output /tmp/images-relocated.lock \
-		--repository ${harbor_server}/${harbor_project}/${harbor_repository}
-		--registry-verify-certs=false
+sudo rm -rf ~/.docker
+sudo mkdir ~/.docker
+sudo cp /root/snap/docker/796/.docker/config.json ~/.docker/config.json
 
-sudo ytt -f /tmp/values.yaml \
-    -f /tmp/manifests/ \
+sudo imgpkg copy -b registry.pivotal.io/build-service/bundle:1.2.2 --to-repo ${harbor_server}/${harbor_project}/${harbor_repository}
+sudo imgpkg pull -b ${harbor_server}/${harbor_project}/${harbor_repository}:1.2.2 -o /tmp/bundle
+
+sudo ytt -f /tmp/bundle/values.yaml \
+    -f /tmp/bundle/config/ \
     -v docker_repository=${harbor_server}/${harbor_project}/${harbor_repository} \
     -v docker_username=$harbor_username \
     -v docker_password=$harbor_password \
-    | sudo kbld -f /tmp/images-relocated.lock -f- \
-    | sudo kapp deploy -a $harbor_project -f- -y
+    -v tanzunet_username=$pivot_username \
+    -v tanzunet_password=$pivot_password \
+    | kbld -f /tmp/bundle/.imgpkg/images.yml -f- \
+    | kapp deploy -a tanzu-build-service -f- -y
 
-sudo kp import -f descriptor-100.0.60.yaml
+sudo kp import -f descriptor-100.0.150.yaml --show-changes
 
 kp clusterbuilder list
 
 kp secret create harbor-registry-secret \
 	--registry $harbor_server \
 	--registry-user $harbor_username
-

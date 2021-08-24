@@ -1,8 +1,17 @@
-#DOCKER
-sudo snap install docker
-sudo groupadd docker
+sudo apt update
+sudo apt upgrade
+sudo apt install docker.io
+sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
-#newgrp docker
+
+#echo REBOOT
+#docker --version
+#docker run hello-world
+  
+#sudo snap install docker
+#sudo groupadd docker
+#sudo usermod -aG docker $USER
+##newgrp docker
 
 #HELM
 sudo snap install helm --classic

@@ -11,14 +11,14 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "Au
 
 
 #KP-LINUX, TBS, KAPP, YTT, KBLD, DESCRIPTOR..."
-wget -O "kp-linux" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/build-service/releases/768025/product_files/817470/download
-wget -O "build-service-1.0.3.tar" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/build-service/releases/768025/product_files/817468/download
+wget -O "kp-linux" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/build-service/releases/925788/product_files/1000629/download
+#wget -O "build-service-1.0.3.tar" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/build-service/releases/768025/product_files/817468/download
 
-wget -O "kapp-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/kapp/releases/737858/product_files/783709/download
-wget -O "ytt-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/ytt/releases/715787/product_files/759637/download
-wget -O "kbld-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/kbld/releases/767540/product_files/816940/download
-wget -O "descriptor-100.0.60.yaml" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/tbs-dependencies/releases/813822/product_files/867688/download
-wget -O "descriptor-100.0.65.yaml" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/tbs-dependencies/releases/829109/product_files/884725/download
+wget -O "kapp-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/kapp/releases/847349/product_files/903764/download
+wget -O "ytt-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/ytt/releases/921457/product_files/995069/download
+wget -O "kbld-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/kbld/releases/887791/product_files/949949/download
+wget -O "imgpkg-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/imgpkg/releases/934077/product_files/1010564/download
+wget -O "descriptor-100.0.150.yaml" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/tbs-dependencies/releases/943744/product_files/1022067/download
 
 sudo mv kapp-linux-amd64 /usr/local/bin/kapp
 chmod +x /usr/local/bin/kapp
@@ -29,7 +29,8 @@ chmod +x /usr/local/bin/ytt
 sudo mv kbld-linux-amd64 /usr/local/bin/kbld
 chmod +x /usr/local/bin/kbld
 
+sudo mv imgpkg-linux-amd64 /usr/local/bin/imgpkg
+chmod +x /usr/local/bin/imgpkg
+
 sudo mv kp-linux /usr/local/bin/kp
 chmod +x /usr/local/bin/kp
-
-tar xvf build-service-1.0.3.tar -C /tmp
