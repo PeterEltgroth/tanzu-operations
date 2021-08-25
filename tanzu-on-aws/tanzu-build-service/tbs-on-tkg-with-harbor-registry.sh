@@ -9,9 +9,9 @@ read -p "Pivotal Password: " pivot_password
 sudo docker login registry.pivotal.io -u $pivot_username -p $pivot_password
 sudo docker login $harbor_server -u $harbor_username -p $harbor_password
 
-sudo rm -rf ~/.docker
-sudo mkdir ~/.docker
-sudo cp /root/snap/docker/796/.docker/config.json ~/.docker/config.json
+#sudo rm -rf ~/.docker
+#sudo mkdir ~/.docker
+#sudo cp /root/snap/docker/796/.docker/config.json ~/.docker/config.json
 
 sudo imgpkg copy -b registry.pivotal.io/build-service/bundle:1.2.2 --to-repo ${harbor_server}/${harbor_project}/${harbor_repository}
 sudo imgpkg pull -b ${harbor_server}/${harbor_project}/${harbor_repository}:1.2.2 -o /tmp/bundle
@@ -23,10 +23,10 @@ sudo ytt -f /tmp/bundle/values.yaml \
     -v docker_password=$harbor_password \
     -v tanzunet_username=$pivot_username \
     -v tanzunet_password=$pivot_password \
-    | kbld -f /tmp/bundle/.imgpkg/images.yml -f- \
+    | sudo kbld -f /tmp/bundle/.imgpkg/images.yml -f- \
     | kapp deploy -a tanzu-build-service -f- -y
 
-sudo kp import -f descriptor-100.0.150.yaml --show-changes
+#sudo kp import -f descriptor-100.0.150.yaml --show-changes
 
 kp clusterbuilder list
 

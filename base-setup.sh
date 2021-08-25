@@ -1,7 +1,9 @@
 sudo apt update
 sudo apt upgrade
 sudo apt install docker.io
-sudo systemctl enable --now docker
+sudo systemctl enable docker
+sudo systemctl start docker
+
 sudo usermod -aG docker $USER
 
 #echo REBOOT
