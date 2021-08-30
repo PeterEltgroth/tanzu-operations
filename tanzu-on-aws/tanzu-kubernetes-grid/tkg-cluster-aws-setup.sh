@@ -1,10 +1,3 @@
-ls .tanzu/tkg/clusterconfigs
-
-read -p "Cluster Config: " filename
-read -p "New Cluster Config: " new_filename
-
-mv .tanzu/tkg/clusterconfigs/$filename .tanzu/tkg/clusterconfigs/$new_filename
-
 tanzu login
 
 read -p "Cluster 1: " cluster1

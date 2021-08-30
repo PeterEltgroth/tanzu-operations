@@ -53,6 +53,3 @@ chmod +x /usr/local/bin/demo-magic.sh
 sudo apt install pv #required for demo-magic
 
 echo "REBOOT TO START DOCKER SERVICE"
-
-
-KUBECONFIG=.kube/config kubectl config view --minify --flatten --context=tanzu-build-service-harbor > config

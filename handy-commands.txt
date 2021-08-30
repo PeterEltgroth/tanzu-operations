@@ -1,0 +1,1 @@
+KUBECONFIG=.kube/config kubectl config view --minify --flatten --context=tanzu-build-service-harbor > config
