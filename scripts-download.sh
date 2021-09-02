@@ -1,4 +1,3 @@
-rm reset.sh
 rm demo-live.sh
 
 rm -rf tmc
@@ -19,9 +18,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-a
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-gitlab-registry.sh -O operations-setup/tbs-on-tkg-with-gitlab-registry.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-build-service/tbs-on-tkg-with-harbor-registry.sh -O operations-setup/tbs-on-tkg-with-harbor-registry.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-on-aws/tanzu-mission-control/tmc-aws-setup.sh -O operations-setup/tmc-aws-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/reset.sh -O operations-setup/reset.sh
 
-
-wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/reset.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/demo-live.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-amazon/main/tanzu-advanced-in-depth/tmc/namespace-spring-app-dev.yaml -O tmc/namespace-spring-app-dev.yaml
