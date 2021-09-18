@@ -18,7 +18,7 @@ wget -O "kapp-linux-amd64" --header="Authorization: Bearer ${access_token}" http
 wget -O "ytt-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/ytt/releases/921457/product_files/995069/download
 wget -O "kbld-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/kbld/releases/887791/product_files/949949/download
 wget -O "imgpkg-linux-amd64" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/imgpkg/releases/934077/product_files/1010564/download
-wget -O "descriptor-100.0.150.yaml" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/tbs-dependencies/releases/943744/product_files/1022067/download
+#wget -O "descriptor-100.0.150.yaml" --header="Authorization: Bearer ${access_token}" https://network.pivotal.io/api/v2/products/tbs-dependencies/releases/943744/product_files/1022067/download
 
 sudo mv kapp-linux-amd64 /usr/local/bin/kapp
 chmod +x /usr/local/bin/kapp
