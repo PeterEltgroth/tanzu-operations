@@ -1,1 +1,1 @@
-ssh ubuntu@ec2-3-92-70-195.compute-1.amazonaws.com -i keys/aws-operator-us-east-1.pem -L 8080:localhost:8080
+ssh ubuntu@ec2-54-196-242-170.compute-1.amazonaws.com -i keys/aws-operator-us-east-1.pem -L 8080:localhost:8080
