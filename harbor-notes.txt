@@ -1,0 +1,26 @@
+CREATE AN EKS CLUSTER
+
+FROM AN OPERATOR MACHINE...
+
+aws configure
+aws eks --region <region-code> update-kubeconfig --name <cluster-name>
+kubectl config use-context <cluster-name>
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-release bitnami/harbor
+
+export SERVICE_IP=$(kubectl get svc --namespace default my-release-harbor --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+echo "Harbor URL: http://$SERVICE_IP/"
+
+echo Username: "admin"
+echo Password: $(kubectl get secret --namespace default my-release-harbor-core-envvars -o jsonpath="{.data.HARBOR_ADMIN_PASSWORD}" | base64 --decode)
+
+
+sudo mkdir ../../etc/docker/certs.d
+sudo mkdir ../../etc/docker/certs.d/core.harbor.domain
+sudo mkdir ../../etc/docker/certs.d/a3dc327ea742640798e63548a326356b-1469756908.us-east-1.elb.amazonaws.com
+
+COPY HARBOR CERT INTO BOTH DIRECTORES
+
+sudo vim ../../etc/docker/certs.d/core.harbor.domain/ca.crt
+sudo vim ../../etc/docker/certs.d/a3dc327ea742640798e63548a326356b-1469756908.us-east-1.elb.amazonaws.com/ca.crt
