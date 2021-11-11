@@ -21,6 +21,9 @@ sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
 
+mkdir .kube
+touch .kube/config
+
 
 #VELERO
 wget https://tanzustorage.blob.core.windows.net/tanzu/velero-linux-v1.6.2_vmware.1.gz

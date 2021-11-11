@@ -1,26 +1,33 @@
-CREATE AN EKS CLUSTER
+1. Create a Kubernetes cluster, for example, tanzu-harbor-registry.
+2. To create an ELB in AWS to the Harbor portal, tag the public subnet of the VPC:
+	KEY: kubernetes.io/cluster/tanzu-harbor-registry
+	VALUE: shared.
 
-FROM AN OPERATOR MACHINE...
+3. Set context to new cluster from an operator instance.
+4. Download scripts from https://github.com/nycpivot/harbor-certs.
+5. Run gen-harbor-certs.sh with a custom domain, such as, harbor.nycpivot.com.
+6. Open https://github.com/goharbor/harbor-helm.
+7. Download the values.yaml file and edit the following settings:
 
-aws configure
-aws eks --region <region-code> update-kubeconfig --name <cluster-name>
-kubectl config use-context <cluster-name>
+	expose.type: loadBalancer
+	expose.tls.auto.commonName: harbor.nycpivot.com
+	expose.ingress.hosts.core: harbor.nycpivot.com (only required if expose.type = loadBalancer)
+	externalURL: https://harbor.nycpivot.com
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install my-release bitnami/harbor
+	Copy the file to harbor-config.yaml
 
-export SERVICE_IP=$(kubectl get svc --namespace default my-release-harbor --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
-echo "Harbor URL: http://$SERVICE_IP/"
+8. Run the following helm commands (see https://github.com/goharbor/harbor-helm):
 
-echo Username: "admin"
-echo Password: $(kubectl get secret --namespace default my-release-harbor-core-envvars -o jsonpath="{.data.HARBOR_ADMIN_PASSWORD}" | base64 --decode)
+	helm repo add my-release harbor/harbor
+	helm install my-release harbor/harbor -f harbor-config.yaml
 
+	NOTE: To update values in a release.
 
-sudo mkdir ../../etc/docker/certs.d
-sudo mkdir ../../etc/docker/certs.d/core.harbor.domain
-sudo mkdir ../../etc/docker/certs.d/a3dc327ea742640798e63548a326356b-1469756908.us-east-1.elb.amazonaws.com
+	helm upgrade my-release bitnami/harbor -f harbor-config.yaml --set harborAdminPassword=<password>
 
-COPY HARBOR CERT INTO BOTH DIRECTORES
+9. Retrieve the ELB URL.
 
-sudo vim ../../etc/docker/certs.d/core.harbor.domain/ca.crt
-sudo vim ../../etc/docker/certs.d/a3dc327ea742640798e63548a326356b-1469756908.us-east-1.elb.amazonaws.com/ca.crt
+	kubectl get svc
+
+10. Update the harbor.nycpivot.com DNS CNAME record.
+

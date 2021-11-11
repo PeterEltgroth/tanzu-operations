@@ -2,7 +2,6 @@ KUBECONFIG=.kube/config kubectl config view --minify --flatten --context=tanzu-b
 
 aws eks --region <region-code> update-kubeconfig --name <cluster_name>
 
-HARBOR
 
-	echo Username: "admin"
-	echo Password: $(kubectl get secret --namespace default my-release-harbor-core-envvars -o jsonpath="{.data.HARBOR_ADMIN_PASSWORD}" | base64 --decode)
+
+
