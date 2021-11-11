@@ -9,6 +9,11 @@ mkdir tap
 mkdir tmc
 mkdir deploy
 mkdir operations-setup
+mkdir operations-setup/tanzu-kubernetes-grid
+mkdir operations-setup/tanzu-build-service
+mkdir operations-setup/tanzu-mission-control
+mkdir operations-setup/tanzu-application-platform
+mkdir operations-setup/tanzu-service-mesh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/base-setup.sh -O operations-setup/base-setup.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-kubernetes-grid/setup.sh -O operations-setup/tanzu-kubernetes-grid/setup.sh
