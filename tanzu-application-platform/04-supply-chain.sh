@@ -10,7 +10,7 @@ registry:
 service_account: default
 EOF
 
-tanzu package install ootb-supply-chain-basic \
+watch tanzu package install ootb-supply-chain-basic \
   --package-name ootb-supply-chain-basic.tanzu.vmware.com \
   --version 0.4.0-build.2 \
   --namespace tap-install \

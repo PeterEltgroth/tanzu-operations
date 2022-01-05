@@ -65,7 +65,7 @@ cnrs:
 
 EOF
 
-tanzu package installed update tap \
+watch tanzu package installed update tap \
  --package-name tap.tanzu.vmware.com \
  --version 0.4.0 -n tap-install \
  -f tap-values.yaml

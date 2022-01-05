@@ -63,7 +63,7 @@ metadata_store:
 
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
+watch tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
