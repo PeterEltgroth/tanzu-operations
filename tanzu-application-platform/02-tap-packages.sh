@@ -23,16 +23,8 @@ tanzu package repository add tanzu-tap-repository \
   --namespace tap-install
 #tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 --namespace tap-install
 
-echo
-read -p "tanzu package repository get tanzu-tap-repository --namespace tap-install"
 tanzu package repository get tanzu-tap-repository --namespace tap-install
-
-echo
-read -p "tanzu package available list --namespace tap-install"
 tanzu package available list --namespace tap-install
-
-echo
-read -p "tanzu package available list tap.tanzu.vmware.com --namespace tap-install"
 tanzu package available list tap.tanzu.vmware.com --namespace tap-install
 
 
@@ -63,7 +55,7 @@ metadata_store:
 
 EOF
 
-watch tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
