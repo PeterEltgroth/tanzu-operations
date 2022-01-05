@@ -37,8 +37,8 @@ buildservice:
   kp_default_repository: ${az_registry}.azurecr.io/build-service
   kp_default_repository_username: $az_registry
   kp_default_repository_password: $az_registry_password
-  tanzunet_username: $pivot_username
-  tanzunet_password: $pivot_password
+  tanzunet_username: "${pivot_username}"
+  tanzunet_password: "${pivot_password}"
 
 supply_chain: basic
 
