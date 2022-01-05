@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-54-193-86-125.us-west-1.compute.amazonaws.com -i ../keys/tap-operator-us-west-1.pem

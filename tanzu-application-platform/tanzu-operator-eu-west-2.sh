@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-3-8-17-86.eu-west-2.compute.amazonaws.com -i ../keys/tanzu-operator-eu-west-2.pem

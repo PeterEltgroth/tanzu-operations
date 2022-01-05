@@ -1,0 +1,23 @@
+profile: dev
+ceip_policy_disclosed: true # Installation fails if this is set to 'false'
+
+buildservice:
+  kp_default_repository: "nycpivotregistry.azurecr.io/build-service"
+  kp_default_repository_username: "nycpivotregistry"
+  kp_default_repository_password: "MFxdnGmHnsUj8XfkNWWu+7nTI9IC0Vwo"
+  tanzunet_username: "mjames@pivotal.io"
+  tanzunet_password: "GenesisC#1V.1"
+
+supply_chain: basic
+
+ootb_supply_chain_basic:
+  registry:
+    server: "nycpivotregistry.azurecr.io"
+    repository: "build-service"
+
+tap_gui:
+  service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+
+metadata_store:
+  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+  

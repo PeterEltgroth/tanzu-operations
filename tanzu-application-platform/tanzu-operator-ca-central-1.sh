@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-3-99-136-10.ca-central-1.compute.amazonaws.com -i ../keys/tanzu-operator-ca-central-1.pem
