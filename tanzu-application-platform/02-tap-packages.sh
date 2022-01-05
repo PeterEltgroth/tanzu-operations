@@ -1,4 +1,4 @@
-read -p "Azure subsciption: " subsciption
+read -p "Azure Subscription: " subscription
 read -p "Pivotal Username (mjames@pivotal.io): " pivot_username
 read -p "Azure Container Registry (without domain): " az_registry
 read -p "Azure Container Registry Password: " az_registry_password

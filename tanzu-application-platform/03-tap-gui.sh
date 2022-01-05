@@ -1,6 +1,14 @@
+read -p "Azure Subscription: " subscription
 read -p "External IP: " external_ip
 read -p "Git Catalog Url: " git_catalog_url
-read -p "Domain Name: " app_domain
+read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
+
+pivot_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+export INSTALL_REGISTRY_USERNAME=$pivot_username
+export INSTALL_REGISTRY_PASSWORD=$pivot_password
 
 github_token_nycpivot=$(az keyvault secret show --name github-token-nycpivot --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
