@@ -29,6 +29,7 @@ DEMO_PROMPT="${GREEN}➜ TAP ${CYAN}\W "
 
 read -p "App Name: " app_name
 read -p "Git App Url: " git_app_url
+echo
 
 pe "tanzu apps workload create ${app_name} --git-repo ${git_app_url} --git-branch main --type web --label app.kubernetes.io/part-of=tanzu-java-web-app --yes --dry-run"
 echo
@@ -37,6 +38,9 @@ pe "tanzu apps workload create ${app_name} --git-repo ${git_app_url} --git-branc
 echo
 
 pe "tanzu apps workload tail ${app_name} --since 10m --timestamp"
+echo
+
+pe "kubectl get svc -n tanzu-system-ingress"
 echo
 
 pe "tanzu apps workload get ${app_name}"

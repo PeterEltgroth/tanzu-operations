@@ -11,5 +11,4 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-appl
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/03-tap-gui.sh -O tap/03-tap-gui.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/04-supply-chain.sh -O tap/04-supply-chain.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/05-developer-namespace.sh -O tap/05-developer-namespace.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/06-deploy-app.sh -O tap/06-deploy-app.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/07-deploy-app-rabbitmq.sh -O tap/07-deploy-app-rabbitmq.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tanzu-application-platform/06-deploy-rabbitmq-operator.sh -O tap/06-deploy-rabbitmq-operator.sh
