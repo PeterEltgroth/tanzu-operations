@@ -1,9 +1,8 @@
 read -p "Registry Server (without domain): " registry_server
-read -p "Registry Username: " registry_username
 read -p "Registry Password: " registry_password
 read -p "Namespace: " namespace
 
-kubectl create secret docker-registry registry-credentials --docker-server=${registry_server}.azurecr.io --docker-username=$registry_username --docker-password=$registry_password -n $namespace
+kubectl create secret docker-registry registry-credentials --docker-server=${registry_server}.azurecr.io --docker-username=$registry_server --docker-password=$registry_password -n $namespace
 
 cat <<EOF | kubectl -n $namespace apply -f -
 
