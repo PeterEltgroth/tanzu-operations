@@ -27,8 +27,21 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TAP ${CYAN}\W "
 
+pe "kubectl get svc -n tanzu-system-ingress"
+echo
+
 read -p "App Name: " app_name
 read -p "Git App Url: " git_app_url
+read -p "Ingress Url: " ingress_url
+echo
+
+pe "nslookup ${ingress_url}"
+echo
+
+pe "tanzu apps workload delete --all"
+echo
+
+pe "tanzu apps workload list"
 echo
 
 pe "tanzu apps workload create ${app_name} --git-repo ${git_app_url} --git-branch main --type web --label app.kubernetes.io/part-of=tanzu-java-web-app --yes --dry-run"
@@ -40,7 +53,7 @@ echo
 pe "tanzu apps workload tail ${app_name} --since 10m --timestamp"
 echo
 
-pe "kubectl get svc -n tanzu-system-ingress"
+pe "tanzu apps workload list"
 echo
 
 pe "tanzu apps workload get ${app_name}"
