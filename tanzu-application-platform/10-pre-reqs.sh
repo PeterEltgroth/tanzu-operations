@@ -1,6 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "Pivotal Username (mjames@pivotal.io): " pivot_username
-read -p "Pivotal Password: " pivot_password
 read -p "AWS Region Code: " aws_region_code
 read -p "EKS Cluster Name: " eks_cluster_name
 read -p "Azure Container Registry (without domain): " az_registry
@@ -26,6 +24,14 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login
 az account set --subscription $subscription
 
+pivot_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+export AWS_DEFAULT_REGION=$aws_region_code
+
 #KUBECTL
 wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
 gzip -d kubectl-linux-v1.21.2+vmware.1.gz
@@ -38,6 +44,24 @@ mkdir .kube
 touch .kube/config
 
 aws configure
+
+aws eks create-cluster \
+   --region $aws_region_code \
+   --name $eks_cluster_name \
+   --kubernetes-version 1.21 \
+   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
+   --resources-vpc-config subnetIds=subnet-0b5981a976939fbb4,subnet-06bc370a12ee018aa,subnet-02a931cbd22814dba
+   
+aws eks create-nodegroup \
+	--cluster-name $eks_cluster_name \
+	--nodegroup-name "${eks_cluster_name}-node-group" \
+	--disk-size 500 \
+	--scaling-config minSize=3,maxSize=3,desiredSize=3 \
+	--subnets "subnet-0b5981a976939fbb4" "subnet-06bc370a12ee018aa" "subnet-02a931cbd22814dba" \
+	--instance-types t3a.2xlarge \
+	--node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
+	--kubernetes-version 1.21
+
 aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
 
 kubectl config get-contexts
@@ -61,7 +85,7 @@ tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.0
 
 export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
 export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-export INSTALL_REGISTRY_USERNAME=$pivot_username
+export INSTALL_REGISTRY_USERNAME=mjames@pivotal.io
 export INSTALL_REGISTRY_PASSWORD=$pivot_password
 cd $HOME/tanzu-cluster-essentials
 ./install.sh
