@@ -58,8 +58,11 @@ read -p "Source Image: " source_image
 read -p "Local Path: " local_path
 read -p "Namespace: " namespace
 
-pe "export SOURCE_IMAGE='nycpivottap.azurecr.io/supply-chain/tilt-demo-default'"
-pe "export LOCAL_PATH='tanzu-java-web-app'"
-pe "export NAMESPACE=default"
+pe "export SOURCE_IMAGE='${source_image}'"
+pe "export LOCAL_PATH='${local_path}'"
+pe "export NAMESPACE='${namespace}'"
+echo
 
-tilt up
+pe "cd tanzu-java-web-app"
+pe "tilt up"
+echo
