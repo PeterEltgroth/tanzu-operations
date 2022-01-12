@@ -1,4 +1,5 @@
 read -p "Azure Subscription: " subscription
+read -p "AWS Region Code: " aws_region_code
 
 sudo apt update
 yes | sudo apt upgrade
@@ -28,3 +29,12 @@ kubectl version
 
 mkdir .kube
 touch .kube/config
+
+aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+export AWS_DEFAULT_REGION=$aws_region_code
+
+aws configure

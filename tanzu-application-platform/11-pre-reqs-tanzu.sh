@@ -6,13 +6,7 @@ read -p "EKS Cluster Name: " eks_cluster_name
 
 #CREDS
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-export AWS_ACCESS_KEY_ID=$aws_access_key_id
-export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-export AWS_DEFAULT_REGION=$aws_region_code
-	
 aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
 
 kubectl config get-contexts

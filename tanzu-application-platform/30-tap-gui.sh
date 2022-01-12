@@ -1,6 +1,5 @@
 read -p "Azure Subscription: " subscription
 read -p "Container Registry (without domain): " registry_name
-read -p "External IP: " external_ip
 read -p "Git Catalog Url (https://abc.com): " git_catalog_url
 read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
 
@@ -64,4 +63,5 @@ tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-val
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
+kubectl get svc -n tanzu-system-ingress
 kubectl get svc -n tap-gui
