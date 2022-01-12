@@ -4,9 +4,11 @@ read -p "Namespace: " namespace
 
 registry_password=$(az keyvault secret show --name tanzu-application-registry-password --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-kubectl create secret docker-registry registry-credentials --docker-server=${registry_name}.azurecr.io --docker-username=$registry_name --docker-password=$registry_password -n $namespace
+tanzu secret registry add registry-credentials --server $registry_name --username "${registry_name}" --password "${registry_password}" --namespace $namespace
 
-cat <<EOF | kubectl -n $namespace apply -f -
+#kubectl create secret docker-registry registry-credentials --docker-server="${registry_name}.azurecr.io" --docker-username="${registry_name}" --docker-password="${registry_password}" -n $namespace
+
+cat <<EOF | kubectl -n default apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
