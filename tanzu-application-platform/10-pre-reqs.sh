@@ -1,9 +1,11 @@
 read -p "Azure Subscription: " subscription
-read -p "AWS Region Code: " aws_region_code
 read -p "EKS Cluster Name: " eks_cluster_name
 
 sudo apt update
 yes | sudo apt upgrade
+
+#JQ
+sudo snap install 
 
 #MISC TOOLS
 sudo apt install unzip
@@ -19,14 +21,13 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login
 az account set --subscription $subscription
 
-#CREDS
-pivot_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+#KUBECTL
+wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
+gzip -d kubectl-linux-v1.21.2+vmware.1.gz
 
-export AWS_ACCESS_KEY_ID=$aws_access_key_id
-export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-export AWS_DEFAULT_REGION=$aws_region_code
-	
-aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
+sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
+rm kubectl-linux-v1.21.2+vmware.1
+kubectl version
 
+mkdir .kube
+touch .kube/config

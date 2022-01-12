@@ -1,22 +1,20 @@
 #https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-general.html
 
 read -p "Azure Subscription: " subscription
-read -p "Azure Container Registry (without domain): " az_registry
-read -p "Azure Container Registry Password: " az_registry_password
+read -p "AWS Region Code: " aws_region_code
 
-#KUBECTL
-wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
-gzip -d kubectl-linux-v1.21.2+vmware.1.gz
+#CREDS
+pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
-rm kubectl-linux-v1.21.2+vmware.1
-kubectl version
-
-mkdir .kube
-touch .kube/config
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+export AWS_DEFAULT_REGION=$aws_region_code
+	
+aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
 
 kubectl config get-contexts
-wait
 
 read -p "Target Context: " target_context
 
