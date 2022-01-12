@@ -6,6 +6,7 @@ yes | sudo apt upgrade
 
 #MISC TOOLS
 sudo snap install jq
+sudo snap install helm --classic
 sudo apt install unzip
 
 #AWS CLI
