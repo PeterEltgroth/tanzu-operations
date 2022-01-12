@@ -1,13 +1,10 @@
 read -p "Azure Subscription: " subscription
-read -p "EKS Cluster Name: " eks_cluster_name
 
 sudo apt update
 yes | sudo apt upgrade
 
-#JQ
-sudo snap install 
-
 #MISC TOOLS
+sudo snap install jq
 sudo apt install unzip
 
 #AWS CLI

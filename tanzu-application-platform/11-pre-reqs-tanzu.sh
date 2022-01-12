@@ -2,6 +2,7 @@
 
 read -p "Azure Subscription: " subscription
 read -p "AWS Region Code: " aws_region_code
+read -p "EKS Cluster Name: " eks_cluster_name
 
 #CREDS
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
