@@ -27,15 +27,8 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TAP ${CYAN}\W "
 
-pe "kubectl get svc -n tanzu-system-ingress"
-echo
-
 read -p "App Name: " app_name
 read -p "Git App Url: " git_app_url
-read -p "Ingress Url: " ingress_url
-echo
-
-pe "nslookup ${ingress_url}"
 echo
 
 pe "tanzu apps workload delete --all"
