@@ -33,12 +33,10 @@ wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/r
 tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.0.0.tgz -C $HOME/tanzu-cluster-essentials
 
 
-pivot_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
 export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
 export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
 export INSTALL_REGISTRY_USERNAME=mjames@pivotal.io
-export INSTALL_REGISTRY_PASSWORD=$pivot_password
+export INSTALL_REGISTRY_PASSWORD=$pivnet_password
 cd $HOME/tanzu-cluster-essentials
 ./install.sh
 
@@ -54,9 +52,6 @@ wget https://network.pivotal.io/api/v2/products/tanzu-application-platform/relea
 tar -xvf $HOME/tanzu/tanzu-framework-linux-amd64.tar -C $HOME/tanzu
 
 sudo install cli/core/v0.10.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
-
-tanzu version
-read -p "Confirm Tanzu Version"
 
 
 #PLUGINS
