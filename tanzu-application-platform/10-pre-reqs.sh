@@ -4,6 +4,13 @@ read -p "AWS Region Code: " aws_region_code
 sudo apt update
 yes | sudo apt upgrade
 
+#DOCKER
+yes | sudo apt install docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+
+sudo usermod -aG docker $USER
+
 #MISC TOOLS
 sudo snap install jq
 sudo snap install helm --classic
@@ -39,3 +46,5 @@ export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
 export AWS_DEFAULT_REGION=$aws_region_code
 
 aws configure
+
+echo "REBOOT TO START DOCKER SERVICE"
