@@ -64,4 +64,12 @@ tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
 kubectl get svc -n tanzu-system-ingress
-kubectl get svc -n tap-gui
+
+read -p "Tanzu System Ingress IP: " external_ip
+
+nslookup $external_ip
+
+read -p "Configure DNS wildcard"
+
+echo http://tap-gui.apps.tap.us-east-2.nycpivot.com/
+

@@ -1,11 +1,12 @@
-read -p "Registry Server (without domain): " registry_server
-read -p "Registry Password: " registry_password
+read -p "Azure Subscription: " subscription
+read -p "Container Registry (without domain): " registry_name
 read -p "Namespace: " namespace
 
-kubectl create secret docker-registry registry-credentials --docker-server=${registry_server}.azurecr.io --docker-username=$registry_server --docker-password=$registry_password -n $namespace
+registry_password=$(az keyvault secret show --name tanzu-application-registry-password --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+kubectl create secret docker-registry registry-credentials --docker-server=${registry_name}.azurecr.io --docker-username=$registry_name --docker-password=$registry_password -n $namespace
 
 cat <<EOF | kubectl -n $namespace apply -f -
-
 apiVersion: v1
 kind: Secret
 metadata:
@@ -72,7 +73,7 @@ rules:
 - apiGroups: [services.apps.tanzu.vmware.com]
   resources: ['resourceclaims']
   verbs: ['*']
-- apiGroups: [scst-scan.apps.tanzu.vmware.com]
+- apiGroups: [scanning.apps.tanzu.vmware.com]
   resources: ['imagescans', 'sourcescans']
   verbs: ['*']
 

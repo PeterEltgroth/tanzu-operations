@@ -1,5 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "AWS Region Code: " aws_region_code
 
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
