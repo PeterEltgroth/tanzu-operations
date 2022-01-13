@@ -28,6 +28,8 @@ ootb_supply_chain_basic:
   registry:
     server: ${registry_name}.azurecr.io
     repository: "supply-chain"
+  gitops:
+    ssh_secret: ""
 tap_gui:
   service_type: LoadBalancer
   ingressEnabled: "true"
