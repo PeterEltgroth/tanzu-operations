@@ -18,12 +18,12 @@
 
 8. Run the following helm commands (see https://github.com/goharbor/harbor-helm):
 
-	helm repo add my-release harbor/harbor
+	helm repo add harbor https://helm.goharbor.io
 	helm install my-release harbor/harbor -f harbor-config.yaml
 
 	NOTE: To update values in a release.
 
-	helm upgrade my-release bitnami/harbor -f harbor-config.yaml --set harborAdminPassword=<password>
+	helm upgrade my-release harbor/harbor -f harbor-config.yaml --set harborAdminPassword=<password>
 
 9. Retrieve the ELB URL.
 
@@ -31,3 +31,7 @@
 
 10. Update the harbor.nycpivot.com DNS CNAME record.
 
+
+
+
+OLD ONE ac461825beb8a42f5b85133971ef0bad-238154290.us-east-1.elb.amazonaws.com

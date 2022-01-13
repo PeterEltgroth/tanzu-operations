@@ -54,7 +54,6 @@ export TANZU_CLI_NO_INIT=true
 tanzu plugin install --local cli all
 tanzu plugin list
 
-
 cd $HOME
 
 #DEMO-MAGIC
