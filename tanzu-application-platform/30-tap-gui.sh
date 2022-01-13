@@ -4,7 +4,7 @@ read -p "Git Catalog Url (https://abc.com): " git_catalog_url
 read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
 
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-registry_password=$(az keyvault secret show --name tanzu-application-registry-password --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+registry_password=$(az keyvault secret show --name tanzu-application-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 github_token=$(az keyvault secret show --name github-token-nycpivot --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
 #export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343

@@ -2,7 +2,7 @@ read -p "Azure Subscription: " subscription
 read -p "Container Registry (without domain): " registry_name
 read -p "Namespace: " namespace
 
-registry_password=$(az keyvault secret show --name tanzu-application-registry-password --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+registry_password=$(az keyvault secret show --name tanzu-application-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
 tanzu secret registry add registry-credentials --server ${registry_name}.azurecr.io --username "${registry_name}" --password "${registry_password}" --namespace $namespace
 

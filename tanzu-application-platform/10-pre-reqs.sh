@@ -48,6 +48,8 @@ export AWS_DEFAULT_REGION=$aws_region_code
 
 aws configure
 
+
+
 aws eks create-cluster \
    --region $aws_region_code \
    --name $eks_cluster_name \
