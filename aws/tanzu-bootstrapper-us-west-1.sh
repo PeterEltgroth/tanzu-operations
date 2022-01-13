@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-18-144-63-15.us-west-1.compute.amazonaws.com -i ../keys/tanzu-bootstrapper-us-west-1.pem

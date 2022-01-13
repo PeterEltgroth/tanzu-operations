@@ -6,8 +6,7 @@
 3. Set context to new cluster from an operator instance.
 4. Download scripts from https://github.com/nycpivot/harbor-certs.
 5. Run gen-harbor-certs.sh with a custom domain, such as, harbor.nycpivot.com.
-6. Open https://github.com/goharbor/harbor-helm.
-7. Download the values.yaml file and edit the following settings:
+7. wget https://raw.githubusercontent.com/goharbor/harbor-helm/master/values.yaml and edit the following settings:
 
 	expose.type: loadBalancer
 	expose.tls.auto.commonName: harbor.nycpivot.com
