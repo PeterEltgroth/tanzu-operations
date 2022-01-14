@@ -30,6 +30,8 @@ ootb_supply_chain_basic:
     repository: "supply-chain"
   gitops:
     ssh_secret: ""
+  cluster_builder: default
+  service_account: default
 tap_gui:
   service_type: LoadBalancer
   ingressEnabled: "true"

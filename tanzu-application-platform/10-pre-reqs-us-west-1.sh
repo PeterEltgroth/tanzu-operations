@@ -54,6 +54,8 @@ aws eks create-cluster \
    --kubernetes-version 1.21 \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-0c277f0344e18e39b,subnet-0475a32ab6d3501d6
+   
+read -p "Press Enter to continue"
 
 aws eks create-nodegroup \
 	--cluster-name $eks_cluster_name \

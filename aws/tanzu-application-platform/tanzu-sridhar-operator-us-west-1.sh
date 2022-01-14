@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-13-57-217-201.us-west-1.compute.amazonaws.com -i ../../keys/tanzu-sridhar-operator-us-west-1.pem

@@ -55,6 +55,8 @@ aws eks create-cluster \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-0b5981a976939fbb4,subnet-06bc370a12ee018aa,subnet-02a931cbd22814dba
 
+read -p "Press Enter to continue"
+
 aws eks create-nodegroup \
 	--cluster-name $eks_cluster_name \
 	--nodegroup-name "${eks_cluster_name}-node-group" \
