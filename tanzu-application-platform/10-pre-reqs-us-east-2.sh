@@ -67,6 +67,4 @@ aws eks create-nodegroup \
 	--node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
 	--kubernetes-version 1.21
 
-aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
-
 echo "REBOOT TO START DOCKER SERVICE"

@@ -1,0 +1,12 @@
+fullName:
+  name: registry-policy
+  workspaceName: registry-workspace
+spec:
+  input:
+    audit: false
+    rules:
+    - hostname: gcr.io
+      imageName: '*'
+  recipe: custom
+  type: image-policy
+ 

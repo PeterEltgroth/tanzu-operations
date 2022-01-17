@@ -1,0 +1,17 @@
+fullName:
+  name: spring-app
+  clusterName: tanzu-cluster-nginx-prod-eu-west-1
+  managementClusterName: attached
+  provisionerName: attached
+meta:
+  annotations:
+    vmware.tanzu.manage.template: default
+  description: ""
+  labels: null
+spec:
+  workspaceName: application-production
+type:
+  kind: Namespace
+  package: vmware.tanzu.manage.v1alpha1.cluster.namespace
+  version: v1alpha1
+  

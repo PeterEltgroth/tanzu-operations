@@ -1,0 +1,27 @@
+fullName:
+  clusterGroupName: production
+  name: security-production-policy
+spec:
+  input:
+    allow_host_namespace_sharing: false
+    allow_host_network: false
+    allow_privilege_escalation: false
+    allow_privileged_containers: false
+    allowed_host_port_range:
+      max: 65535
+      min: 0
+    allowed_volumes:
+    - '*'
+    audit: false
+    disable_native_psp: false
+    linux_capabilities:
+      allowed_capabilities:
+      - '*'
+    run_as_user:
+      ranges:
+      - max: 65535
+        min: 0
+      rule: MustRunAs
+  recipe: custom
+  type: security-policy
+  

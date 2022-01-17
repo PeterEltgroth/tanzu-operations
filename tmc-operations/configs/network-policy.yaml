@@ -1,0 +1,10 @@
+fullName:
+  name: network-policy
+  workspaceName: network-workspace
+spec:
+  input:
+    to_pod_labels:
+    - key: app
+      value: web
+  recipe: deny-all-to-pods
+  type: network-policy

@@ -1,6 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "AWS Region Code: " aws_region_code
-read -p "EKS Cluster Name: " eks_cluster_name
 
 sudo apt update
 yes | sudo apt upgrade
@@ -28,6 +26,12 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login
 az account set --subscription $subscription
 
+#GCLOUD CLI
+sudo snap install google-cloud-sdk --classic
+
+gcloud auth login
+gcloud config set project pa-mjames
+
 #KUBECTL
 wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
 gzip -d kubectl-linux-v1.21.2+vmware.1.gz
@@ -39,32 +43,26 @@ kubectl version
 mkdir .kube
 touch .kube/config
 
+#TMC CLI
+wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
+sudo mv tmc-cli /usr/local/bin/tmc
+chmod +x /usr/local/bin/tmc
+
 aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
+aws_region_code=ap-northeast-1
 export AWS_ACCESS_KEY_ID=$aws_access_key_id
 export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
 export AWS_DEFAULT_REGION=$aws_region_code
 
 aws configure
 
-aws eks create-cluster \
-   --region $aws_region_code \
-   --name $eks_cluster_name \
-   --kubernetes-version 1.21 \
-   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
-   --resources-vpc-config subnetIds=subnet-0c277f0344e18e39b,subnet-0475a32ab6d3501d6
-   
-read -p "Press Enter to continue"
-   
-aws eks create-nodegroup \
-	--cluster-name $eks_cluster_name \
-	--nodegroup-name "${eks_cluster_name}-node-group" \
-	--disk-size 500 \
-	--scaling-config minSize=3,maxSize=3,desiredSize=3 \
-	--subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
-	--instance-types t3a.2xlarge \
-	--node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
-	--kubernetes-version 1.21
+#DEMO-MAGIC
+wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
+sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
+chmod +x /usr/local/bin/demo-magic.sh
 
-echo "REBOOT TO START DOCKER SERVICE"
+sudo apt install pv #required for demo-magic
+
+echo "REBOOT TO RESTART DOCKER SERVICE"

@@ -1,0 +1,17 @@
+fullName:
+  name: network
+  clusterName: tmc-registry-and-network-cluster
+  managementClusterName: attached
+  provisionerName: attached
+meta:
+  annotations:
+    vmware.tanzu.manage.template: default
+  description: ""
+  labels: null
+spec:
+  workspaceName: network-workspace
+type:
+  kind: Namespace
+  package: vmware.tanzu.manage.v1alpha1.cluster.namespace
+  version: v1alpha1
+  

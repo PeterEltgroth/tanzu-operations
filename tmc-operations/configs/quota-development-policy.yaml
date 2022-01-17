@@ -1,0 +1,11 @@
+fullName:
+  clusterGroupName: development
+  name: quota-development-policy
+spec:
+  input:
+    limits_cpu: 250m
+    limits_memory: 1Gi
+    requests_cpu: 100m
+    requests_memory: 512Mi
+  recipe: custom
+  type: namespace-quota-policy
