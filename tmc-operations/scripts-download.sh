@@ -9,3 +9,10 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-east1.sh -O tmc/13-gke-setup-us-east1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-tmc-setup.sh -O tmc/20-tmc-setup.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-registry-and-network.sh -O tmc/100-demo-registry-and-network.sh
+
+mkdir tmc/configs
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/registry-namespace.yaml -O tmc/configs/registry-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/registry-policy.yaml -O tmc/configs/registry-policy.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-namespace.yaml -O tmc/configs/network-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-policy.yaml -O tmc/configs/network-policy.yaml

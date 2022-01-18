@@ -74,7 +74,7 @@ echo
 #NETWORK POLICY
 DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
 
-pe "kubectl run nginx-web --image nginx -n network --labels app=web"
+pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
 echo
 
 pe "kubectl run nginx-data --image nginx -n network"

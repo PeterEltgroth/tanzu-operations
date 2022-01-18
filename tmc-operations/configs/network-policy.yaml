@@ -4,7 +4,7 @@ fullName:
 spec:
   input:
     to_pod_labels:
-    - key: app
+    - key: tier
       value: web
   recipe: deny-all-to-pods
   type: network-policy
