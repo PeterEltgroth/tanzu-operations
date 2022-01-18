@@ -1,7 +1,7 @@
 aws_region_code=ap-northeast-1
-access_cluster_group=tmc-access-cluster-group
-quota_cluster_group=tmc-quota-cluster-group
-custom_cluster_group=tmc-custom-cluster-group
+access_cluster_group=eks-access-cluster-group
+quota_cluster_group=eks-quota-cluster-group
+custom_cluster_group=eks-custom-cluster-group
 
 
 #TMC-ACCESS-CLUSTER

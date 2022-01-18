@@ -1,0 +1,58 @@
+profile: full
+ceip_policy_disclosed: true
+buildservice:
+  kp_default_repository: tanzuapplicationregistry.azurecr.io/build-service
+  kp_default_repository_username: tanzuapplicationregistry
+  kp_default_repository_password: <password>
+  tanzunet_username: ""
+  tanzunet_password: ""
+  descriptor_name: "tap-1.0.0-full"
+  enable_automatic_dependency_updates: true
+supply_chain: basic
+ootb_supply_chain_basic:
+  registry:
+    server: tanzuapplicationregistry.azurecr.io
+    repository: "supply-chain"
+  gitops:
+    ssh_secret: ""
+  cluster_builder: default
+  service_account: default
+tap_gui:
+  service_type: LoadBalancer
+  ingressEnabled: "true"
+  ingressDomain: "apps.tap.us-east-2.nycpivot.com"
+  app_config:
+    app:
+      baseUrl: http://tap-gui.apps.tap.us-east-2.nycpivot.com
+    catalog:
+      locations:
+        - type: url
+          target: https://github.com/nycpivot/tanzu-application-platform/catalog-info.yaml
+    backend:
+        baseUrl: http://tap-gui.apps.tap.us-east-2.nycpivot.com
+        cors:
+          origin: http://tap-gui.apps.tap.us-east-2.nycpivot.com
+    integrations:
+      github:
+        - host: github.com
+          token: <token>
+learningcenter:
+  ingressDomain: "learningcenter.apps.tap.us-east-2.nycpivot.com"
+metadata_store:
+  app_service_type: LoadBalancer
+grype:
+  namespace: "default"
+  targetImagePullSecret: "registry-credentials"
+excluded_packages:
+  - accelerator.apps.tanzu.vmware.com
+  - run.appliveview.tanzu.vmware.com
+  - api-portal.tanzu.vmware.com
+  - cnrs.tanzu.vmware.com
+  - ootb-delivery-basic.tanzu.vmware.com
+  - developer-conventions.tanzu.vmware.com
+  - image-policy-webhook.signing.apps.tanzu.vmware.com
+  - learningcenter.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
+  - services-toolkit.tanzu.vmware.com
+  - service-bindings.labs.vmware.com
+  - tap-gui.tanzu.vmware.com

@@ -1,0 +1,70 @@
+profile: full
+ceip_policy_disclosed: true
+buildservice:
+  kp_default_repository: tanzuapplicationregistry.azurecr.io/build-service
+  kp_default_repository_username: tanzuapplicationregistry
+  kp_default_repository_password: <password>
+  tanzunet_username: ""
+  tanzunet_password: ""
+  descriptor_name: "tap-1.0.0-full"
+  enable_automatic_dependency_updates: true
+supply_chain: basic
+ootb_supply_chain_basic:
+  registry:
+    server: tanzuapplicationregistry.azurecr.io
+    repository: "supply-chain"
+  gitops:
+    ssh_secret: ""
+  cluster_builder: default
+  service_account: default
+tap_gui:
+  service_type: LoadBalancer
+  ingressEnabled: "true"
+  ingressDomain: "run.tap.us-east-2.nycpivot.com"
+  app_config:
+    app:
+      baseUrl: http://tap-gui.run.tap.us-east-2.nycpivot.com
+    catalog:
+      locations:
+        - type: url
+          target: /catalog-info.yaml
+    backend:
+        baseUrl: http://tap-gui.run.tap.us-east-2.nycpivot.com
+        cors:
+          origin: http://tap-gui.run.tap.us-east-2.nycpivot.com
+    integrations:
+      github:
+        - host: github.com
+          token: <token>
+learningcenter:
+  ingressDomain: "learningcenter.run.tap.us-east-2.nycpivot.com"
+metadata_store:
+  app_service_type: LoadBalancer
+grype:
+  namespace: "default"
+  targetImagePullSecret: "registry-credentials"
+contour:
+  infrastructure_provider: aws
+  envoy:
+    service:
+      aws:
+        LBType: nlb
+cnrs:
+  domain_name: run.tap.us-east-2.nycpivot.com
+excluded_packages:
+  - accelerator.apps.tanzu.vmware.com
+  - api-portal.tanzu.vmware.com
+  - build.appliveview.tanzu.vmware.com
+  - buildservice.tanzu.vmware.com
+  - controller.conventions.apps.tanzu.vmware.com
+  - developer-conventions.tanzu.vmware.com
+  - grype.scanning.apps.tanzu.vmware.com
+  - learningcenter.tanzu.vmware.com
+  - metadata-store.apps.tanzu.vmware.com
+  - ootb-supply-chain-basic.tanzu.vmware.com
+  - ootb-supply-chain-testing.tanzu.vmware.com
+  - ootb-supply-chain-testing-scanning.tanzu.vmware.com
+  - scanning.apps.tanzu.vmware.com
+  - spring-boot-conventions.tanzu.vmware.com
+  - tap-gui.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
