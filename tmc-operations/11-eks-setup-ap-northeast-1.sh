@@ -12,7 +12,7 @@ aws eks create-cluster \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-63b6632b,subnet-a6bc608d,subnet-5441460f
 
-read -p "Press Enter to continue"
+aws eks wait cluster-active --name $access_cluster_group
 
 aws eks create-nodegroup \
         --cluster-name $access_cluster_group \
@@ -26,7 +26,7 @@ aws eks create-nodegroup \
 		
 aws eks update-kubeconfig --name $access_cluster_group --region $aws_region_code
 
-read -p "Next Cluster"
+read -p "Press Enter to build next cluster"
 
 
 #TMC-QUOTA-CLUSTER
@@ -37,7 +37,7 @@ aws eks create-cluster \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-63b6632b,subnet-a6bc608d,subnet-5441460f
 
-read -p "Press Enter to continue"
+aws eks wait cluster-active --name $quota_cluster_group
 
 aws eks create-nodegroup \
         --cluster-name $quota_cluster_group \
@@ -51,7 +51,7 @@ aws eks create-nodegroup \
 		
 aws eks update-kubeconfig --name $quota_cluster_group --region $aws_region_code
 
-read -p "Next Cluster"
+read -p "Press Enter to build next cluster"
 
 
 #TMC-CUSTOM-CLUSTER
@@ -62,7 +62,7 @@ aws eks create-cluster \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-63b6632b,subnet-a6bc608d,subnet-5441460f
 
-read -p "Press Enter to continue"
+aws eks wait cluster-active --name $access_cluster_group
 
 aws eks create-nodegroup \
         --cluster-name $custom_cluster_group \
