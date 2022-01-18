@@ -84,13 +84,14 @@ kubectl config delete-context $arn/$custom_cluster_group
 aws eks delete-cluster --name $custom_cluster_group
 
 
-#DELETE TMC-SECURITY-CLUSTER
-gcloud container clusters delete "${security_cluster_group}" --region "us-east1"
-
-kubectl config delete-user ${security_cluster_group}
-kubectl config delete-cluster ${security_cluster_group}
-kubectl config delete-context ${security_cluster_group}
-
-
 #DELETE AKS CLUSTERS
 az aks delete --name $registry_and_network_cluster --resource-group tanzu-mission-control
+
+
+#DELETE TMC-SECURITY-CLUSTER
+gcloud container clusters delete "${security_cluster_group}" --region "asia-northeast1"
+
+prefix=gke_pa-mjames_asia-northeast1
+kubectl config delete-user ${prefix}_${security_cluster_group}
+kubectl config delete-cluster ${prefix}_${security_cluster_group}
+kubectl config delete-context ${prefix}_${security_cluster_group}

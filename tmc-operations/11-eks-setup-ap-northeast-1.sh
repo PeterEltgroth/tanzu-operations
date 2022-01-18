@@ -74,3 +74,8 @@ aws eks update-kubeconfig --name $access_cluster_group --region $aws_region_code
 aws eks update-kubeconfig --name $quota_cluster_group --region $aws_region_code
 aws eks update-kubeconfig --name $custom_cluster_group --region $aws_region_code
 
+arn=arn:aws:eks:ap-northeast-1:964978768106:cluster
+kubectl config rename-context ${arn}/${access_cluster_group} $access_cluster_group
+kubectl config rename-context ${arn}/${quota_cluster_group} $quota_cluster_group
+kubectl config rename-context ${arn}/${custom_cluster_group} $custom_cluster_group
+
