@@ -23,10 +23,6 @@ aws eks create-nodegroup \
         --instance-types t3a.2xlarge \
         --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
         --kubernetes-version 1.21
-		
-aws eks update-kubeconfig --name $access_cluster_group --region $aws_region_code
-
-read -p "Press Enter to build next cluster"
 
 
 #TMC-QUOTA-CLUSTER
@@ -48,10 +44,6 @@ aws eks create-nodegroup \
         --instance-types t3a.2xlarge \
         --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
         --kubernetes-version 1.21
-		
-aws eks update-kubeconfig --name $quota_cluster_group --region $aws_region_code
-
-read -p "Press Enter to build next cluster"
 
 
 #TMC-CUSTOM-CLUSTER
@@ -62,7 +54,7 @@ aws eks create-cluster \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
    --resources-vpc-config subnetIds=subnet-63b6632b,subnet-a6bc608d,subnet-5441460f
 
-aws eks wait cluster-active --name $access_cluster_group
+aws eks wait cluster-active --name $custom_cluster_group
 
 aws eks create-nodegroup \
         --cluster-name $custom_cluster_group \
@@ -74,5 +66,11 @@ aws eks create-nodegroup \
         --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
         --kubernetes-version 1.21
 		
+aws eks wait nodegroup-active --cluster-name $custom_cluster_group --nodegroup-name ${custom_cluster_group}-node-group
+
+rm .kube/config
+
+aws eks update-kubeconfig --name $access_cluster_group --region $aws_region_code
+aws eks update-kubeconfig --name $quota_cluster_group --region $aws_region_code
 aws eks update-kubeconfig --name $custom_cluster_group --region $aws_region_code
 

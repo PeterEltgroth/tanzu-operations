@@ -18,6 +18,7 @@ registry_and_network_cluster=tmc-registry-and-network-cluster
 kubectl config use-context $arn/$access_cluster_group
 
 aws eks delete-nodegroup --cluster-name $access_cluster_group --nodegroup-name ${access_cluster_group}-node-group
+aws eks wait nodegroup-active --cluster-name $access_cluster_group --nodegroup-name ${access_cluster_group}-node-group
 
 kubectl get svc --all-namespaces
 read -p "Service Name: " service_name
@@ -40,6 +41,7 @@ aws eks delete-cluster --name $access_cluster_group
 kubectl config use-context $arn/$quota_cluster_group
 
 aws eks delete-nodegroup --cluster-name $quota_cluster_group --nodegroup-name ${quota_cluster_group}-node-group
+aws eks wait nodegroup-active --cluster-name $quota_cluster_group --nodegroup-name ${quota_cluster_group}-node-group
 
 kubectl get svc --all-namespaces
 read -p "Service Name: " service_name
@@ -63,6 +65,7 @@ aws eks delete-cluster --name $quota_cluster_group
 kubectl config use-context $arn/$custom_cluster_group
 
 aws eks delete-nodegroup --cluster-name $custom_cluster_group --nodegroup-name ${custom_cluster_group}-node-group
+aws eks wait nodegroup-active --cluster-name $custom_cluster_group --nodegroup-name ${custom_cluster_group}-node-group
 
 kubectl get svc --all-namespaces
 read -p "Service Name: " service_name
@@ -90,4 +93,4 @@ kubectl config delete-context ${security_cluster_group}
 
 
 #DELETE AKS CLUSTERS
-az aks delete --name $registry_and_network_cluster --resource-group tanzu-operations
+az aks delete --name $registry_and_network_cluster --resource-group tanzu-mission-control

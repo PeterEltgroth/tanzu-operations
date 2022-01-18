@@ -40,9 +40,6 @@ sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
 
-mkdir .kube
-touch .kube/config
-
 #TMC CLI
 wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
 sudo mv tmc-cli /usr/local/bin/tmc
