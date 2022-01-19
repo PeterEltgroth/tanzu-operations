@@ -48,7 +48,7 @@ fi
 
 kubectl config delete-user $arn/$quota_cluster_group
 kubectl config delete-cluster $arn/$quota_cluster_group
-kubectl config delete-context $arn/$quota_cluster_group
+kubectl config delete-context $quota_cluster_group
 
 aws eks delete-cluster --name $quota_cluster_group
 
@@ -72,7 +72,7 @@ fi
 
 kubectl config delete-user $arn/$custom_cluster_group
 kubectl config delete-cluster $arn/$custom_cluster_group
-kubectl config delete-context $arn/$custom_cluster_group
+kubectl config delete-context $custom_cluster_group
 
 aws eks delete-cluster --name $custom_cluster_group
 
