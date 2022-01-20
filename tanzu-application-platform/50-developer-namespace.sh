@@ -1,8 +1,15 @@
 read -p "Azure Subscription: " subscription
+read -p "EKS Cluster Name: " eks_cluster_name
+read -p "AWS Region Code: " aws_region_code
 read -p "Container Registry (without domain): " registry_name
 read -p "Namespace: " namespace
 
 registry_password=$(az keyvault secret show --name tanzu-application-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+kubectl config get-contexts
+read -p "Select context: " kube_context
+
+kubectl config use-context $eks_cluster_name
 
 tanzu secret registry add registry-credentials --server ${registry_name}.azurecr.io --username "${registry_name}" --password "${registry_password}" --namespace $namespace
 
