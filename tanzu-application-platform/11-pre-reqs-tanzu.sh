@@ -1,20 +1,20 @@
 #https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-general.html
 
 read -p "Azure Subscription: " subscription
-read -p "AWS Region Code: " aws_region_code
 read -p "EKS Cluster Name: " eks_cluster_name
+read -p "AWS Region Code: " aws_region_code
+
+aws eks update-kubeconfig --name $eks_cluster_name --region $aws_region_code
+
+kubectl config get-contexts
+read -p "Select context: " kube_context
+
+kubectl config rename-context $kube_context $eks_cluster_name
+
+kubectl config use-context $eks_cluster_name
 
 #CREDS
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-aws eks --region $aws_region_code update-kubeconfig --name $eks_cluster_name
-
-kubectl config get-contexts
-
-read -p "Target Context: " target_context
-
-kubectl config use-context $target_context
-
 refresh_token=$(az keyvault secret show --name pivnet-api-refresh-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 token=$(curl -X POST https://network.pivotal.io/api/v2/authentication/access_tokens -d '{"refresh_token":"'${refresh_token}'"}')
 access_token=$(echo ${token} | jq -r .access_token)
