@@ -24,7 +24,6 @@ TYPE_SPEED=15
 # hide the evidence
 clear
 
-
 DEMO_PROMPT="${GREEN}➜ TAP ${CYAN}\W "
 
 read -p "App Name: " app_name

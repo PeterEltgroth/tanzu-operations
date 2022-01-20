@@ -27,6 +27,9 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TAP ${CYAN}\W "
 
+read -p "App Name: " app_name
+echo
+
 pe "kubectl get rabbitmqclusters"
 echo
 
@@ -42,8 +45,11 @@ echo
 #pe "tanzu apps workload create rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref 'rmq=rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1' --yes --dry-run"
 #echo
 
-pe "tanzu apps workload create rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref 'rmq=rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1' --yes"
+pe "tanzu apps workload create ${app_name} --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref 'rmq=rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1' --yes"
 echo
 
-pe "tanzu apps workload get rmq-sample-app-usecase-2"
+pe "tanzu apps workload tail ${app_name} --since 10m --timestamp"
+echo
+
+pe "tanzu apps workload get ${app_name}"
 echo
