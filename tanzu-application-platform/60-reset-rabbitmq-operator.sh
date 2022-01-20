@@ -1,7 +1,7 @@
-pe "tanzu apps workload delete --all"
+tanzu apps workload delete --all
 echo
 
-pe "tanzu apps workload list"
+tanzu apps workload list
 echo
 
 kubectl patch packageinstall -n tap-install tap -p '{"spec": {"paused": true}}' --type=merge
