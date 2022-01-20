@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-18-179-3-222.ap-northeast-1.compute.amazonaws.com -i ../keys/tmc-operator-ap-northeast-1.pem -L 8080:localhost:8080

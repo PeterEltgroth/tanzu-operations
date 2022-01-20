@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-54-176-22-3.us-west-1.compute.amazonaws.com -i ../../keys/aws-operator-us-east-1.pem

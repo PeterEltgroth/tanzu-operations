@@ -14,8 +14,8 @@ export INSTALL_REGISTRY_PASSWORD=$pivnet_password
 
 #APPEND GUI SETTINGS
 rm tap-values.yaml
-cat <<EOF | tee tap-values.yaml
-profile: light
+cat <<EOF | tee tap-values-run.yaml
+profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: ${registry_name}.azurecr.io/build-service
@@ -23,6 +23,8 @@ buildservice:
   kp_default_repository_password: $registry_password
   tanzunet_username: "mjames@pivotal.io"
   tanzunet_password: "${pivnet_password}"
+  descriptor_name: "tap-1.0.0-full"
+  enable_automatic_dependency_updates: true
 supply_chain: basic
 ootb_supply_chain_basic:
   registry:
@@ -51,6 +53,13 @@ tap_gui:
       github:
         - host: github.com
           token: $github_token
+learningcenter:
+  ingressDomain: "learningcenter.run.tap.us-east-2.nycpivot.com"
+metadata_store:
+  app_service_type: LoadBalancer
+grype:
+  namespace: "default"
+  targetImagePullSecret: "registry-credentials"
 contour:
   infrastructure_provider: aws
   envoy:
@@ -59,11 +68,26 @@ contour:
         LBType: nlb
 cnrs:
   domain_name: $app_domain
-metadata_store:
-  app_service_type: LoadBalancer
+excluded_packages:
+  - accelerator.apps.tanzu.vmware.com
+  - api-portal.tanzu.vmware.com
+  - build.appliveview.tanzu.vmware.com
+  - buildservice.tanzu.vmware.com
+  - controller.conventions.apps.tanzu.vmware.com
+  - developer-conventions.tanzu.vmware.com
+  - grype.scanning.apps.tanzu.vmware.com
+  - learningcenter.tanzu.vmware.com
+  - metadata-store.apps.tanzu.vmware.com
+  - ootb-supply-chain-basic.tanzu.vmware.com
+  - ootb-supply-chain-testing.tanzu.vmware.com
+  - ootb-supply-chain-testing-scanning.tanzu.vmware.com
+  - scanning.apps.tanzu.vmware.com
+  - spring-boot-conventions.tanzu.vmware.com
+  - tap-gui.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values-run.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
