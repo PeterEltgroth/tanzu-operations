@@ -5,7 +5,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/02-tap-operator-creator.sh -O tap/02-tap-operator-creator.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/10-pre-reqs.sh -O tap/10-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/11-eks-setup-us-west-1.sh -O tap/10-eks-setup-us-west-1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/11-eks-setup-us-west-1.sh -O tap/11-eks-setup-us-west-1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/12-pre-reqs-tanzu.sh -O tap/12-pre-reqs-tanzu.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/20-tap-packages.sh -O tap/20-tap-packages.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/21-tap-values-build.sh -O tap/21-tap-values-build.sh
@@ -21,5 +21,4 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/101-app-service-demo.sh -O tap/101-app-service-demo.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/102-tilt-demo.sh -O tap/102-tilt-demo.sh
 
-
-
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/1000-delete-clusters.sh -O tap/1000-delete-clusters.sh

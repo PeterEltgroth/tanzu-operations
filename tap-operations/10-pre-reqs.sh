@@ -40,15 +40,10 @@ sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
 
-#TMC CLI
-wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
-sudo mv tmc-cli /usr/local/bin/tmc
-chmod +x /usr/local/bin/tmc
-
+#AWS CONFIG
 aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-aws_region_code=ap-northeast-1
 export AWS_ACCESS_KEY_ID=$aws_access_key_id
 export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
 export AWS_DEFAULT_REGION=$aws_region_code

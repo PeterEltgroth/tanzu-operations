@@ -3,7 +3,6 @@ read -p "Build Cluster Name: " eks_build_cluster
 read -p "Run Cluster Name: " eks_run_cluster
 read -p "AWS Region Code: " aws_region_code
 
-
 #TAP-FULL-CLUSTER
 aws eks create-cluster \
    --name $eks_full_cluster \
@@ -74,7 +73,7 @@ aws eks update-kubeconfig --name $eks_full_cluster --region $eks_full_cluster
 aws eks update-kubeconfig --name $eks_build_cluster --region $eks_build_cluster
 aws eks update-kubeconfig --name $eks_run_cluster --region $aws_region_code
 
-arn=arn:aws:eks:ap-northeast-1:964978768106:cluster
+arn=arn:aws:eks:us-west-1:964978768106:cluster
 kubectl config rename-context ${arn}/${eks_full_cluster} $eks_full_cluster
 kubectl config rename-context ${arn}/${eks_build_cluster} $eks_build_cluster
 kubectl config rename-context ${arn}/${eks_run_cluster} $eks_run_cluster
