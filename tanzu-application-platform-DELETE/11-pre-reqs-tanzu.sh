@@ -4,12 +4,8 @@ read -p "Azure Subscription: " subscription
 read -p "EKS Cluster Name: " eks_cluster_name
 read -p "AWS Region Code: " aws_region_code
 
-aws eks update-kubeconfig --name $eks_cluster_name --region $aws_region_code
-
 kubectl config get-contexts
 read -p "Select context: " kube_context
-
-kubectl config rename-context $kube_context $eks_cluster_name
 
 kubectl config use-context $eks_cluster_name
 
