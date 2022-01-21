@@ -48,23 +48,4 @@ export AWS_DEFAULT_REGION=$aws_region_code
 
 aws configure
 
-aws eks create-cluster \
-   --region $aws_region_code \
-   --name $eks_cluster_name \
-   --kubernetes-version 1.21 \
-   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
-   --resources-vpc-config subnetIds=subnet-0b5981a976939fbb4,subnet-06bc370a12ee018aa,subnet-02a931cbd22814dba
-
-read -p "Press Enter to continue"
-
-aws eks create-nodegroup \
-	--cluster-name $eks_cluster_name \
-	--nodegroup-name "${eks_cluster_name}-node-group" \
-	--disk-size 500 \
-	--scaling-config minSize=3,maxSize=3,desiredSize=3 \
-	--subnets "subnet-0b5981a976939fbb4" "subnet-06bc370a12ee018aa" "subnet-02a931cbd22814dba" \
-	--instance-types t3a.2xlarge \
-	--node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
-	--kubernetes-version 1.21
-
 echo "REBOOT TO START DOCKER SERVICE"

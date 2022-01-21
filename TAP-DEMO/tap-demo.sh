@@ -1,1 +1,0 @@
-ssh ubuntu@ec2-54-153-9-119.us-west-1.compute.amazonaws.com -i ../keys/tanzu-operator-us-west-1.pem
