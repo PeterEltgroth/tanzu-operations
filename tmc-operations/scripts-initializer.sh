@@ -1,3 +1,3 @@
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/scripts-download.sh
-sh ~/scripts-download.sh
-rm ~/scripts-download.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/scripts-downloader.sh
+sh ~/scripts-downloader.sh
+rm ~/scripts-downloader.sh
