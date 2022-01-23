@@ -44,7 +44,6 @@ echo
 
 #CREATE SECURITY CLUSTER
 #THE GKE CLUSTER IS ATTACHED TO THE CLUSTER GROUP
-read -p "Attach GKE Security Cluster"
 pe "kubectl config use-context $security_cluster_group"
 echo
 
@@ -58,7 +57,6 @@ echo
 
 #CREATE REGISTRY AND NETWORK CLUSTER
 #THESE ARE ATTACHED TO THE WORKSPACE
-read -p "Attach AKS Registry/Network Cluster"
 pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
@@ -84,18 +82,18 @@ echo
 
 
 #CREATE NAMESPACES
-pe "tmc cluster namespace create -f configs/registry-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/registry-namespace.yaml"
 echo
 
-pe "tmc cluster namespace create -f configs/network-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/network-namespace.yaml"
 echo
 
 
 #CREATE REGISTRY & NETWORK POLICY
-pe "tmc workspace image-policy create -f configs/registry-policy.yaml"
+pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
 echo
 
-pe "tmc workspace network-policy create -f configs/network-policy.yaml"
+pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
 echo
 
 
@@ -118,10 +116,10 @@ echo
 pe "kubectl get pods -n registry"
 echo
 
-pe "tmc workspace image-policy create -f configs/registry-policy.yaml --dry-run"
+pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml --dry-run"
 echo
 
-pe "tmc workspace image-policy create -f configs/registry-policy.yaml"
+pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
 echo
 
 pe "kubectl run docker-nginx-web --image nginx -n registry"
@@ -155,10 +153,10 @@ echo
 pe "kubectl exec nginx-web -it -n network -- sh"
 echo
 
-pe "tmc workspace network-policy create -f configs/network-policy.yaml --dry-run"
+pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml --dry-run"
 echo
 
-pe "tmc workspace network-policy create -f configs/network-policy.yaml"
+pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
 echo
 
 pe "kubectl exec nginx-web -it -n network -- sh"
