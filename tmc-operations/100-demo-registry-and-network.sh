@@ -42,34 +42,56 @@ network_workspace=network-workspace
 #CREATE SECURITY CLUSTER
 #THE GKE CLUSTER IS ATTACHED TO THE CLUSTER GROUP
 read -p "Attach GKE Security Cluster"
-kubectl config use-context $security_cluster_group
+pe "kubectl config use-context $security_cluster_group"
+echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $security_cluster_group --cluster-group $cluster_group
-kubectl apply -f ./k8s-attach-manifest.yaml
+pe "tmc cluster attach --name ${security_cluster_group} --cluster-group ${cluster_group}"
+echo
+
+pe "kubectl apply -f ./k8s-attach-manifest.yaml"
+echo
 
 
 #CREATE REGISTRY AND NETWORK CLUSTER
 #THESE ARE ATTACHED TO THE WORKSPACE
 read -p "Attach AKS Registry/Network Cluster"
-kubectl config use-context $registry_and_network_cluster
+pe "kubectl config use-context ${registry_and_network_cluster}"
+echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $registry_and_network_cluster --cluster-group $workspace_group
-kubectl apply -f ./k8s-attach-manifest.yaml
+pe "tmc cluster attach --name ${registry_and_network_cluster} --cluster-group ${workspace_group}"
+echo
+
+pe "kubectl apply -f ./k8s-attach-manifest.yaml"
+echo
+
+
+read -p "Waiting for attachment..."
 
 
 #CREATE WORKSPACES
-tmc workspace create --name $registry_workspace --description "Demonstrates an image registry policy applicable to all namespaces therein."
-tmc workspace create --name $network_workspace --description "Demonstrates a network policy between two pods from any image registry."
+pe "tmc workspace create --name ${registry_workspace} --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
+echo
+
+pe "tmc workspace create --name ${network_workspace} --description 'Demonstrates a network policy between two pods from any image registry.'"
+echo
+
 
 #CREATE NAMESPACES
-tmc cluster namespace create -f configs/registry-namespace.yaml
-tmc cluster namespace create -f configs/network-namespace.yaml
+pe "tmc cluster namespace create -f configs/registry-namespace.yaml"
+echo
+
+pe "tmc cluster namespace create -f configs/network-namespace.yaml"
+echo
+
 
 #CREATE REGISTRY & NETWORK POLICY
-tmc workspace image-policy create -f configs/registry-policy.yaml
-tmc workspace network-policy create -f configs/network-policy.yaml
+pe "tmc workspace image-policy create -f configs/registry-policy.yaml"
+echo
+
+pe "tmc workspace network-policy create -f configs/network-policy.yaml"
+echo
 
 
 #TMC
