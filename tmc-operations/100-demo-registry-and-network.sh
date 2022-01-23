@@ -39,6 +39,9 @@ registry_and_network_cluster=aks-registry-and-network-cluster
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 
+DEMO_PROMPT="${GREEN}➜ TMC ATTACH CLUSTERS ${CYAN}\W "
+echo
+
 #CREATE SECURITY CLUSTER
 #THE GKE CLUSTER IS ATTACHED TO THE CLUSTER GROUP
 read -p "Attach GKE Security Cluster"
@@ -60,14 +63,16 @@ pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
 rm ./k8s-attach-manifest.yaml
-pe "tmc cluster attach --name ${registry_and_network_cluster} --cluster-group ${workspace_group}"
+#pe "tmc cluster attach --name ${registry_and_network_cluster} --cluster-group ${workspace_group}"
+#echo
+
+read -p "Input location to manifest: " attach_manifest
+
+pe "kubectl apply -f ${attach_manifest}"
 echo
 
-pe "kubectl apply -f ./k8s-attach-manifest.yaml"
-echo
 
-
-read -p "Waiting for attachment..."
+read -p "Waiting for attachments..."
 
 
 #CREATE WORKSPACES
