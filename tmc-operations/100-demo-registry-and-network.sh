@@ -32,12 +32,15 @@ echo $TMC_API_TOKEN
 
 tmc login
 
-
-
+cluster_group=default-cluster-group
+workspace_group=default-workspace-group
 security_cluster_group=gke-security-cluster-group
 registry_and_network_cluster=aks-registry-and-network-cluster
+registry_workspace=registry-workspace
+network_workspace=network-workspace
 
 #CREATE SECURITY CLUSTER
+#THE GKE CLUSTER IS ATTACHED TO THE CLUSTER GROUP
 read -p "Attach GKE Security Cluster"
 kubectl config use-context $security_cluster_group
 
@@ -47,6 +50,7 @@ kubectl apply -f ./k8s-attach-manifest.yaml
 
 
 #CREATE REGISTRY AND NETWORK CLUSTER
+#THESE ARE ATTACHED TO THE WORKSPACE
 read -p "Attach AKS Registry/Network Cluster"
 kubectl config use-context $registry_and_network_cluster
 
@@ -68,24 +72,14 @@ tmc workspace image-policy create -f configs/registry-policy.yaml
 tmc workspace network-policy create -f configs/network-policy.yaml
 
 
-
-
-
-
-
-
-
-
-
 #TMC
 DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
 
-arn=arn:aws:eks:ap-northeast-1:964978768106:cluster
 registry_and_network_cluster=tmc-registry-and-network-cluster
 clear
 
 #REGISTRY POLICY
-pe "kubectl config use-context ${arn}/${registry_and_network_cluster}"
+pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
 pe "kubectl delete pod docker-nginx-web -n registry"
@@ -158,7 +152,7 @@ echo
 
 #ATTACH TMC-ACCESS-POLICY
 #cluster_name="tmc-access-policy"
-#pe "kubectl config use-context arn:aws:eks:ap-northeast-1:964978768106:cluster/${cluster_name}"
+#pe "kubectl config use-context arn:aws:eks:us-west-1:964978768106:cluster/${cluster_name}"
 #echo
 
 #pe "kubectl get ns"

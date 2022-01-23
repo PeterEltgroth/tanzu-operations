@@ -1,6 +1,6 @@
 fullName:
   name: registry
-  clusterName: tmc-registry-and-network-cluster
+  clusterName: aks-registry-and-network-cluster
   managementClusterName: attached
   provisionerName: attached
 meta:
