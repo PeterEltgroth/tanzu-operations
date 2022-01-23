@@ -52,7 +52,7 @@ pe "tmc cluster attach --name ${security_cluster_group} --cluster-group ${cluste
 echo
 
 pe "kubectl apply -f ./k8s-attach-manifest.yaml"
-echo
+clear
 
 
 #CREATE REGISTRY AND NETWORK CLUSTER
@@ -70,7 +70,7 @@ pe "kubectl apply -f ${attach_manifest}"
 echo
 
 
-read -p "Waiting for attachments..."
+pe "clear"
 
 
 #CREATE WORKSPACES
@@ -89,19 +89,16 @@ pe "tmc cluster namespace create -f tmc/configs/network-namespace.yaml"
 echo
 
 
+#TMC
+DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
+
+registry_and_network_cluster=aks-registry-and-network-cluster
+clear
+
 #CREATE REGISTRY & NETWORK POLICY
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
 echo
 
-pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
-echo
-
-
-#TMC
-DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
-
-registry_and_network_cluster=tmc-registry-and-network-cluster
-clear
 
 #REGISTRY POLICY
 pe "kubectl config use-context ${registry_and_network_cluster}"
@@ -137,6 +134,9 @@ echo
 
 #NETWORK POLICY
 DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
+
+pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
+echo
 
 pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
 echo
