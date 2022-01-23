@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #EKS CLUSTERS
-arn=arn:aws:eks:ap-northeast-1:964978768106:cluster
+arn=arn:aws:eks:us-west-1:964978768106:cluster
 
 access_cluster_group=eks-access-cluster-group
 quota_cluster_group=eks-quota-cluster-group
@@ -89,10 +89,10 @@ kubectl config delete-context ${registry_and_network_cluster}
 
 
 #DELETE TMC-SECURITY-CLUSTER
-prefix=gke_pa-mjames_asia-northeast1
+prefix=gke_pa-mjames_us-west1
 security_cluster_group=gke-security-cluster-group
 
-gcloud container clusters delete "${security_cluster_group}" --region "asia-northeast1"
+gcloud container clusters delete "${security_cluster_group}" --region "us-west1"
 
 kubectl config delete-user ${prefix}_${security_cluster_group}
 kubectl config delete-cluster ${prefix}_${security_cluster_group}

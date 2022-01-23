@@ -1,4 +1,4 @@
-gke_region_code=asia-northeast1
+gke_region_code=us-west1
 security_cluster_group=gke-security-cluster-group
 
 #TMC-SECURITY-CLUSTER
@@ -6,5 +6,5 @@ gcloud container clusters create "${security_cluster_group}" --region "${gke_reg
 		
 gcloud container clusters get-credentials "${security_cluster_group}" --region "${gke_region_code}"
 
-prefix=gke_pa-mjames_asia-northeast1
+prefix=gke_pa-mjames_us-west1
 kubectl config rename-context ${prefix}_${security_cluster_group} ${security_cluster_group}
