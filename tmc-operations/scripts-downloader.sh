@@ -8,8 +8,10 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-east1.sh -O tmc/13-gke-setup-us-east1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-tmc-setup.sh -O tmc/20-tmc-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-workspace-registry-and-network.sh -O tmc/100-demo-workspace-registry-and-network.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-cluster-group-access-security-quota-custom.sh -O tmc/101-demo-cluster-group-access-security-quota-custom.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs-workspace.sh -O tmc/100-demo-pre-reqs-workspace.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-registry-policy.sh -O tmc/101-demo-registry-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/102-demo-network-policy.sh -O tmc/102-demo-network-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/103-demo-access-policy.sh -O tmc/103-demo-access-policy.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1000-delete-tmc.sh -O tmc/1000-delete-tmc.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-delete-clusters.sh -O tmc/1001-delete-clusters.sh
