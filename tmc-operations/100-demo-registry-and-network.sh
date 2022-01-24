@@ -52,6 +52,8 @@ pe "tmc cluster attach --name ${security_cluster_group} --cluster-group ${cluste
 echo
 
 pe "kubectl apply -f ./k8s-attach-manifest.yaml"
+
+read -p "Press Enter to continue"
 clear
 
 
@@ -66,8 +68,9 @@ rm ./k8s-attach-manifest.yaml
 
 read -p "Input location to manifest: " attach_manifest
 
-pe "kubectl apply -f ${attach_manifest}"
-echo
+pe "${attach_manifest}"
+
+pe "echo Awaiting cluster attachments..."
 
 
 #CREATE WORKSPACES
@@ -87,6 +90,9 @@ echo
 pe "tmc cluster namespace create -f tmc/configs/network-namespace.yaml"
 echo
 
+read -p "Press Enter to continue"
+clear
+
 
 #TMC
 DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
@@ -98,13 +104,13 @@ registry_and_network_cluster=aks-registry-and-network-cluster
 pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
-pe "kubectl delete pod docker-nginx-web -n registry"
+pe "kubectl get pods -n registry"
 echo
 
 pe "kubectl run docker-nginx-web --image nginx -n registry"
 echo
 
-pe "kubectl get pods -n registry"
+pe "kubectl delete pod docker-nginx-web -n registry"
 echo
 
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml --dry-run"
@@ -128,9 +134,6 @@ echo
 
 #NETWORK POLICY
 DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
-
-pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
-echo
 
 pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
 echo
