@@ -3,8 +3,12 @@ fullName:
   workspaceName: network-workspace
 spec:
   input:
-    to_pod_labels:
-    - key: tier
-      value: web
-  recipe: deny-all-to-pods
+    rules:
+    - ruleSpec:
+      - podSelector:
+        - key: tier
+          value: app
+    toPodLabels: []
+  recipe: custom-ingress
+  recipeVersion: v1
   type: network-policy

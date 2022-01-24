@@ -32,7 +32,7 @@ network_workspace=network-workspace
 DEMO_PROMPT="${GREEN}➜ TMC ATTACH CLUSTERS ${CYAN}\W "
 echo
 
-#CLUSTER GROUP
+#CREATE CLUSTER GROUP
 pe "tmc clustergroup create --name ${workspace_group} --description 'Demonstrates the workspace-only policies; image registry and network.'"
 echo
 
@@ -41,7 +41,7 @@ echo
 pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
-read -p "Manual attachment command: " attach_command
+read -p "Retrieve command from portal: " attach_command
 
 pe "${attach_command}"
 echo
@@ -72,78 +72,3 @@ echo
 
 read -p "Press Enter to continue"
 clear
-
-
-#TMC
-DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
-
-
-#REGISTRY POLICY
-pe "kubectl get pods -n registry"
-echo
-
-pe "kubectl run docker-nginx-web --image nginx -n registry"
-echo
-
-pe "kubectl delete pod docker-nginx-web -n registry"
-echo
-
-pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml --dry-run"
-echo
-
-pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
-echo
-
-pe "kubectl run docker-nginx-web --image nginx -n registry"
-echo
-
-pe "kubectl get pods -n registry"
-echo
-
-pe "kubectl run gcr-nginx-web --image gcr.io/google-containers/nginx -n registry"
-echo
-
-pe "kubectl get pods -n registry"
-echo
-
-
-read -p "Press Enter to continue"
-clear
-
-
-#NETWORK POLICY
-DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
-
-pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
-echo
-
-pe "kubectl run nginx-data --image nginx -n network"
-echo
-
-pe "kubectl get pods -n network"
-echo
-
-pe "kubectl get pods -n network -o wide"
-echo
-
-pe "kubectl exec nginx-web -it -n network -- sh"
-echo
-
-pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml --dry-run"
-echo
-
-pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
-echo
-
-pe "kubectl exec nginx-web -it -n network -- sh"
-echo
-
-pe "kubectl get networkpolicies -n network"
-echo
-
-read -p "Network Policy Name: " network_policy
-echo
-
-pe "kubectl get networkpolicy ${network_policy} -n network -o yaml"
-echo
-
