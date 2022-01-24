@@ -34,8 +34,8 @@ tmc login
 
 cluster_group=default-cluster-group
 workspace_group=default-workspace-group
-security_cluster_group=gke-security-cluster-group
-registry_and_network_cluster=aks-registry-and-network-cluster
+security_cluster_group=aks-registry-and-network-cluster
+registry_and_network_cluster=gke-security-cluster-group
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 
@@ -47,13 +47,12 @@ echo
 pe "kubectl config use-context $security_cluster_group"
 echo
 
-rm ./k8s-attach-manifest.yaml
 pe "tmc cluster attach --name ${security_cluster_group} --cluster-group ${cluster_group}"
 echo
 
 pe "kubectl apply -f ./k8s-attach-manifest.yaml"
 
-read -p "Press Enter to continue"
+pe "Press Enter to continue"
 clear
 
 
@@ -63,14 +62,11 @@ pe "kubectl config use-context ${registry_and_network_cluster}"
 echo
 
 rm ./k8s-attach-manifest.yaml
-#pe "tmc cluster attach --name ${registry_and_network_cluster} --cluster-group ${workspace_group}"
-#echo
 
-read -p "Input location to manifest: " attach_manifest
+read -p "Manual attachment command: " attach_command
 
-pe "${attach_manifest}"
-
-pe "echo Awaiting cluster attachments..."
+pe "${attach_command}"
+echo
 
 
 #CREATE WORKSPACES
@@ -80,7 +76,7 @@ echo
 pe "tmc workspace create --name ${network_workspace} --description 'Demonstrates a network policy between two pods from any image registry.'"
 echo
 
-read -p "Waiting for cluster attachment..."
+read -p "Awaiting cluster attachments..."
 
 
 #CREATE NAMESPACES
@@ -190,22 +186,7 @@ echo
 #pe "kubectl get ns"
 #echo
 
-#ATTACH TMC-REGISTRY-POLICY FROM UI PORTAL
-#cluster_name="tmc-registry-policy"
-#pe "kubectl config use-context arn:aws:eks:ap-northeast-1:964978768106:cluster/${cluster_name}"
-#echo
 
-#pe "kubectl get ns"
-#echo
-
-#read -p "YAML Configuration link: " yaml_config
-#echo
-
-#pe "kubectl apply -f ${yaml_config}"
-#echo
-
-#pe "kubectl get ns"
-#echo
 
 
 
