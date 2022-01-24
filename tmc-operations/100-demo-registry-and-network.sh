@@ -70,15 +70,14 @@ pe "kubectl apply -f ${attach_manifest}"
 echo
 
 
-pe "clear"
-
-
 #CREATE WORKSPACES
 pe "tmc workspace create --name ${registry_workspace} --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
 echo
 
 pe "tmc workspace create --name ${network_workspace} --description 'Demonstrates a network policy between two pods from any image registry.'"
 echo
+
+read -p "Waiting for cluster attachment..."
 
 
 #CREATE NAMESPACES
@@ -93,11 +92,6 @@ echo
 DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
 
 registry_and_network_cluster=aks-registry-and-network-cluster
-clear
-
-#CREATE REGISTRY & NETWORK POLICY
-pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
-echo
 
 
 #REGISTRY POLICY
