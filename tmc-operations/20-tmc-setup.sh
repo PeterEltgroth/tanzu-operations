@@ -1,11 +1,11 @@
 read -p "Azure Subscription: " subscription
 
-access_cluster_group=eks-access-cluster-group
-quota_cluster_group=eks-quota-cluster-group
-custom_cluster_group=eks-custom-cluster-group
+access_cluster_group=access-cluster-group
+quota_cluster_group=quota-cluster-group
+custom_cluster_group=custom-cluster-group
 
-cluster_group=default-cluster-group
-workspace_group=default-workspace-group
+cluster_group=cluster-group
+workspace_group=workspace-group
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 

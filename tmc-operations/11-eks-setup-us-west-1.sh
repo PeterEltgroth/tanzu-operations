@@ -1,7 +1,7 @@
 aws_region_code=us-west-1
-access_cluster_group=eks-access-cluster-group
-quota_cluster_group=eks-quota-cluster-group
-custom_cluster_group=eks-custom-cluster-group
+access_cluster_group=access-cluster-group
+quota_cluster_group=quota-cluster-group
+custom_cluster_group=custom-cluster-group
 
 
 #TMC-ACCESS-CLUSTER
