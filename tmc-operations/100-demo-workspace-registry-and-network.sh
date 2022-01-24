@@ -26,13 +26,13 @@ clear
 
 read -p "Azure Subscription: " subscription
 
-TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+#TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-echo $TMC_API_TOKEN
+#echo $TMC_API_TOKEN
 
-tmc login
+#tmc login
 
-registry_and_network_cluster=gke-security-cluster-group
+registry_and_network_cluster=registry-and-network-cluster
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 
@@ -62,10 +62,16 @@ read -p "Awaiting cluster attachments..."
 
 
 #CREATE NAMESPACES
+pe "kubectl get ns"
+echo
+
 pe "tmc cluster namespace create -f tmc/configs/registry-namespace.yaml"
 echo
 
 pe "tmc cluster namespace create -f tmc/configs/network-namespace.yaml"
+echo
+
+pe "kubectl get ns"
 echo
 
 read -p "Press Enter to continue"
@@ -103,6 +109,10 @@ echo
 
 pe "kubectl get pods -n registry"
 echo
+
+
+read -p "Press Enter to continue"
+clear
 
 
 #NETWORK POLICY

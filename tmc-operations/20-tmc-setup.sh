@@ -3,6 +3,7 @@ read -p "Azure Subscription: " subscription
 access_cluster_group=access-cluster-group
 quota_cluster_group=quota-cluster-group
 custom_cluster_group=custom-cluster-group
+security_cluster_group=security-cluster-group
 
 cluster_group=cluster-group
 workspace_group=workspace-group
@@ -34,6 +35,8 @@ echo
 
 rm ./k8s-attach-manifest.yaml
 tmc cluster attach --name $access_cluster_group --cluster-group $cluster_group
+echo
+
 kubectl apply -f ./k8s-attach-manifest.yaml
 echo
 
@@ -46,6 +49,8 @@ echo
 
 rm ./k8s-attach-manifest.yaml
 tmc cluster attach --name $quota_cluster_group --cluster-group $cluster_group
+echo
+
 kubectl apply -f ./k8s-attach-manifest.yaml
 echo
 
@@ -59,5 +64,22 @@ echo
 
 rm ./k8s-attach-manifest.yaml
 tmc cluster attach --name $custom_cluster_group --cluster-group $cluster_group
+echo
+
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
+
+
+#CREATE GKE SECURITY CLUSTER
+read -p "Attach GKE Security Cluster"
+echo
+
+kubectl config use-context $security_cluster_group
+echo
+
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $security_cluster_group --cluster-group $cluster_group
+echo
+
 kubectl apply -f ./k8s-attach-manifest.yaml
 echo

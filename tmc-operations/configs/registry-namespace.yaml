@@ -1,6 +1,6 @@
 fullName:
   name: registry
-  clusterName: aks-registry-and-network-cluster
+  clusterName: registry-and-network-cluster
   managementClusterName: attached
   provisionerName: attached
 meta:
