@@ -43,5 +43,17 @@ echo
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
 echo
 
-pe "kubectl get pods -n gatekeeper-system"
+pe "watch kubectl get pods -n gatekeeper-system"
+echo
+
+pe "kubectl run docker-nginx-web --image nginx -n registry"
+echo
+
+pe "kubectl get pods -n registry"
+echo
+
+pe "kubectl run gcr-nginx-web --image gcr.io/google-containers/nginx -n registry"
+echo
+
+pe "kubectl get pods -n registry"
 echo
