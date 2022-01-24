@@ -1,27 +1,27 @@
 fullName:
-  clusterGroupName: security-cluster-group
+  clusterGroupName: cluster-group
   name: security-policy
 spec:
   input:
-    allow_host_namespace_sharing: false
-    allow_host_network: false
-    allow_privilege_escalation: false
-    allow_privileged_containers: false
-    allowed_host_port_range:
+    allowHostNamespaceSharing: false
+    allowHostNetwork: false
+    allowPrivilegeEscalation: false
+    allowPrivilegedContainers: false
+    allowedHostPortRange:
       max: 65535
       min: 0
-    allowed_volumes:
-    - '*'
+    allowedVolumes:
+    - hostPath
     audit: false
-    disable_native_psp: false
-    linux_capabilities:
-      allowed_capabilities:
+    disableNativePsp: false
+    linuxCapabilities:
+      allowedCapabilities:
       - '*'
-    run_as_user:
+    runAsUser:
       ranges:
       - max: 65535
         min: 0
-      rule: MustRunAs
+      rule: RunAsAny
   recipe: custom
+  recipeVersion: v1
   type: security-policy
-  

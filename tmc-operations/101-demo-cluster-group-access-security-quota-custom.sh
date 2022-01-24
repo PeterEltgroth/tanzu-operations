@@ -24,19 +24,13 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-read -p "Azure Subscription: " subscription
-
-TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-echo $TMC_API_TOKEN
-
-tmc login
-
 cluster_group=default-cluster-group
 access_cluster_group=access-cluster-group
 quota_cluster_group=quota-cluster-group
 custom_cluster_group=custom-cluster-group
-security_cluster_group=registry-and-network-cluster
+security_cluster_group=security-cluster-group
+
+
 
 
 #ACCESS POLICY
@@ -88,6 +82,9 @@ echo
 pe "kubectl run nginx --image nginx"
 echo
 
+pe "kubectl get pods"
+echo
+
 pe "kubectl delete pod nginx"
 echo
 
@@ -101,6 +98,9 @@ pe "kubectl run nginx --image nginx"
 echo
 
 pe "kubectl delete pod nginx"
+echo
+
+pe "tmc clustergroup security-policy delete security-policy --cluster-group-name cluster-group"
 echo
 
 pe "kubectl apply -f tmc/configs/exceeds-quota.yaml"

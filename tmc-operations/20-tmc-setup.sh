@@ -6,7 +6,6 @@ custom_cluster_group=custom-cluster-group
 security_cluster_group=security-cluster-group
 
 cluster_group=cluster-group
-workspace_group=workspace-group
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 
@@ -22,7 +21,6 @@ read -p "Create cluster groups"
 echo
 
 tmc clustergroup create --name $cluster_group --description "Demonstrates the cluster-only policies; security, quota, and custom."
-tmc clustergroup create --name $workspace_group --description "Demonstrates the workspace-only policies; image registry and network."
 echo
 
 
@@ -70,8 +68,8 @@ kubectl apply -f ./k8s-attach-manifest.yaml
 echo
 
 
-#CREATE GKE SECURITY CLUSTER
-read -p "Attach GKE Security Cluster"
+#CREATE AKS SECURITY CLUSTER
+read -p "Attach AKS Security Cluster"
 echo
 
 kubectl config use-context $security_cluster_group

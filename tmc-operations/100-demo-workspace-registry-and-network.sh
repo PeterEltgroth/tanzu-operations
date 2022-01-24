@@ -24,14 +24,7 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-read -p "Azure Subscription: " subscription
-
-#TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-#echo $TMC_API_TOKEN
-
-#tmc login
-
+workspace_group=workspace-group
 registry_and_network_cluster=registry-and-network-cluster
 registry_workspace=registry-workspace
 network_workspace=network-workspace
@@ -39,6 +32,9 @@ network_workspace=network-workspace
 DEMO_PROMPT="${GREEN}➜ TMC ATTACH CLUSTERS ${CYAN}\W "
 echo
 
+#CLUSTER GROUP
+pe "tmc clustergroup create --name ${workspace_group} --description 'Demonstrates the workspace-only policies; image registry and network.'"
+echo
 
 #CREATE REGISTRY AND NETWORK CLUSTER
 #THESE ARE ATTACHED TO THE WORKSPACE
