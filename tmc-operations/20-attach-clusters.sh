@@ -1,7 +1,7 @@
 read -p "Azure Subscription: " subscription
 
 cluster_group=cluster-group
-quota_cluster_group=quota-cluster-group
+quota_group=quota-group
 tmc_access_cluster=tmc-access-cluster
 tmc_quota_cluster=tmc-quota-cluster
 tmc_custom_cluster=tmc-custom-cluster
@@ -20,7 +20,7 @@ read -p "Create cluster groups"
 echo
 
 tmc clustergroup create --name $cluster_group --description "Demonstrates the cluster-only policies; security, and custom."
-tmc clustergroup create --name $quota_cluster_group --description "Demonstrates the cluster-only quota policy."
+tmc clustergroup create --name $quota_group --description "Demonstrates the cluster-only quota policy."
 echo
 
 
@@ -62,7 +62,7 @@ kubectl config use-context $tmc_quota_cluster
 echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_quota_cluster --cluster-group $quota_cluster_group
+tmc cluster attach --name $tmc_quota_cluster --cluster-group $quota_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml
@@ -77,7 +77,7 @@ kubectl config use-context $tmc_security_cluster
 echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_security_cluster --cluster-group $quota_cluster_group
+tmc cluster attach --name $tmc_security_cluster --cluster-group $quota_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml

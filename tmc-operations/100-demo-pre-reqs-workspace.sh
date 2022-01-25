@@ -25,7 +25,7 @@ TYPE_SPEED=20
 clear
 
 workspace_group=workspace-group
-registry_and_network_cluster=registry-and-network-cluster
+tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 registry_workspace=registry-workspace
 network_workspace=network-workspace
 
