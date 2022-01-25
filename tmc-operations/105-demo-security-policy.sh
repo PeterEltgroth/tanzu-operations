@@ -28,8 +28,8 @@ quota_cluster_group=quota-cluster-group
 tmc_security_cluster=tmc-security-cluster
 
 
-#SECURITY POLICY (AKS & QUOTA POLICY)
-DEMO_PROMPT="${GREEN}➜ TMC SECURITY & QUOTA POLICY ${CYAN}\W "
+#QUOTA/SECURITY POLICY (AKS & QUOTA POLICY)
+DEMO_PROMPT="${GREEN}➜ TMC QUOTA/SECURITY POLICY ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_security_cluster}"
@@ -38,13 +38,28 @@ echo
 pe "kubectl get pods"
 echo
 
-pe "kubectl run nginx --image nginx"
+#QUOTA POLICY
+pe "cat tmc/configs/quota-exceeds.yaml"
+echo
+
+pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"
+echo
+
+pe "kubectl get events | grep FailedCreate"
 echo
 
 pe "kubectl get pods"
 echo
 
-pe "kubectl delete pod nginx"
+
+#SECURITY
+pe "kubectl apply -f tmc/configs/quota-within.yaml"
+echo
+
+pe "kubectl get pods"
+echo
+
+pe "kubectl delete deployment quota-within"
 echo
 
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml --dry-run"
@@ -53,24 +68,14 @@ echo
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml"
 echo
 
-pe "kubectl run nginx --image nginx"
+pe "kubectl apply -f tmc/configs/quota-within.yaml"
 echo
 
-pe "kubectl delete pod nginx"
+pe "kubectl delete deployment quota-within"
 echo
 
 pe "tmc clustergroup security-policy delete security-policy --cluster-group-name cluster-group"
 echo
-
-pe "kubectl apply -f tmc/configs/exceeds-quota.yaml"
-echo
-
-pe "kubectl get events"
-echo
-
-pe "kubectl get pods"
-echo
-
 
 
 
