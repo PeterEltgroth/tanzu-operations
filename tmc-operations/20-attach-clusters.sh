@@ -2,9 +2,9 @@ read -p "Azure Subscription: " subscription
 
 cluster_group=cluster-group
 quota_cluster_group=quota-cluster-group
-#access_cluster=access-cluster
+tmc_access_cluster=tmc-access-cluster
 tmc_quota_cluster=tmc-quota-cluster
-#custom_cluster=custom-cluster
+tmc_custom_cluster=tmc-custom-cluster
 tmc_security_cluster=tmc-security-cluster
 
 
@@ -25,33 +25,33 @@ echo
 
 
 #CREATE EKS ACCESS CLUSTER
-#read -p "Attach EKS Access Cluster"
-#echo
+read -p "Attach EKS Access Cluster"
+echo
 
-#kubectl config use-context $access_cluster_group
-#echo
+kubectl config use-context $tmc_access_cluster
+echo
 
-#rm ./k8s-attach-manifest.yaml
-#tmc cluster attach --name $access_cluster_group --cluster-group $cluster_group
-#echo
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $tmc_access_cluster --cluster-group $cluster_group
+echo
 
-#kubectl apply -f ./k8s-attach-manifest.yaml
-#echo
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
 
 
 #CREATE EKS CUSTOM CLUSTER
-#read -p "Attach EKS Custom Cluster"
-#echo
+read -p "Attach EKS Custom Cluster"
+echo
 
-#kubectl config use-context $custom_cluster_group
-#echo
+kubectl config use-context $tmc_custom_cluster
+echo
 
-#rm ./k8s-attach-manifest.yaml
-#tmc cluster attach --name $custom_cluster_group --cluster-group $cluster_group
-#echo
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $tmc_custom_cluster --cluster-group $cluster_group
+echo
 
-#kubectl apply -f ./k8s-attach-manifest.yaml
-#echo
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
 
 
 #CREATE GKE QUOTA CLUSTER

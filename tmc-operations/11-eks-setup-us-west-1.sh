@@ -1,6 +1,6 @@
 aws_region_code=us-west-1
 tmc_access_cluster=tmc-access-cluster
-tmc_custom_cluster=custom-cluster
+tmc_custom_cluster=tmc-custom-cluster
 
 
 #TMC-ACCESS-CLUSTER
