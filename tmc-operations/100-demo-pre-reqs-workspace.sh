@@ -46,6 +46,8 @@ read -p "Retrieve command from portal: " attach_command
 pe "${attach_command}"
 echo
 
+pe "Checking cluster status..."
+echo
 
 #CREATE WORKSPACES
 pe "tmc workspace create --name ${registry_workspace} --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
@@ -53,8 +55,6 @@ echo
 
 pe "tmc workspace create --name ${network_workspace} --description 'Demonstrates a network policy between two pods from any image registry.'"
 echo
-
-read -p "Awaiting cluster attachments..."
 
 
 #CREATE NAMESPACES
@@ -71,4 +71,3 @@ pe "kubectl get ns"
 echo
 
 read -p "Press Enter to continue"
-clear

@@ -45,6 +45,7 @@ echo
 
 pe "kubectl exec nginx-web -it -n network -- sh"
 echo
+clear
 
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml --dry-run"
 echo
@@ -52,14 +53,11 @@ echo
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
 echo
 
+pe "watch kubectl get networkpolicies -n network"
+echo
+
 pe "kubectl exec nginx-web -it -n network -- sh"
 echo
 
-pe "kubectl get networkpolicies -n network"
-echo
-
-read -p "Network Policy Name: " network_policy
-echo
-
-pe "kubectl get networkpolicy ${network_policy} -n network -o yaml"
+pe "kubectl exec nginx-app -it -n network -- sh"
 echo
