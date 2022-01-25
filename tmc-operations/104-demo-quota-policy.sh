@@ -24,15 +24,15 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-cluster_group=default-cluster-group
-quota_cluster_group=quota-cluster-group
+cluster_group=cluster-group
+quota_cluster=quota-cluster
 
 
 #QUOTA POLICY
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${quota_cluster_group}"
+pe "kubectl config use-context ${quota_cluster}"
 echo
 
 pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml --dry-run"

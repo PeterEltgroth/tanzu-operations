@@ -1,13 +1,11 @@
 read -p "Azure Subscription: " subscription
 
-access_cluster_group=access-cluster-group
-quota_cluster_group=quota-cluster-group
-custom_cluster_group=custom-cluster-group
-security_cluster_group=security-cluster-group
-
 cluster_group=cluster-group
-registry_workspace=registry-workspace
-network_workspace=network-workspace
+#access_cluster=access-cluster
+quota_cluster=quota-cluster
+#custom_cluster=custom-cluster
+#security_cluster=security-cluster
+
 
 TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
@@ -58,11 +56,11 @@ echo
 read -p "Attach GKE Quota Cluster"
 echo
 
-kubectl config use-context $quota_cluster_group
+kubectl config use-context $quota_cluster
 echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $quota_cluster_group --cluster-group $cluster_group
+tmc cluster attach --name $quota_cluster --cluster-group $cluster_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml
