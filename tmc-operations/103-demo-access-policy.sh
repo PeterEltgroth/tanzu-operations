@@ -24,8 +24,6 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_access_cluster=access-cluster
-
 
 #ACCESS POLICY
 DEMO_PROMPT="${GREEN}➜ TMC ACCESS POLICY ${CYAN}\W "

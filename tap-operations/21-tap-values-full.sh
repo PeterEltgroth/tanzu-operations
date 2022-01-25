@@ -89,5 +89,5 @@ nslookup $external_ip
 
 read -p "Configure DNS wildcard"
 
-echo http://tap-gui.apps.tap.nycpivot.com/
+echo http://tap-gui.${app_domain}
 

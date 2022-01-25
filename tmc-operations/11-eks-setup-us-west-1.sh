@@ -36,7 +36,7 @@ aws eks wait cluster-active --name $tmc_custom_cluster
 
 aws eks create-nodegroup \
         --cluster-name $tmc_custom_cluster \
-        --nodegroup-name "${custom_cluster}-node-group" \
+        --nodegroup-name "${tmc_custom_cluster}-node-group" \
         --disk-size 500 \
         --scaling-config minSize=1,maxSize=1,desiredSize=1 \
         --subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
