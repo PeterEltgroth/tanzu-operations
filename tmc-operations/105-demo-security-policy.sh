@@ -24,7 +24,7 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-cluster_group=cluster-group
+quota_cluster_group=quota-cluster-group
 tmc_security_cluster=tmc-security-cluster
 
 

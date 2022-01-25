@@ -5,7 +5,7 @@ quota_cluster_group=quota-cluster-group
 #access_cluster=access-cluster
 tmc_quota_cluster=tmc-quota-cluster
 #custom_cluster=custom-cluster
-#security_cluster=security-cluster
+tmc_security_cluster=tmc-security-cluster
 
 
 TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
@@ -70,15 +70,15 @@ echo
 
 
 #CREATE AKS SECURITY CLUSTER
-#read -p "Attach AKS Security Cluster"
-#echo
+read -p "Attach AKS Security Cluster"
+echo
 
-#kubectl config use-context $security_cluster_group
-#echo
+kubectl config use-context $tmc_security_cluster
+echo
 
-#rm ./k8s-attach-manifest.yaml
-#tmc cluster attach --name $security_cluster_group --cluster-group $quota_cluster_group
-#echo
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $tmc_security_cluster --cluster-group $quota_cluster_group
+echo
 
-#kubectl apply -f ./k8s-attach-manifest.yaml
-#echo
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
