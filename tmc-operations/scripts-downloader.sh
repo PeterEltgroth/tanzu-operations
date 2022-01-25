@@ -6,7 +6,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-pre-reqs.sh -O tmc/10-pre-reqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-us-west-1.sh -O tmc/11-eks-setup-us-west-1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-east1.sh -O tmc/13-gke-setup-us-east1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-west1.sh -O tmc/13-gke-setup-us-west1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-tmc-setup.sh -O tmc/20-tmc-setup.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs-workspace.sh -O tmc/100-demo-pre-reqs-workspace.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-registry-policy.sh -O tmc/101-demo-registry-policy.sh
