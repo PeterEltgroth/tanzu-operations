@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exceeds-quota
+  name: quota-exceeds
   labels:
-    app: exceeds-quota
+    app: quota-exceeds
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: exceeds-quota
+      app: quota-exceeds
   template:
     metadata:
       labels:
-        app: exceeds-quota
+        app: quota-exceeds
     spec:
       containers:
-      - name: exceeds-quota
-        image: public.ecr.aws
+      - name: nginx
+        image: nginx
         resources:
           requests:
             memory: "1G"
@@ -24,5 +24,3 @@ spec:
           limits:
             memory: "2G"
             cpu: "500m"
-      imagePullSecrets:
-      - name: tanzuregistry-secret

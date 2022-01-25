@@ -25,14 +25,14 @@ TYPE_SPEED=20
 clear
 
 cluster_group=cluster-group
-quota_cluster=quota-cluster
+tmc_quota_cluster=tmc-quota-cluster
 
 
 #QUOTA POLICY
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${quota_cluster}"
+pe "kubectl config use-context ${tmc_quota_cluster}"
 echo
 
 pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml --dry-run"
@@ -47,7 +47,7 @@ echo
 pe "kubectl apply -f tmc/configs/exceeds-quota.yaml"
 echo
 
-pe "kubectl get events"
+pe "kubectl get events | grep FailedCreate"
 echo
 
 pe "kubectl get pods"

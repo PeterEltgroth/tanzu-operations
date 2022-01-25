@@ -24,7 +24,7 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-access_cluster_group=access-cluster-group
+tmc_access_cluster=access-cluster
 
 
 #ACCESS POLICY

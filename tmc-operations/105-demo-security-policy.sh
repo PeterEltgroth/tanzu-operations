@@ -24,15 +24,15 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-cluster_group=default-cluster-group
-security_cluster_group=security-cluster-group
+cluster_group=cluster-group
+tmc_security_cluster=tmc-security-cluster
 
 
 #SECURITY POLICY (AKS & QUOTA POLICY)
 DEMO_PROMPT="${GREEN}➜ TMC SECURITY & QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${security_cluster_group}"
+pe "kubectl config use-context ${tmc_security_cluster}"
 echo
 
 pe "kubectl get pods"
