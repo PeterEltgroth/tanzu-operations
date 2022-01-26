@@ -24,23 +24,21 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-cluster_group=cluster-group
-tmc_quota_cluster=tmc-quota-cluster
+quota_group=quota-group
+tmc_security_cluster=tmc-security-cluster
 
+
+#QUOTA/SECURITY POLICY (AKS & QUOTA POLICY)
+DEMO_PROMPT="${GREEN}➜ TMC QUOTA/SECURITY POLICY ${CYAN}\W "
+echo
+
+pe "kubectl config use-context ${tmc_security_cluster}"
+echo
+
+pe "kubectl get pods"
+echo
 
 #QUOTA POLICY
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
-echo
-
-pe "kubectl config use-context ${tmc_quota_cluster}"
-echo
-
-pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml --dry-run"
-echo
-
-pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml"
-echo
-
 pe "cat tmc/configs/quota-exceeds.yaml"
 echo
 
@@ -52,4 +50,16 @@ echo
 
 pe "kubectl get pods"
 echo
+clear
 
+pe "kubectl apply -f tmc/configs/quota-within.yaml"
+echo
+
+pe "kubectl get pods"
+echo
+
+pe "kubectl delete deployment quota-within"
+echo
+
+pe "tmc clustergroup namespace-quota-policy delete quota-policy --cluster-group-name ${quota_group}"
+echo

@@ -24,7 +24,6 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-quota_cluster_group=quota-cluster-group
 tmc_security_cluster=tmc-security-cluster
 
 
@@ -35,53 +34,13 @@ echo
 pe "kubectl config use-context ${tmc_security_cluster}"
 echo
 
-pe "kubectl get pods"
-echo
-
-#QUOTA POLICY
-pe "cat tmc/configs/quota-exceeds.yaml"
-echo
-
-pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"
-echo
-
-pe "kubectl get events | grep FailedCreate"
-echo
-
-pe "kubectl get pods"
-echo
-
 
 #SECURITY
-pe "kubectl apply -f tmc/configs/quota-within.yaml"
-echo
-
-pe "kubectl get pods"
-echo
-
-pe "kubectl delete deployment quota-within"
-echo
-
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml --dry-run"
 echo
 
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml"
 echo
 
-pe "kubectl apply -f tmc/configs/quota-within.yaml"
+pe "kubectl run nginx --image nginx"
 echo
-
-pe "kubectl delete deployment quota-within"
-echo
-
-pe "tmc clustergroup security-policy delete security-policy --cluster-group-name cluster-group"
-echo
-
-
-
-#DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
-
-#pe "helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update"
-#echo
-
-#pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmware.wavefront.com --set wavefront.token=f56e75ef-5ca0-41f8-ab2a-1693f55714ed --set clusterName="tanzu-cluster-nginx-dev-eu-west-1" --namespace wavefront"

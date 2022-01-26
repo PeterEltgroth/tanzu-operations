@@ -5,7 +5,7 @@ metadata:
   labels:
     app: quota-within
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: quota-within
@@ -20,7 +20,7 @@ spec:
         resources:
           requests:
             memory: "512Mi"
-            cpu: "150m"
+            cpu: "100m"
           limits:
-            memory: "1G"
-            cpu: "200m"
+            memory: "1Gi"
+            cpu: "250m"

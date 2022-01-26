@@ -3,8 +3,8 @@ read -p "Azure Subscription: " subscription
 cluster_group=cluster-group
 quota_group=quota-group
 tmc_access_cluster=tmc-access-cluster
-tmc_quota_cluster=tmc-quota-cluster
 tmc_custom_cluster=tmc-custom-cluster
+tmc_quota_cluster=tmc-quota-cluster
 tmc_security_cluster=tmc-security-cluster
 
 

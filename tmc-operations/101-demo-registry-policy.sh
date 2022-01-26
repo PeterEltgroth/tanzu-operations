@@ -34,6 +34,9 @@ echo
 pe "kubectl run docker-nginx-web --image nginx -n registry"
 echo
 
+pe "kubectl get pods -n registry"
+echo
+
 pe "kubectl delete pod docker-nginx-web -n registry"
 echo
 

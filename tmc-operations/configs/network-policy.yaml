@@ -8,7 +8,9 @@ spec:
       - podSelector:
         - key: tier
           value: app
-    toPodLabels: []
+    toPodLabels:
+    - key: tier
+      value: data
   recipe: custom-ingress
   recipeVersion: v1
   type: network-policy

@@ -3,97 +3,74 @@
 #EKS CLUSTERS
 arn=arn:aws:eks:us-west-1:964978768106:cluster
 
-access_cluster_group=eks-access-cluster-group
-quota_cluster_group=eks-quota-cluster-group
-custom_cluster_group=eks-custom-cluster-group
+tmc_access_cluster=tmc-access-cluster
+tmc_quota_cluster=tmc-quota-cluster
+tmc_custom_cluster=tmc-custom-cluster
+tmc_security_cluster=tmc-security-cluster
+tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 
 #DELETE TMC-ACCESS-CLUSTER
-kubectl config use-context $access_cluster_group
+kubectl config use-context $tmc_access_cluster
 
-aws eks delete-nodegroup --cluster-name $access_cluster_group --nodegroup-name ${access_cluster_group}-node-group
-aws eks wait nodegroup-active --cluster-name $access_cluster_group --nodegroup-name ${access_cluster_group}-node-group
+aws eks delete-nodegroup --cluster-name $tmc_access_cluster --nodegroup-name ${tmc_access_cluster}-node-group
+aws eks wait nodegroup-active --cluster-name $tmc_access_cluster --nodegroup-name ${tmc_access_cluster}-node-group
 
-kubectl get svc --all-namespaces
-read -p "Service Name: " service_name
+kubectl config delete-user $arn/$tmc_access_cluster
+kubectl config delete-cluster $arn/$tmc_access_cluster
+kubectl config delete-context $tmc_access_cluster
 
-if [ -z "$service_name" ]
-then
-	echo "Service not found"
-else
-	kubectl delete svc $service_name
-fi
-
-kubectl config delete-user $arn/$access_cluster_group
-kubectl config delete-cluster $arn/$access_cluster_group
-kubectl config delete-context $access_cluster_group
-
-aws eks delete-cluster --name $access_cluster_group
+aws eks delete-cluster --name $tmc_access_cluster
 
 
 #DELETE TMC-QUOTA-CLUSTER
-kubectl config use-context $quota_cluster_group
+kubectl config use-context $tmc_quota_cluster
 
-aws eks delete-nodegroup --cluster-name $quota_cluster_group --nodegroup-name ${quota_cluster_group}-node-group
-aws eks wait nodegroup-active --cluster-name $quota_cluster_group --nodegroup-name ${quota_cluster_group}-node-group
+aws eks delete-nodegroup --cluster-name $tmc_quota_cluster --nodegroup-name ${tmc_quota_cluster}-node-group
+aws eks wait nodegroup-active --cluster-name $tmc_quota_cluster --nodegroup-name ${tmc_quota_cluster}-node-group
 
-kubectl get svc --all-namespaces
-read -p "Service Name: " service_name
+kubectl config delete-user $arn/$tmc_quota_cluster
+kubectl config delete-cluster $arn/$tmc_quota_cluster
+kubectl config delete-context $tmc_quota_cluster
 
-if [ -z "$service_name" ]
-then
-	echo "Service not found"
-else
-	kubectl delete svc $service_name
-fi
-
-kubectl config delete-user $arn/$quota_cluster_group
-kubectl config delete-cluster $arn/$quota_cluster_group
-kubectl config delete-context $quota_cluster_group
-
-aws eks delete-cluster --name $quota_cluster_group
-
+aws eks delete-cluster --name $tmc_quota_cluster
 
 
 #DELETE TMC-CUSTOM-CLUSTER
-kubectl config use-context $custom_cluster_group
+kubectl config use-context $tmc_custom_cluster
 
-aws eks delete-nodegroup --cluster-name $custom_cluster_group --nodegroup-name ${custom_cluster_group}-node-group
-aws eks wait nodegroup-active --cluster-name $custom_cluster_group --nodegroup-name ${custom_cluster_group}-node-group
+aws eks delete-nodegroup --cluster-name $tmc_custom_cluster --nodegroup-name ${tmc_custom_cluster}-node-group
+aws eks wait nodegroup-active --cluster-name $tmc_custom_cluster --nodegroup-name ${tmc_custom_cluster}-node-group
 
-kubectl get svc --all-namespaces
-read -p "Service Name: " service_name
+kubectl config delete-user $arn/$tmc_custom_cluster
+kubectl config delete-cluster $arn/$tmc_custom_cluster
+kubectl config delete-context $tmc_custom_cluster
 
-if [ -z "$service_name" ]
-then
-	echo "Service not found"
-else
-	kubectl delete svc $service_name
-fi
-
-kubectl config delete-user $arn/$custom_cluster_group
-kubectl config delete-cluster $arn/$custom_cluster_group
-kubectl config delete-context $custom_cluster_group
-
-aws eks delete-cluster --name $custom_cluster_group
+aws eks delete-cluster --name $tmc_custom_cluster
 
 
-#DELETE AKS CLUSTERS
-prefix=clusterUser_tanzu-mission-control
-registry_and_network_cluster=aks-registry-and-network-cluster
+#DELETE ELASTIC LOAD BALANCERS
+aws elb describe-load-balancers
 
-az aks delete --name $registry_and_network_cluster --resource-group tanzu-mission-control
+read -p "Load Balancer Name: " lb_name
 
-kubectl config delete-user ${prefix}_${registry_and_network_cluster}
-kubectl config delete-cluster ${registry_and_network_cluster}
-kubectl config delete-context ${registry_and_network_cluster}
+aws elb delete-load-balancer --load-balancer-name $lb_name
 
 
-#DELETE TMC-SECURITY-CLUSTER
+#DELETE GKE REGISTRY AND NETWORK CLUSTER
 prefix=gke_pa-mjames_us-west1
-security_cluster_group=gke-security-cluster-group
 
-gcloud container clusters delete "${security_cluster_group}" --region "us-west1"
+gcloud container clusters delete "${tmc_registry_and_network_cluster}" --region "us-west1"
 
-kubectl config delete-user ${prefix}_${security_cluster_group}
-kubectl config delete-cluster ${prefix}_${security_cluster_group}
-kubectl config delete-context ${security_cluster_group}
+kubectl config delete-user ${prefix}_${tmc_registry_and_network_cluster}
+kubectl config delete-cluster ${prefix}_${tmc_registry_and_network_cluster}
+kubectl config delete-context ${tmc_registry_and_network_cluster}
+
+
+#DELETE AKS SECURITY CLUSTER
+prefix=clusterUser_tanzu-mission-control
+
+az aks delete --name $tmc_security_cluster --resource-group tanzu-mission-control
+
+kubectl config delete-user ${prefix}_${tmc_security_cluster}
+kubectl config delete-cluster ${tmc_security_cluster}
+kubectl config delete-context ${tmc_security_cluster}

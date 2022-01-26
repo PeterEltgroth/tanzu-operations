@@ -25,9 +25,9 @@ TYPE_SPEED=20
 clear
 
 workspace_group=workspace-group
-tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 registry_workspace=registry-workspace
 network_workspace=network-workspace
+tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 
 DEMO_PROMPT="${GREEN}➜ TMC ATTACH CLUSTERS ${CYAN}\W "
 echo
@@ -38,15 +38,16 @@ echo
 
 #CREATE REGISTRY AND NETWORK CLUSTER
 #THESE ARE ATTACHED TO THE WORKSPACE
-pe "kubectl config use-context ${registry_and_network_cluster}"
+pe "kubectl config use-context ${tmc_registry_and_network_cluster}"
 echo
 
 read -p "Retrieve command from portal: " attach_command
 
 pe "${attach_command}"
 echo
+clear
 
-pe "Checking cluster status..."
+echo "CHECK CLUSTER STATUS BEFORE PROCEEDING"
 echo
 
 #CREATE WORKSPACES
@@ -70,4 +71,3 @@ echo
 pe "kubectl get ns"
 echo
 
-read -p "Press Enter to continue"
