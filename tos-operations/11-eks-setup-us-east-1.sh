@@ -1,57 +1,32 @@
-aws_region_code=us-west-1
-tmc_access_cluster=tmc-access-cluster
-tmc_custom_cluster=tmc-custom-cluster
+aws_region_code=us-east-1
+tos_tracing_cluster=tos-tracing-cluster
 
 
-#TMC-ACCESS-CLUSTER
+#TOS TRACING-CLUSTER
 aws eks create-cluster \
    --region $aws_region_code \
-   --name $tmc_access_cluster \
+   --name $tos_tracing_cluster \
    --kubernetes-version 1.21 \
    --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
-   --resources-vpc-config subnetIds=subnet-0c277f0344e18e39b,subnet-0475a32ab6d3501d6
+   --resources-vpc-config subnetIds=subnet-0153c75f91ed045a8,subnet-0bc27bb89b888e579,subnet-04b9bef1f2600ea20,subnet-054820597f34b428a,subnet-013511b2897332ad0,subnet-0a98e6bcbe7f1ad5a
 
-aws eks wait cluster-active --name $tmc_access_cluster
+aws eks wait cluster-active --name $tos_tracing_cluster
 
 aws eks create-nodegroup \
-        --cluster-name $tmc_access_cluster \
-        --nodegroup-name "${tmc_access_cluster}-node-group" \
+        --cluster-name $tos_tracing_cluster \
+        --nodegroup-name "${tos_tracing_cluster}-node-group" \
         --disk-size 500 \
-        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
-        --subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
+        --scaling-config minSize=2,maxSize=2,desiredSize=2 \
+        --subnets "subnet-0153c75f91ed045a8" "subnet-0bc27bb89b888e579" "04b9bef1f2600ea20" "054820597f34b428a" "054820597f34b428a" "013511b2897332ad0" "0a98e6bcbe7f1ad5a" \
         --instance-types t3a.2xlarge \
         --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
         --kubernetes-version 1.21
-
-
-#TMC-CUSTOM-CLUSTER
-aws eks create-cluster \
-   --region $aws_region_code \
-   --name $tmc_custom_cluster \
-   --kubernetes-version 1.21 \
-   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
-   --resources-vpc-config subnetIds=subnet-0c277f0344e18e39b,subnet-0475a32ab6d3501d6
-
-aws eks wait cluster-active --name $tmc_custom_cluster
-
-aws eks create-nodegroup \
-        --cluster-name $tmc_custom_cluster \
-        --nodegroup-name "${tmc_custom_cluster}-node-group" \
-        --disk-size 500 \
-        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
-        --subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
-        --instance-types t3a.2xlarge \
-        --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
-        --kubernetes-version 1.21
-		
-aws eks wait nodegroup-active --cluster-name $tmc_custom_cluster --nodegroup-name ${tmc_custom_cluster}-node-group
 
 rm .kube/config
 
-aws eks update-kubeconfig --name $tmc_access_cluster --region $aws_region_code
-aws eks update-kubeconfig --name $tmc_custom_cluster --region $aws_region_code
+aws eks update-kubeconfig --name $tos_tracing_cluster --region $aws_region_code
 
-arn=arn:aws:eks:us-west-1:964978768106:cluster
-kubectl config rename-context ${arn}/${tmc_access_cluster} $tmc_access_cluster
-kubectl config rename-context ${arn}/${tmc_custom_cluster} $tmc_custom_cluster
+
+arn=arn:aws:eks:us-east-1:964978768106:cluster
+kubectl config rename-context ${arn}/${tos_tracing_cluster} $tos_tracing_cluster
 

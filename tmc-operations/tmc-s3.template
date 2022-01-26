@@ -1,0 +1,120 @@
+
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "DataProtectionPolicy": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "ManagedPolicyName": "dataprotection.tmc.cloud.vmware.com",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "SnapshotVolumes",
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:DeleteSnapshot",
+                                "ec2:CreateTags",
+                                "ec2:DescribeVolumes",
+                                "ec2:CreateSnapshot",
+                                "ec2:DescribeSnapshots",
+                                "ec2:CreateVolume"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Sid": "Bucket",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:PutObject",
+                                "s3:GetObject",
+                                "s3:AbortMultipartUpload",
+                                "s3:DeleteObject",
+                                "s3:ListMultipartUploadParts"
+                            ],
+                            "Resource": "arn:aws:s3:::vmware-tmc-dp-57058533/*"
+                        },
+                        {
+                            "Sid": "BucketList",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:ListBucket"
+                            ],
+                            "Resource": "arn:aws:s3:::vmware-tmc-dp-57058533"
+                        }
+                    ]
+                }
+            },
+            "DependsOn": [
+                "DataProtectionBucket"
+            ]
+        },
+        "DataProtectionBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": "vmware-tmc-dp-57058533",
+                "BucketEncryption": {
+          			"ServerSideEncryptionConfiguration": [
+            			{
+              				"ServerSideEncryptionByDefault": {
+                				"SSEAlgorithm": "AES256"
+              				}
+            			}
+          			]
+				}
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "DataProtectionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": "VMwareTMCProviderCredentialMgr",
+                "ManagedPolicyArns": [
+                    {
+                        "Ref": "DataProtectionPolicy"
+                    }
+                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "sts:AssumeRole"
+                            ],
+                            "Principal": {
+                                "AWS": "arn:aws:sts::630260974543:assumed-role/account-manager/kiam-kiam"
+                            },
+                            "Condition": {
+                                "StringEquals": {
+                                    "sts:ExternalId": "63fde3b3-bc1f-5476-8110-e331eeaf8155"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "DependsOn": [
+                "DataProtectionPolicy"
+            ]
+        }
+    },
+    "Outputs": {
+        "Message": {
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "Please copy and paste this role ARN in to the Tanzu Mission Control UI:\n\n",
+                        {
+                            "Fn::GetAtt": [
+                                "DataProtectionRole",
+                                "Arn"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+}
