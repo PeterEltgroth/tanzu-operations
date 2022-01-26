@@ -1,1 +1,1 @@
-ssh ubuntu@ec2-204-236-159-144.us-west-1.compute.amazonaws.com -i ../keys/tanzu-operations-us-west-1.pem
+ssh ubuntu@ec2-13-57-50-53.us-west-1.compute.amazonaws.com -i ../keys/tanzu-operations-us-west-1.pem

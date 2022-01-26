@@ -24,8 +24,9 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
+DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
-#CUSTOM POLICY
-DEMO_PROMPT="${GREEN}➜ TMC CUSTOM POLICY ${CYAN}\W "
-echo
+#pe "helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update"
+#echo
 
+#pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmware.wavefront.com --set wavefront.token=f56e75ef-5ca0-41f8-ab2a-1693f55714ed --set clusterName="tanzu-cluster-nginx-dev-eu-west-1" --namespace wavefront"
