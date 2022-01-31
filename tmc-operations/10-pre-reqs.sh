@@ -62,6 +62,6 @@ chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
 
-echo "Press Enter to reboot"
+echo "***REBOOTING***"
 
 sudo reboot

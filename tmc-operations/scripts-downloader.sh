@@ -17,6 +17,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/106-demo-access-policy.sh -O tmc/106-demo-access-policy.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/107-demo-custom-policy.sh -O tmc/107-demo-custom-policy.sh
 
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/500-demo-tos-integration-k8s.sh -O tmc/500-demo-tos-integration-k8s.sh
+
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1000-delete-tmc.sh -O tmc/1000-delete-tmc.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-delete-clusters.sh -O tmc/1001-delete-clusters.sh
 
@@ -31,3 +33,5 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/registry-policy.yaml -O tmc/configs/registry-policy.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/security-policy.yaml -O tmc/configs/security-policy.yaml
 
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/tos-node-stressor.yaml -O tmc/configs/tos-node-stressor.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/tos-cluster-stressor.yaml -O tmc/configs/tos-cluster-stressor.yaml
