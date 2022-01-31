@@ -36,7 +36,7 @@ aws eks delete-cluster --name $tmc_custom_cluster
 
 
 #DELETE ELASTIC LOAD BALANCERS
-aws elb describe-load-balancers
+aws elb describe-load-balancers --output text --query "LoadBalancerDescriptions[*].[LoadBalancerName]"
 
 read -p "Load Balancer Name: " lb_name
 
