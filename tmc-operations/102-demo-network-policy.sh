@@ -36,7 +36,8 @@ echo
 
 pe "kubectl run nginx-data --image nginx -n network --labels tier=data"
 echo
-clear
+
+pe "clear"
 
 pe "kubectl get pods -n network -o wide"
 echo
@@ -46,6 +47,8 @@ echo
 
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml --dry-run"
 echo
+
+pe "clear"
 
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
 echo

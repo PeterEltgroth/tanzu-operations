@@ -4,7 +4,8 @@ cluster_group=cluster-group
 quota_group=quota-group
 tmc_access_cluster=tmc-access-cluster
 tmc_custom_cluster=tmc-custom-cluster
-tmc_quota_cluster=tmc-quota-cluster
+tmc_quota_cluster_gke=tmc-quota-cluster-gke
+tmc_quota_cluster_aks=tmc-quota-cluster-aks
 tmc_security_cluster=tmc-security-cluster
 
 
@@ -58,11 +59,11 @@ echo
 read -p "Attach GKE Quota Cluster"
 echo
 
-kubectl config use-context $tmc_quota_cluster
+kubectl config use-context $tmc_quota_cluster_gke
 echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_quota_cluster --cluster-group $quota_group
+tmc cluster attach --name $tmc_quota_cluster_gke --cluster-group $quota_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml
@@ -78,6 +79,21 @@ echo
 
 rm ./k8s-attach-manifest.yaml
 tmc cluster attach --name $tmc_security_cluster --cluster-group $quota_group
+echo
+
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
+
+
+#CREATE AKS QUOTA CLUSTER
+read -p "Attach AKS QUOTA Cluster"
+echo
+
+kubectl config use-context $tmc_quota_cluster_aks
+echo
+
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $tmc_quota_cluster_aks --cluster-group $quota_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml

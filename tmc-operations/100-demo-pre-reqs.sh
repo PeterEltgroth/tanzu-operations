@@ -45,10 +45,8 @@ read -p "Retrieve command from portal: " attach_command
 
 pe "${attach_command}"
 echo
-clear
 
-echo "CHECK CLUSTER STATUS BEFORE PROCEEDING"
-echo
+pe "clear"
 
 #CREATE WORKSPACES
 pe "tmc workspace create --name ${registry_workspace} --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"

@@ -7,7 +7,8 @@ workspace_group=workspace-group
 tmc_access_cluster=tmc-access-cluster
 tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 tmc_security_cluster=tmc-security-cluster
-tmc_quota_cluster=tmc-quota-cluster
+tmc_quota_cluster_gke=tmc-quota-cluster-gke
+tmc_quota_cluster_aks=tmc-quota-cluster-aks
 tmc_custom_cluster=tmc-custom-cluster
 
 #WORKSPACES
@@ -38,7 +39,8 @@ tmc workspace delete $network_workspace
 tmc cluster delete $tmc_access_cluster --management-cluster-name attached --provisioner-name attached
 tmc cluster delete $tmc_registry_and_network_cluster --management-cluster-name attached --provisioner-name attached
 tmc cluster delete $tmc_security_cluster --management-cluster-name attached --provisioner-name attached
-tmc cluster delete $tmc_quota_cluster --management-cluster-name attached --provisioner-name attached
+tmc cluster delete $tmc_quota_cluster_gke --management-cluster-name attached --provisioner-name attached
+tmc cluster delete $tmc_quota_cluster_aks --management-cluster-name attached --provisioner-name attached
 tmc cluster delete $tmc_custom_cluster --management-cluster-name attached --provisioner-name attached
 
 read -p "Enter to continue"

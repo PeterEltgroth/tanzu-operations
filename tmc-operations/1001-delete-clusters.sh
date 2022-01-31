@@ -4,7 +4,8 @@
 arn=arn:aws:eks:us-west-1:964978768106:cluster
 
 tmc_access_cluster=tmc-access-cluster
-tmc_quota_cluster=tmc-quota-cluster
+tmc_quota_cluster_gke=tmc-quota-cluster-gke
+tmc_quota_cluster_aks=tmc-quota-cluster-aks
 tmc_custom_cluster=tmc-custom-cluster
 tmc_security_cluster=tmc-security-cluster
 tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
@@ -55,14 +56,14 @@ kubectl config delete-context ${tmc_registry_and_network_cluster}
 #DELETE GKE QUOTA CLUSTER
 prefix=gke_pa-mjames_us-west1
 
-gcloud container clusters delete "${tmc_quota_cluster}" --region "us-west1"
+gcloud container clusters delete "${tmc_quota_cluster_gke}" --region "us-west1"
 
-kubectl config delete-user ${prefix}_${tmc_quota_cluster}
-kubectl config delete-cluster ${prefix}_${tmc_quota_cluster}
-kubectl config delete-context ${tmc_quota_cluster}
+kubectl config delete-user ${prefix}_${tmc_quota_cluster_gke}
+kubectl config delete-cluster ${prefix}_${tmc_quota_cluster_gke}
+kubectl config delete-context ${tmc_quota_cluster_gke}
 
 
-#DELETE AKS SECURITY CLUSTER
+#DELETE AKS SECURITY & QUOTA CLUSTER
 prefix=clusterUser_tanzu-mission-control
 
 az aks delete --name $tmc_security_cluster --resource-group tanzu-mission-control
@@ -70,3 +71,10 @@ az aks delete --name $tmc_security_cluster --resource-group tanzu-mission-contro
 kubectl config delete-user ${prefix}_${tmc_security_cluster}
 kubectl config delete-cluster ${tmc_security_cluster}
 kubectl config delete-context ${tmc_security_cluster}
+
+
+az aks delete --name $tmc_quota_cluster_aks --resource-group tanzu-mission-control
+
+kubectl config delete-user ${prefix}_${tmc_quota_cluster_aks}
+kubectl config delete-cluster ${tmc_quota_cluster_aks}
+kubectl config delete-context ${tmc_quota_cluster_aks}

@@ -24,23 +24,22 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_security_cluster=tmc-security-cluster
+tmc_quota_cluster_aks=tmc-quota-cluster-aks
 
 
-#QUOTA/SECURITY POLICY (AKS & QUOTA POLICY)
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA/SECURITY POLICY ${CYAN}\W "
+#QUOTA POLICY
+DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${tmc_security_cluster}"
+pe "kubectl config use-context ${tmc_quota_cluster_aks}"
 echo
 
-
-#SECURITY
-pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml --dry-run"
+pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"
 echo
 
-pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml"
+pe "kubectl get events | grep FailedCreate"
 echo
 
-pe "kubectl run nginx --image nginx"
+pe "kubectl get pods"
 echo
+

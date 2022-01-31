@@ -43,6 +43,8 @@ echo
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml --dry-run"
 echo
 
+pe "clear"
+
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml"
 echo
 
