@@ -1,6 +1,7 @@
 #CLUSTER GROUPS
 cluster_group=cluster-group
 quota_group=quota-group
+workspace_group=workspace-group
 
 #CLUSTERS
 tmc_access_cluster=tmc-access-cluster

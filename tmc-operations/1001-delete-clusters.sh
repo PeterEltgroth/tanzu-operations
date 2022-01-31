@@ -22,19 +22,6 @@ kubectl config delete-context $tmc_access_cluster
 aws eks delete-cluster --name $tmc_access_cluster
 
 
-#DELETE TMC-QUOTA-CLUSTER
-kubectl config use-context $tmc_quota_cluster
-
-aws eks delete-nodegroup --cluster-name $tmc_quota_cluster --nodegroup-name ${tmc_quota_cluster}-node-group
-aws eks wait nodegroup-active --cluster-name $tmc_quota_cluster --nodegroup-name ${tmc_quota_cluster}-node-group
-
-kubectl config delete-user $arn/$tmc_quota_cluster
-kubectl config delete-cluster $arn/$tmc_quota_cluster
-kubectl config delete-context $tmc_quota_cluster
-
-aws eks delete-cluster --name $tmc_quota_cluster
-
-
 #DELETE TMC-CUSTOM-CLUSTER
 kubectl config use-context $tmc_custom_cluster
 
@@ -64,6 +51,15 @@ gcloud container clusters delete "${tmc_registry_and_network_cluster}" --region 
 kubectl config delete-user ${prefix}_${tmc_registry_and_network_cluster}
 kubectl config delete-cluster ${prefix}_${tmc_registry_and_network_cluster}
 kubectl config delete-context ${tmc_registry_and_network_cluster}
+
+#DELETE GKE QUOTA CLUSTER
+prefix=gke_pa-mjames_us-west1
+
+gcloud container clusters delete "${tmc_quota_cluster}" --region "us-west1"
+
+kubectl config delete-user ${prefix}_${tmc_quota_cluster}
+kubectl config delete-cluster ${prefix}_${tmc_quota_cluster}
+kubectl config delete-context ${tmc_quota_cluster}
 
 
 #DELETE AKS SECURITY CLUSTER
