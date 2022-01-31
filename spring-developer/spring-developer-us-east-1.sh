@@ -1,0 +1,1 @@
+ssh ubuntu@ec2-44-192-247-67.compute-1.amazonaws.com -i ../keys/tanzu-operations-us-east-1.pem -L 8080:localhost:8080

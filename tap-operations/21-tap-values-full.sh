@@ -1,6 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "EKS Cluster Name: " eks_cluster_name
-read -p "AWS Region Code: " aws_region_code
 read -p "Container Registry (without domain): " registry_name
 read -p "Git Catalog Url (https://abc.com): " git_catalog_url
 read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
@@ -17,7 +15,7 @@ export INSTALL_REGISTRY_PASSWORD=$pivnet_password
 kubectl config get-contexts
 read -p "Select context: " kube_context
 
-kubectl config use-context $eks_cluster_name
+kubectl config use-context $kube_context
 
 #APPEND GUI SETTINGS
 rm tap-values.yaml

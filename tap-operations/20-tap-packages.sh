@@ -1,6 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "EKS Cluster Name: " eks_cluster_name
-read -p "AWS Region Code: " aws_region_code
 
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
@@ -12,7 +10,7 @@ export INSTALL_REGISTRY_PASSWORD=$pivnet_password
 kubectl config get-contexts
 read -p "Select context: " kube_context
 
-kubectl config use-context $eks_cluster_name
+kubectl config use-context $kube_context
 
 kubectl create ns tap-install
 

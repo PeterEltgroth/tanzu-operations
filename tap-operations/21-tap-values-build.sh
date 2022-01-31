@@ -1,8 +1,6 @@
 read -p "Azure Subscription: " subscription
-read -p "EKS Cluster Name: " eks_cluster_name
-read -p "AWS Region Code: " aws_region_code
 read -p "Container Registry (without domain): " registry_name
-read -p "Git Catalog Url (https://abc.com): " git_catalog_url
+read -p "Git Catalog Repository (repository name only): " git_catalog_repository
 read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
 
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
@@ -17,7 +15,7 @@ export INSTALL_REGISTRY_PASSWORD=$pivnet_password
 kubectl config get-contexts
 read -p "Select context: " kube_context
 
-kubectl config use-context $eks_cluster_name
+kubectl config use-context $kube_context
 
 #APPEND GUI SETTINGS
 rm tap-values.yaml
@@ -51,7 +49,7 @@ tap_gui:
     catalog:
       locations:
         - type: url
-          target: $git_catalog_url/catalog-info.yaml
+          target: https://github.com/nycpivot/${git_catalog_repository}/catalog-info.yaml
     backend:
         baseUrl: http://tap-gui.${app_domain}
         cors:
@@ -85,14 +83,4 @@ EOF
 tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values-build.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
-
-kubectl get svc -n tanzu-system-ingress
-
-read -p "Tanzu System Ingress IP: " external_ip
-
-nslookup $external_ip
-
-read -p "Configure DNS wildcard"
-
-echo http://tap-gui.apps.tap.nycpivot.com/
 
