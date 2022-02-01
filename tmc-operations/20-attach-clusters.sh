@@ -40,6 +40,21 @@ echo
 #echo
 
 
+#CREATE EKS SECURITY CLUSTER
+read -p "Attach EKS Security Cluster"
+echo
+
+kubectl config use-context $tmc_security_cluster
+echo
+
+rm ./k8s-attach-manifest.yaml
+tmc cluster attach --name $tmc_security_cluster --cluster-group $cluster_group
+echo
+
+kubectl apply -f ./k8s-attach-manifest.yaml
+echo
+
+
 #CREATE EKS CUSTOM CLUSTER
 read -p "Attach EKS Custom Cluster"
 echo
@@ -70,23 +85,8 @@ kubectl apply -f ./k8s-attach-manifest.yaml
 echo
 
 
-#CREATE AKS SECURITY CLUSTER
-read -p "Attach AKS Security Cluster"
-echo
-
-kubectl config use-context $tmc_security_cluster
-echo
-
-rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_security_cluster --cluster-group $cluster_group
-echo
-
-kubectl apply -f ./k8s-attach-manifest.yaml
-echo
-
-
 #CREATE AKS QUOTA CLUSTER
-read -p "Attach AKS QUOTA Cluster"
+read -p "Attach AKS Quota Cluster"
 echo
 
 kubectl config use-context $tmc_quota_cluster_aks

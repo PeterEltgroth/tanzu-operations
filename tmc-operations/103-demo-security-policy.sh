@@ -28,7 +28,7 @@ tmc_security_cluster=tmc-security-cluster
 
 
 #SECURITY POLICY
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA/SECURITY POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC SECURITY POLICY ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_security_cluster}"
