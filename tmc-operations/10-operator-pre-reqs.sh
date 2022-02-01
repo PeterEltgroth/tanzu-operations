@@ -1,4 +1,5 @@
 read -p "Azure Subscription: " subscription
+read -p "Operator Instance Id: " instance_id
 
 sudo apt update
 yes | sudo apt upgrade
@@ -48,7 +49,7 @@ chmod +x /usr/local/bin/tmc
 aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-aws_region_code=ap-northeast-1
+aws_region_code=us-east-2
 export AWS_ACCESS_KEY_ID=$aws_access_key_id
 export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
 export AWS_DEFAULT_REGION=$aws_region_code
@@ -61,6 +62,13 @@ sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
 chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
+
+#STORE VOLUME ID FOR SNAPSHOT
+ebs_volume_id=$(aws ec2 describe-instances --instance-ids $instance_id | jq '[.Reservations[].Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]')
+volume_id=$(eval "echo \${ebs_volume_id} | jq '.[] | .VolumeId'" | tr -d '"')
+
+echo $instance_id >> instance.id
+echo $volume_id >> volume.id
 
 echo "***REBOOTING***"
 

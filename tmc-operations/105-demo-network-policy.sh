@@ -24,9 +24,13 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
+tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 
 #NETWORK POLICY
 DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
+
+pe "kubectl config use-context ${tmc_registry_and_network_cluster}"
+echo
 
 pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
 echo

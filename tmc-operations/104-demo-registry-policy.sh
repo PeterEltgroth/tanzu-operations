@@ -24,9 +24,13 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
+tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
 
 #REGISTRY POLICY
 DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
+
+pe "kubectl config use-context ${tmc_registry_and_network_cluster}"
+echo
 
 pe "kubectl get pods -n registry"
 echo

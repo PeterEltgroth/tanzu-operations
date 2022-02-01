@@ -3,12 +3,13 @@ mkdir tmc
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-bootstrapper-setup.sh -O tmc/01-bootstrapper-setup.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-tmc-operator-creator-us-west-1.sh -O tmc/02-tmc-operator-creator-us-west-1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-pre-reqs.sh -O tmc/10-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-us-west-1.sh -O tmc/11-eks-setup-us-west-1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-west1.sh -O tmc/13-gke-setup-us-west1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-operator-pre-reqs.sh -O tmc/10-operator-pre-reqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-create-snapshot.sh -O tmc/11-create-snapshot.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-us-west-1.sh -O tmc/11-eks-setup-us-west-1.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-west1.sh -O tmc/13-gke-setup-us-west1.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs.sh -O tmc/100-demo-pre-reqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-security-policy.sh -O tmc/101-demo-security-policy.sh
