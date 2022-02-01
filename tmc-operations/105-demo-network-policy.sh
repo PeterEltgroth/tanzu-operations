@@ -58,6 +58,9 @@ echo
 pe "watch kubectl get networkpolicies -n network"
 echo
 
+pe "kubectl get pods -n network -o wide"
+echo
+
 pe "kubectl exec nginx-web -it -n network -- sh"
 echo
 

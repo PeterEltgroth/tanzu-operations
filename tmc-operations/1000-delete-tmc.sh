@@ -24,7 +24,7 @@ network=network
 tmc organization iam remove-binding -u michael.james.mj.mj@gmail.com -r organization.view
 tmc workspace image-policy delete registry-policy --workspace-name $registry_workspace
 tmc workspace network-policy delete network-policy --workspace-name $network_workspace
-tmc clustergroup security-policy delete security-policy --cluster-group-name $quota_group
+tmc clustergroup security-policy delete security-policy --cluster-group-name $cluster_group
 tmc clustergroup namespace-quota-policy delete quota-policy --cluster-group-name $quota_group
 
 #DELETE NAMESPACES

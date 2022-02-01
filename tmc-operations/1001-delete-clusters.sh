@@ -23,6 +23,19 @@ kubectl config delete-context $tmc_access_cluster
 aws eks delete-cluster --name $tmc_access_cluster
 
 
+#DELETE TMC-SECURITY-CLUSTER
+kubectl config use-context $tmc_security_cluster
+
+aws eks delete-nodegroup --cluster-name $tmc_security_cluster --nodegroup-name ${tmc_security_cluster}-node-group
+aws eks wait nodegroup-active --cluster-name $tmc_security_cluster --nodegroup-name ${tmc_security_cluster}-node-group
+
+kubectl config delete-user $arn/$tmc_security_cluster
+kubectl config delete-cluster $arn/$tmc_security_cluster
+kubectl config delete-context $tmc_security_cluster
+
+aws eks delete-cluster --name $tmc_security_cluster
+
+
 #DELETE TMC-CUSTOM-CLUSTER
 kubectl config use-context $tmc_custom_cluster
 
@@ -37,11 +50,11 @@ aws eks delete-cluster --name $tmc_custom_cluster
 
 
 #DELETE ELASTIC LOAD BALANCERS
-aws elb describe-load-balancers --output text --query "LoadBalancerDescriptions[*].[LoadBalancerName]"
+#aws elb describe-load-balancers --output text --query "LoadBalancerDescriptions[*].[LoadBalancerName]"
 
-read -p "Load Balancer Name: " lb_name
+#read -p "Load Balancer Name: " lb_name
 
-aws elb delete-load-balancer --load-balancer-name $lb_name
+#aws elb delete-load-balancer --load-balancer-name $lb_name
 
 
 #DELETE GKE REGISTRY AND NETWORK CLUSTER
@@ -63,7 +76,7 @@ kubectl config delete-cluster ${prefix}_${tmc_quota_cluster_gke}
 kubectl config delete-context ${tmc_quota_cluster_gke}
 
 
-#DELETE AKS SECURITY & QUOTA CLUSTER
+#DELETE AKS QUOTA CLUSTER
 prefix=clusterUser_tanzu-mission-control
 
 az aks delete --name $tmc_security_cluster --resource-group tanzu-mission-control
