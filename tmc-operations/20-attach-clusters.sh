@@ -26,18 +26,18 @@ echo
 
 
 #CREATE EKS ACCESS CLUSTER
-read -p "Attach EKS Access Cluster"
-echo
+#read -p "Attach EKS Access Cluster"
+#echo
 
-kubectl config use-context $tmc_access_cluster
-echo
+#kubectl config use-context $tmc_access_cluster
+#echo
 
-rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_access_cluster --cluster-group $cluster_group
-echo
+#rm ./k8s-attach-manifest.yaml
+#tmc cluster attach --name $tmc_access_cluster --cluster-group $cluster_group
+#echo
 
-kubectl apply -f ./k8s-attach-manifest.yaml
-echo
+#kubectl apply -f ./k8s-attach-manifest.yaml
+#echo
 
 
 #CREATE EKS CUSTOM CLUSTER
@@ -78,7 +78,7 @@ kubectl config use-context $tmc_security_cluster
 echo
 
 rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_security_cluster --cluster-group $quota_group
+tmc cluster attach --name $tmc_security_cluster --cluster-group $cluster_group
 echo
 
 kubectl apply -f ./k8s-attach-manifest.yaml

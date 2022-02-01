@@ -1,5 +1,5 @@
 fullName:
-  clusterGroupName: quota-group
+  clusterGroupName: cluster-group
   name: security-policy
 spec:
   input:

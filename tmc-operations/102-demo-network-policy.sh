@@ -45,6 +45,8 @@ echo
 pe "kubectl exec nginx-web -it -n network -- sh"
 echo
 
+pe "clear"
+
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml --dry-run"
 echo
 

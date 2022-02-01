@@ -30,6 +30,10 @@ DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo
 
 
+cluster_name=tmc-custom-cluster
+
+wavefront_token=$(az keyvault secret show --name wavefront-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
 pe "kubectl config use-context ${cluster_name}"
 echo
 
@@ -39,6 +43,6 @@ echo
 pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmware.wavefront.com --set wavefront.token=${wavefront_token} --set clusterName=${cluster_name} --namespace wavefront"
 echo
 
-pe "kubectl apply -f configs/tos-node-stressor.yaml"
+pe "kubectl apply -f tmc/configs/tos-node-stressor.yaml"
 echo
 
