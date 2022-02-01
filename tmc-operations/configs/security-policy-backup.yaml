@@ -11,7 +11,7 @@ spec:
       max: 65535
       min: 0
     allowedVolumes:
-    - secret
+    - hostPath
     audit: false
     disableNativePsp: false
     linuxCapabilities:
@@ -19,9 +19,9 @@ spec:
       - '*'
     runAsUser:
       ranges:
-      - max: 1
+      - max: 65535
         min: 0
-      rule: MustRunAs
+      rule: RunAsAny
   recipe: custom
   recipeVersion: v1
   type: security-policy

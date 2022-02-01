@@ -27,21 +27,22 @@ clear
 tmc_security_cluster=tmc-security-cluster
 
 
-#QUOTA/SECURITY POLICY (AKS & QUOTA POLICY)
+#SECURITY POLICY
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA/SECURITY POLICY ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_security_cluster}"
 echo
 
-
-#SECURITY
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml --dry-run"
 echo
 
 pe "clear"
 
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml"
+echo
+
+pe "watch kubectl get pods -n gatekeeper-system"
 echo
 
 pe "kubectl run nginx --image nginx"

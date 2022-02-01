@@ -32,7 +32,7 @@ echo
 
 cluster_name=tmc-custom-cluster
 
-wavefront_token=$(az keyvault secret show --name wavefront-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+wavefront_token=$(az keyvault secret show --name wavefront-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
 pe "kubectl config use-context ${cluster_name}"
 echo
