@@ -11,11 +11,11 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs.sh -O tmc/100-demo-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-registry-policy.sh -O tmc/101-demo-registry-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/102-demo-network-policy.sh -O tmc/102-demo-network-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/103-demo-security-policy.sh -O tmc/103-demo-security-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/104-demo-quota-policy-gke.sh -O tmc/104-demo-quota-policy-gke.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/105-demo-quota-policy-aks.sh -O tmc/105-demo-quota-policy-aks.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-security-policy.sh -O tmc/101-demo-security-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/102-demo-quota-policy-gke.sh -O tmc/102-demo-quota-policy-gke.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/103-demo-quota-policy-aks.sh -O tmc/103-demo-quota-policy-aks.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/104-demo-registry-policy.sh -O tmc/104-demo-registry-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/105-demo-network-policy.sh -O tmc/105-demo-network-policy.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/106-demo-access-policy.sh -O tmc/106-demo-access-policy.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/107-demo-custom-policy.sh -O tmc/107-demo-custom-policy.sh
 
