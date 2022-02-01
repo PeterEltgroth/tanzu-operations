@@ -30,12 +30,12 @@ DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo
 
 
-cluster_name=tmc-custom-cluster
+#cluster_name=tmc-custom-cluster
 
-wavefront_token=$(az keyvault secret show --name wavefront-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
+#wavefront_token=$(az keyvault secret show --name wavefront-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
-pe "kubectl config use-context ${cluster_name}"
-echo
+#pe "kubectl config use-context ${cluster_name}"
+#echo
 
 #pe "helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update"
 #echo
