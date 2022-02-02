@@ -1,0 +1,15 @@
+David, Michael: is there any limitation when handling K8s cluster residing onto hyperscalers from Day 2 standpoint? Same Q for VCD-provisioned TKGm clusters? Can we supersize, right size K8s clusters any time?
+From Fernando Escobar to Everyone 10:37 AM
+Can we reattach the legacy clusters by following a canary “upgrade” strategy afterwards?
+(As a workaround to get a full control on legacy clusters already living on the hyperscalers) 
+
+Looking for repatriation strategies here …
+From David Gutierrez to Everyone 10:41 AM
+The TLDR is that there are some limitations that may depend on whether a k8 cluster is created by TMC or just attached later.  If TMC creates a cluster we can have full lifecycle control of the TKG cluster.
+From my experience the recommendations would be is that when possible It would be best to re-deploy a k8 cluster In to a TKG cluster in a hyperscaler to handle those legacy clusters.  In other words we can re-deploy a cluster that has been living on AKS by taking those images and deploying it them in to a fully lifecycle TMC cluster.  
+
+However, I do know that the MAPBU is working on a cluster migrations tool do just that. 
+
+I can take that back and give back more detail answer.
+
+ls tmc -l
