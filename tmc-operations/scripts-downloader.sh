@@ -1,10 +1,16 @@
 rm -rf tmc
 mkdir tmc
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-bootstrapper-setup.sh -O tmc/01-bootstrapper-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-tmc-operator-creator-us-west-1.sh -O tmc/02-tmc-operator-creator-us-west-1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-operator-pre-reqs.sh -O tmc/10-operator-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-create-snapshot.sh -O tmc/11-create-snapshot.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/001-bootstrapper-setup.sh -O tmc/001-bootstrapper-setup.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/002-tmc-operator-creator-us-east-2.sh -O tmc/002-tmc-operator-creator-us-east-2.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/002-tmc-operator-creator-us-west-1.sh -O tmc/002-tmc-operator-creator-us-west-1.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/002-tmc-operator-from-image-us-east-2.sh -O tmc/002-tmc-operator-from-image-us-east-2.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/002-tmc-operator-from-snapshot-us-east-2.sh -O tmc/002-tmc-operator-from-snapshot-us-east-2.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/010-operator-pre-reqs.sh -O tmc/010-operator-pre-reqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/011-create-snapshot-us-east-2.sh -O tmc/011-create-snapshot-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/012-create-image-us-east-2.sh -O tmc/012-create-image-us-east-2.sh
+
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-us-west-1.sh -O tmc/11-eks-setup-us-west-1.sh
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-west1.sh -O tmc/13-gke-setup-us-west1.sh
