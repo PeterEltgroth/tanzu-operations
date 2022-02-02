@@ -12,3 +12,4 @@ sudo ./aws/install
 rm awscliv2.zip
 
 aws configure
+
