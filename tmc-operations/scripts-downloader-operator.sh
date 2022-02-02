@@ -7,7 +7,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-eks-setup-us-east-2.sh -O tmc/10-eks-setup-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-eks-setup-us-west-1.sh -O tmc/10-eks-setup-us-west-1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-aks-setup-us-east-2.sh -O tmc/12-aks-setup-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-aks-setup-us-east-2.sh -O tmc/11-aks-setup-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-gke-setup-us-east1.sh -O tmc/12-gke-setup-us-east1.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-gke-setup-us-west1.sh -O tmc/12-gke-setup-us-west1.sh
 

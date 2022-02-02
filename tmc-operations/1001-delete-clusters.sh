@@ -58,18 +58,17 @@ aws eks delete-cluster --name $tmc_custom_cluster
 
 
 #DELETE GKE REGISTRY AND NETWORK CLUSTER
-prefix=gke_pa-mjames_us-west1
+gke_region_code=us-east1
+prefix=gke_pa-mjames_${gke_region_code}
 
-gcloud container clusters delete "${tmc_registry_and_network_cluster}" --region "us-west1"
+gcloud container clusters delete "${tmc_registry_and_network_cluster}" --region $gke_region_code
 
 kubectl config delete-user ${prefix}_${tmc_registry_and_network_cluster}
 kubectl config delete-cluster ${prefix}_${tmc_registry_and_network_cluster}
 kubectl config delete-context ${tmc_registry_and_network_cluster}
 
 #DELETE GKE QUOTA CLUSTER
-prefix=gke_pa-mjames_us-west1
-
-gcloud container clusters delete "${tmc_quota_cluster_gke}" --region "us-west1"
+gcloud container clusters delete "${tmc_quota_cluster_gke}" --region $gke_region_code
 
 kubectl config delete-user ${prefix}_${tmc_quota_cluster_gke}
 kubectl config delete-cluster ${prefix}_${tmc_quota_cluster_gke}
@@ -77,15 +76,6 @@ kubectl config delete-context ${tmc_quota_cluster_gke}
 
 
 #DELETE AKS QUOTA CLUSTER
-prefix=clusterUser_tanzu-mission-control
-
-az aks delete --name $tmc_security_cluster --resource-group tanzu-mission-control
-
-kubectl config delete-user ${prefix}_${tmc_security_cluster}
-kubectl config delete-cluster ${tmc_security_cluster}
-kubectl config delete-context ${tmc_security_cluster}
-
-
 az aks delete --name $tmc_quota_cluster_aks --resource-group tanzu-mission-control
 
 kubectl config delete-user ${prefix}_${tmc_quota_cluster_aks}

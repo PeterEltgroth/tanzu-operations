@@ -1,0 +1,27 @@
+NYC Pivot Org (access-policy)
+
+	production-cluster-group (security-policy)
+
+		tmc-production-cluster (GKE)
+	
+			web-workspace (registry-policy)
+
+				web
+
+			application-workspace (network-policy)
+
+				api
+				app
+				data
+
+	development-cluster-group (quota-policy)
+
+		tmc-development-cluster
+
+
+
+
+access
+security
+quota
+custom
