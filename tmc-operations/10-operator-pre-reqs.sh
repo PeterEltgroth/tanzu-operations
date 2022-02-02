@@ -68,6 +68,7 @@ aws s3 cp s3://tmc-operations/operator-instance.txt ./
 ebs_volume_id=$(aws ec2 describe-instances --instance-ids $instance_id | jq '[.Reservations[].Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]')
 volume_id=$(eval "echo \${ebs_volume_id} | jq '.[] | .VolumeId'" | tr -d '"')
 
+aws s3 rm s3://tmc-operations/volume-id.txt --recursive
 echo $volume_id | aws s3 cp - s3://tmc-operations/volume-id.txt
 
 echo "***REBOOTING***"

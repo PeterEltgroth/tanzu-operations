@@ -4,6 +4,7 @@ public_dns=$(aws ec2 describe-instances --instance-ids $instance_id | jq "[.Rese
 
 dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 
+aws s3 rm s3://tmc-operations/operator-instance.txt --recursive
 echo $instance_id | aws s3 cp - s3://tmc-operations/operator-instance.txt
 echo
 
