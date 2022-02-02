@@ -1,0 +1,81 @@
+aws_region_code=us-east-2
+tmc_access_cluster=tmc-access-cluster
+tmc_security_cluster=tmc-security-cluster
+tmc_custom_cluster=tmc-custom-cluster
+
+
+#TMC-ACCESS-CLUSTER
+#aws eks create-cluster \
+#   --region $aws_region_code \
+#   --name $tmc_access_cluster \
+#   --kubernetes-version 1.21 \
+#   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
+#   --resources-vpc-config subnetIds=subnet-0d01ac4a005d833fd,subnet-0ac6020705178c3b5,subnet-0f315a4b0eb3c0e88
+
+#aws eks wait cluster-active --name $tmc_access_cluster
+
+#aws eks create-nodegroup \
+#        --cluster-name $tmc_access_cluster \
+#        --nodegroup-name "${tmc_access_cluster}-node-group" \
+#        --disk-size 500 \
+#        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
+#        --subnets "subnet-0d01ac4a005d833fd" "subnet-0ac6020705178c3b5" "subnet-0f315a4b0eb3c0e88" \
+#        --instance-types t3a.2xlarge \
+#        --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
+#        --kubernetes-version 1.21
+
+
+#TMC-SECURITY-CLUSTER
+aws eks create-cluster \
+   --region $aws_region_code \
+   --name $tmc_security_cluster \
+   --kubernetes-version 1.21 \
+   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
+   --resources-vpc-config subnetIds=subnet-0d01ac4a005d833fd,subnet-0ac6020705178c3b5,subnet-0f315a4b0eb3c0e88
+
+aws eks wait cluster-active --name $tmc_security_cluster
+
+aws eks create-nodegroup \
+        --cluster-name $tmc_security_cluster \
+        --nodegroup-name "${tmc_security_cluster}-node-group" \
+        --disk-size 500 \
+        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
+        --subnets "subnet-0d01ac4a005d833fd" "subnet-0ac6020705178c3b5" "subnet-0f315a4b0eb3c0e88" \
+        --instance-types t3a.2xlarge \
+        --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
+        --kubernetes-version 1.21
+
+
+#TMC-CUSTOM-CLUSTER
+aws eks create-cluster \
+   --region $aws_region_code \
+   --name $tmc_custom_cluster \
+   --kubernetes-version 1.21 \
+   --role-arn arn:aws:iam::964978768106:role/vmware-eks-role \
+   --resources-vpc-config subnetIds=subnet-0d01ac4a005d833fd,subnet-0ac6020705178c3b5,subnet-0f315a4b0eb3c0e88
+
+aws eks wait cluster-active --name $tmc_custom_cluster
+
+aws eks create-nodegroup \
+        --cluster-name $tmc_custom_cluster \
+        --nodegroup-name "${tmc_custom_cluster}-node-group" \
+        --disk-size 500 \
+        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
+        --subnets "subnet-0d01ac4a005d833fd" "subnet-0ac6020705178c3b5" "subnet-0f315a4b0eb3c0e88" \
+        --instance-types t3a.2xlarge \
+        --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
+        --kubernetes-version 1.21
+		
+aws eks wait nodegroup-active --cluster-name $tmc_custom_cluster --nodegroup-name ${tmc_custom_cluster}-node-group
+
+rm .kube/config
+
+#aws eks update-kubeconfig --name $tmc_access_cluster --region $aws_region_code
+aws eks update-kubeconfig --name $tmc_security_cluster --region $aws_region_code
+aws eks update-kubeconfig --name $tmc_custom_cluster --region $aws_region_code
+
+arn=arn:aws:eks:us-east-2:964978768106:cluster
+#kubectl config rename-context ${arn}/${tmc_access_cluster} $tmc_access_cluster
+kubectl config rename-context ${arn}/${tmc_security_cluster} $tmc_security_cluster
+kubectl config rename-context ${arn}/${tmc_custom_cluster} $tmc_custom_cluster
+

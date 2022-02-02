@@ -8,7 +8,7 @@ gcloud container clusters create "${tmc_quota_cluster_gke}" --region "${gke_regi
 		
 gcloud container clusters get-credentials "${tmc_quota_cluster_gke}" --region "${gke_region_code}"
 
-prefix=gke_pa-mjames_us-west1
+prefix=gke_pa-mjames_${gke_region_code}
 kubectl config rename-context ${prefix}_${tmc_quota_cluster_gke} ${tmc_quota_cluster_gke}
 
 
@@ -17,6 +17,6 @@ gcloud container clusters create "${tmc_registry_and_network_cluster}" --region 
 		
 gcloud container clusters get-credentials "${tmc_registry_and_network_cluster}" --region "${gke_region_code}"
 
-prefix=gke_pa-mjames_us-west1
+prefix=gke_pa-mjames_${gke_region_code}
 kubectl config rename-context ${prefix}_${tmc_registry_and_network_cluster} ${tmc_registry_and_network_cluster}
 

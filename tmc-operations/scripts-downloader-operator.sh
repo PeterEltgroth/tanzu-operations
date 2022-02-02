@@ -5,18 +5,14 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-create-image-us-east-2.sh -O tmc/02-create-image-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-create-snapshot-us-east-2.sh -O tmc/02-create-snapshot-us-east-2.sh
 
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-eks-setup-us-east-2.sh -O tmc/10-eks-setup-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-eks-setup-us-west-1.sh -O tmc/10-eks-setup-us-west-1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-aks-setup-us-east-2.sh -O tmc/12-aks-setup-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-gke-setup-us-east1.sh -O tmc/12-gke-setup-us-east1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-gke-setup-us-west1.sh -O tmc/12-gke-setup-us-west1.sh
 
-
-
-
-
-
-
-#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-us-west-1.sh -O tmc/11-eks-setup-us-west-1.sh
-#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-aks-setup-tanzu-operations.sh -O tmc/12-aks-setup-tanzu-operations.sh
-#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-gke-setup-us-west1.sh -O tmc/13-gke-setup-us-west1.sh
-#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
-#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs.sh -O tmc/100-demo-pre-reqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-security-policy.sh -O tmc/101-demo-security-policy.sh
