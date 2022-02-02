@@ -4,6 +4,9 @@ public_dns=$(aws ec2 describe-instances --instance-ids $instance_id | jq "[.Rese
 
 dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 
-echo "Instance Id: " $instance_id
-echo "Instance Dns: " $dns
-echo http://169.254.169.254/latest/user-data
+echo $instance_id | aws s3 cp - s3://tmc-operations/operator-instance.txt
+echo
+
+echo "Operator Dns: " $dns
+echo "User Data: http://169.254.169.254/latest/user-data"
+echo

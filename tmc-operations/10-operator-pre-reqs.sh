@@ -1,5 +1,4 @@
-read -p "Azure Subscription: " subscription
-read -p "Operator Instance Id: " instance_id
+subscription=nycpivot
 
 sudo apt update
 yes | sudo apt upgrade
@@ -64,11 +63,12 @@ chmod +x /usr/local/bin/demo-magic.sh
 sudo apt install pv #required for demo-magic
 
 #STORE VOLUME ID FOR SNAPSHOT
+aws s3 cp s3://tmc-operations/operator-instance.txt ./
+
 ebs_volume_id=$(aws ec2 describe-instances --instance-ids $instance_id | jq '[.Reservations[].Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]')
 volume_id=$(eval "echo \${ebs_volume_id} | jq '.[] | .VolumeId'" | tr -d '"')
 
-echo $instance_id >> instance.id
-echo $volume_id >> volume.id
+echo $volume_id | aws s3 cp - s3://tmc-operations/volume-id.txt
 
 echo "***REBOOTING***"
 
