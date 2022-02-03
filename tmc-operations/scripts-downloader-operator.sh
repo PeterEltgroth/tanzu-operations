@@ -6,7 +6,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-create-snapshot-us-east-2.sh -O tmc/02-create-snapshot-us-east-2.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-gke-setup-production.sh -O tmc/10-gke-setup-production.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-setup-development.sh -O tmc/11-eks-setup-development.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-aks-setup-development.sh -O tmc/11-aks-setup-development.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-eks-setup-staging.sh -O tmc/12-eks-setup-staging.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-add-wavefront-plugins.sh -O tmc/21-add-wavefront-plugins.sh
@@ -24,7 +25,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1000-delete-tmc.sh -O tmc/1000-delete-tmc.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-gke-delete.sh -O tmc/1001-gke-delete.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-eks-delete.sh -O tmc/1001-eks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1002-aks-delete.sh -O tmc/1002-aks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1003-eks-delete.sh -O tmc/1003-eks-delete.sh
 
 mkdir tmc/configs
 

@@ -7,11 +7,11 @@ then
     gke_region_code=us-east1
 fi
 
-tmc_production_cluster=tmc-production-cluster
+cluster_name=tmc-production-cluster
 
 #DELETE GKE REGISTRY AND NETWORK CLUSTER
 prefix=gke_pa-mjames_${gke_region_code}
 
-gcloud container clusters delete "${tmc_production_cluster}" --region $gke_region_code
+gcloud container clusters delete "${cluster_name}" --region $gke_region_code
 
-kubectl config delete-context ${tmc_production_cluster}
+kubectl config delete-context ${cluster_name}
