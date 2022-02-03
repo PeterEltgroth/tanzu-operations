@@ -32,6 +32,18 @@ sudo snap install google-cloud-sdk --classic
 gcloud auth login
 gcloud config set project pa-mjames
 
+#AWS
+aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+aws_region_code=us-east-2
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+export AWS_DEFAULT_REGION=$aws_region_code
+
+aws configure
+
+
 #KUBECTL
 wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
 gzip -d kubectl-linux-v1.21.2+vmware.1.gz
@@ -40,7 +52,11 @@ sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
 
+
 #TANZU CLI
+mkdir tanzu
+cd tanzu
+
 wget https://tanzustorage.blob.core.windows.net/tanzu/tanzu-cli-bundle-linux-amd64-v1.4.tar
 tar -xvf tanzu-cli-bundle-linux-amd64-v1.4.tar
 rm tanzu-cli-bundle-linux-amd64-v1.4.tar
@@ -76,16 +92,8 @@ gunzip cli/imgpkg-linux-amd64-v0.10.0+vmware.1.gz
 chmod ugo+x cli/imgpkg-linux-amd64-v0.10.0+vmware.1
 sudo mv cli/imgpkg-linux-amd64-v0.10.0+vmware.1 /usr/local/bin/imgpkg
 
-#AWS
-aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+cd $HOME
 
-aws_region_code=us-east-2
-export AWS_ACCESS_KEY_ID=$aws_access_key_id
-export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-export AWS_DEFAULT_REGION=$aws_region_code
-
-aws configure
 
 #DEMO-MAGIC
 wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh

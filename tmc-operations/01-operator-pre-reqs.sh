@@ -32,6 +32,17 @@ sudo snap install google-cloud-sdk --classic
 gcloud auth login
 gcloud config set project pa-mjames
 
+aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+aws_region_code=us-east-2
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+export AWS_DEFAULT_REGION=$aws_region_code
+
+aws configure
+
+
 #KUBECTL
 wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
 gzip -d kubectl-linux-v1.21.2+vmware.1.gz
@@ -44,16 +55,6 @@ kubectl version
 wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
 sudo mv tmc-cli /usr/local/bin/tmc
 chmod +x /usr/local/bin/tmc
-
-aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-aws_region_code=us-east-2
-export AWS_ACCESS_KEY_ID=$aws_access_key_id
-export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-export AWS_DEFAULT_REGION=$aws_region_code
-
-aws configure
 
 #DEMO-MAGIC
 wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
