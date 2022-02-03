@@ -26,7 +26,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/500-demo-tos-integration-k8s.sh -O tmc/500-demo-tos-integration-k8s.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1000-delete-tmc.sh -O tmc/1000-delete-tmc.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-delete-clusters.sh -O tmc/1001-delete-clusters.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/1001-delete-clusters-us-east-2.sh -O tmc/1001-delete-clusters-us-east-2.sh
 
 mkdir tmc/configs
 

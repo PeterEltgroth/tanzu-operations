@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #EKS CLUSTERS
-arn=arn:aws:eks:us-west-1:964978768106:cluster
+arn=arn:aws:eks:us-east-2:964978768106:cluster
 
 tmc_access_cluster=tmc-access-cluster
 tmc_quota_cluster_gke=tmc-quota-cluster-gke
@@ -63,19 +63,20 @@ prefix=gke_pa-mjames_${gke_region_code}
 
 gcloud container clusters delete "${tmc_registry_and_network_cluster}" --region $gke_region_code
 
-kubectl config delete-user ${prefix}_${tmc_registry_and_network_cluster}
-kubectl config delete-cluster ${prefix}_${tmc_registry_and_network_cluster}
+#kubectl config delete-user ${prefix}_${tmc_registry_and_network_cluster}
+#kubectl config delete-cluster ${prefix}_${tmc_registry_and_network_cluster}
 kubectl config delete-context ${tmc_registry_and_network_cluster}
 
 #DELETE GKE QUOTA CLUSTER
 gcloud container clusters delete "${tmc_quota_cluster_gke}" --region $gke_region_code
 
-kubectl config delete-user ${prefix}_${tmc_quota_cluster_gke}
-kubectl config delete-cluster ${prefix}_${tmc_quota_cluster_gke}
+#kubectl config delete-user ${prefix}_${tmc_quota_cluster_gke}
+#kubectl config delete-cluster ${prefix}_${tmc_quota_cluster_gke}
 kubectl config delete-context ${tmc_quota_cluster_gke}
 
 
 #DELETE AKS QUOTA CLUSTER
+prefix=clusterUser_tanzu-mission-control
 az aks delete --name $tmc_quota_cluster_aks --resource-group tanzu-mission-control
 
 kubectl config delete-user ${prefix}_${tmc_quota_cluster_aks}
