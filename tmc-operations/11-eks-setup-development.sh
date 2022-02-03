@@ -8,7 +8,6 @@ fi
 tmc_development_cluster=tmc-development-cluster
 arn=arn:aws:eks:${aws_region_code}:964978768106:cluster
 
-#TMC-PRODUCTION-CLUSTER
 aws eks create-cluster \
    --region $aws_region_code \
    --name $tmc_development_cluster \
