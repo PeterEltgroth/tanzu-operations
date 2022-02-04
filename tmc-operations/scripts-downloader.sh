@@ -25,6 +25,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/500-demo-tos-integration-k8s.sh -O tmc/500-demo-tos-integration-k8s.sh
 
+mkdir tmc/reset
+
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/01-delete-tmc.sh -O tmc/reset/01-delete-tmc.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/02-aks-delete.sh -O tmc/reset/02-aks-delete.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/03-eks-delete.sh -O tmc/reset/03-eks-delete.sh
