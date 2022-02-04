@@ -9,5 +9,6 @@ echo $instance_id | aws s3 cp - s3://tmc-operations/operator-instance-us-east-2.
 echo
 
 echo "Operator Dns: " $dns
+echo
 echo "User Data: http://169.254.169.254/latest/user-data"
 echo

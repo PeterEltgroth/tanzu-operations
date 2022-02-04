@@ -77,7 +77,6 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
-tanzu cluster create $cluster_name -f .config/tanzu/tkg/clusterconfigs/${cluster_name}.yaml --plan dev
+tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan dev
 
-tanzu cluster kubeconfig get $cluster_name --admin
-;;
+tanzu cluster kubeconfig get $workload_cluster_name --admin

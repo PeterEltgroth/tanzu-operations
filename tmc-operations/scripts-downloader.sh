@@ -28,9 +28,10 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 mkdir tmc/reset
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/01-delete-tmc.sh -O tmc/reset/01-delete-tmc.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/02-aks-delete.sh -O tmc/reset/02-aks-delete.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/03-eks-delete.sh -O tmc/reset/03-eks-delete.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/04-gke-delete.sh -O tmc/reset/04-gke-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/02-tkg-delete.sh -O tmc/reset/02-tkg-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/03-aks-delete.sh -O tmc/reset/03-aks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/04-eks-delete.sh -O tmc/reset/04-eks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/05-gke-delete.sh -O tmc/reset/05-gke-delete.sh
 
 
 mkdir tmc/configs

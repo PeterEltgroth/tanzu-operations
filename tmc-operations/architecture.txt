@@ -3,8 +3,8 @@ NYC Pivot Org (access-policy)
 	development-cluster-group (quota-policy)
 
 		tmc-development-cluster (EKS)
-		tmc-staging-cluster (TKG | AKS)
-		tmc-build-cluster ?
+		tmc-staging-cluster (AKS)
+		tmc-build-cluster (TKG)
 		tmc-testing-cluster ?
 		
 	production-cluster-group (security-policy)
