@@ -2,8 +2,13 @@ rm -rf tap
 mkdir tap
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/01-operator-pre-reqs.sh -O tap/01-operator-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/11-eks-setup-us-west-1.sh -O tap/11-eks-setup-us-west-1.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/12-pre-reqs-tanzu.sh -O tap/12-pre-reqs-tanzu.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/02-create-image.sh -O tap/02-create-image.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/11-eks-build-setup.sh -O tap/11-eks-build-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/12-eks-run-setup.sh -O tap/12-eks-run-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/13-eks-full-setup.sh -O tap/13-eks-full-setup.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/20-pre-reqs-tanzu.sh -O tap/20-pre-reqs-tanzu.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/20-tap-packages.sh -O tap/20-tap-packages.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/21-tap-values-build.sh -O tap/21-tap-values-build.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/21-tap-values-full.sh -O tap/21-tap-values-full.sh
