@@ -15,7 +15,7 @@ NYC Pivot Org (access-policy)
 
 				web
 
-			application-workspace (network-policy)
+			app-workspace (network-policy)
 
 				api
 				app

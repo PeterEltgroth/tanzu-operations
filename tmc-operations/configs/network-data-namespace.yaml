@@ -1,0 +1,17 @@
+fullName:
+  name: data
+  clusterName: tmc-production-cluster
+  managementClusterName: attached
+  provisionerName: attached
+meta:
+  annotations:
+    vmware.tanzu.manage.template: default
+  description: ""
+  labels: null
+spec:
+  workspaceName: app-workspace
+type:
+  kind: Namespace
+  package: vmware.tanzu.manage.v1alpha1.cluster.namespace
+  version: v1alpha1
+  

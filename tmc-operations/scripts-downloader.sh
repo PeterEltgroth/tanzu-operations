@@ -25,6 +25,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/500-demo-tos-integration-k8s.sh -O tmc/500-demo-tos-integration-k8s.sh
 
+
 mkdir tmc/reset
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/reset/01-delete-tmc.sh -O tmc/reset/01-delete-tmc.sh
@@ -36,7 +37,11 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 mkdir tmc/configs
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-namespace.yaml -O tmc/configs/network-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-web-namespace.yaml -O tmc/configs/network-web-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-api-namespace.yaml -O tmc/configs/network-api-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-app-namespace.yaml -O tmc/configs/network-app-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-data-namespace.yaml -O tmc/configs/network-data-namespace.yaml
+
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-policy.yaml -O tmc/configs/network-policy.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/quota-exceeds.yaml -O tmc/configs/quota-exceeds.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/quota-policy.yaml -O tmc/configs/quota-policy.yaml
