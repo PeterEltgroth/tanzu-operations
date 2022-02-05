@@ -3,7 +3,7 @@ read -p "Azure Subscription: " subscription
 development_cluster_group=development-cluster-group
 production_cluster_group=production-cluster-group
 
-tmc_build_cluster=tmc-build-cluster
+tmc_build_cluster=tmc-build-cluster-admin@tmc-build-cluster
 tmc_development_cluster=tmc-development-cluster
 tmc_staging_cluster=tmc-staging-cluster
 tmc_production_cluster=tmc-production-cluster
