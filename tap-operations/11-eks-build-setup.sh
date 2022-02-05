@@ -16,7 +16,7 @@ then
 
 	aws eks create-nodegroup \
 			--cluster-name $build_cluster \
-			--nodegroup-name "${eks_build_cluster}-node-group" \
+			--nodegroup-name "${build_cluster}-node-group" \
 			--disk-size 500 \
 			--scaling-config minSize=3,maxSize=3,desiredSize=3 \
 			--subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
@@ -29,6 +29,6 @@ aws eks wait nodegroup-active --cluster-name $build_cluster --nodegroup-name ${b
 
 rm .kube/config
 
-aws eks update-kubeconfig --name $eks_build_cluster --region $aws_region_code
+aws eks update-kubeconfig --name $build_cluster --region $aws_region_code
 
-kubectl config rename-context ${arn}/${eks_build_cluster} $eks_build_cluster
+kubectl config rename-context ${arn}/${build_cluster} $build_cluster
