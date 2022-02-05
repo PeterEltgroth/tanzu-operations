@@ -27,6 +27,7 @@ echo
 echo "OPERATOR DNS:"
 echo $dns
 echo
-echo "USER DATA:"
-echo http://169.254.169.254/latest/user-data
+echo "DOWNLOAD SCRIPTS INITIALIZER:"
+echo "wget $(cat $(wget http://169.254.169.254/latest/user-data) user-data)"
 echo
+
