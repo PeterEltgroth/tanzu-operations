@@ -23,6 +23,7 @@ dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 #echo $instance_id | aws s3 cp - s3://tmc-operations/operator-instance-us-east-2.txt
 #echo
 
+echo
 echo "Operator Dns: " $dns
 echo
 echo "User Data: http://169.254.169.254/latest/user-data"
