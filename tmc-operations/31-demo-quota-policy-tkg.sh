@@ -24,15 +24,14 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-quota_group=quota-group
-tmc_quota_cluster_gke=tmc-quota-cluster-gke
+tmc_build_cluster=tmc-build-cluster
 
 
 #QUOTA POLICY
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${tmc_quota_cluster_gke}"
+pe "kubectl config use-context ${tmc_build_cluster}"
 echo
 
 pe "kubectl get pods"

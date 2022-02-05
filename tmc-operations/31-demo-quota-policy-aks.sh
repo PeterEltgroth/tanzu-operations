@@ -24,14 +24,14 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_quota_cluster_aks=tmc-quota-cluster-aks
+tmc_development_cluster=tmc-development-cluster
 
 
 #QUOTA POLICY
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${tmc_quota_cluster_aks}"
+pe "kubectl config use-context ${tmc_development_cluster}"
 echo
 
 pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"

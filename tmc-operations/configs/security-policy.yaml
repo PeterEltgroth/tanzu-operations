@@ -1,5 +1,5 @@
 fullName:
-  clusterGroupName: cluster-group
+  clusterGroupName: development-cluster-group
   name: security-policy
 spec:
   input:

@@ -24,14 +24,14 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_security_cluster=tmc-security-cluster
+tmc_staging_cluster=tmc-staging-cluster
 
 
 #SECURITY POLICY
 DEMO_PROMPT="${GREEN}➜ TMC SECURITY POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${tmc_security_cluster}"
+pe "kubectl config use-context ${tmc_staging_cluster}"
 echo
 
 pe "tmc clustergroup security-policy create -f tmc/configs/security-policy.yaml --dry-run"
