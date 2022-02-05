@@ -1,5 +1,5 @@
 fullName:
-  name: web
+  name: production-web
   clusterName: tmc-production-cluster
   managementClusterName: attached
   provisionerName: attached

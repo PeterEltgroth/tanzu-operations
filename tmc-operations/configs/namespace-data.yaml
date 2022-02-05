@@ -1,5 +1,5 @@
 fullName:
-  name: data
+  name: production-data
   clusterName: tmc-production-cluster
   managementClusterName: attached
   provisionerName: attached

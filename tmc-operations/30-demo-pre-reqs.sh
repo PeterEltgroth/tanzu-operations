@@ -62,16 +62,16 @@ echo
 pe "kubectl get ns"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/web-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/namespace-web.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/api-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/namespace-api.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/app-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/namespace-app.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/data-namespace.yaml"
+pe "tmc cluster namespace create -f tmc/configs/namespace-data.yaml"
 echo
 
 pe "kubectl get ns"

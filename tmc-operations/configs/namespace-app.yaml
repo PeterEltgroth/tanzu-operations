@@ -1,5 +1,5 @@
 fullName:
-  name: app
+  name: production-app
   clusterName: tmc-production-cluster
   managementClusterName: attached
   provisionerName: attached
