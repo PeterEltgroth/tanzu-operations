@@ -31,7 +31,7 @@ tmc_build_cluster=tmc-build-cluster
 DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
 echo
 
-pe "kubectl config use-context ${tmc_build_cluster}"
+pe "kubectl config use-context ${tmc_build_cluster}-admin@${tmc_build_cluster}"
 echo
 
 pe "kubectl get pods"
