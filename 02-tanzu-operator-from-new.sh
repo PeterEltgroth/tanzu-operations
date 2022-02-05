@@ -19,9 +19,9 @@ fi
 public_dns=$(aws ec2 describe-instances --instance-ids $instance_id | jq "[.Reservations[].Instances[] | { PublicDnsName }]")
 dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 
-#aws s3 rm s3://tmc-operations/operator-instance-us-east-2.txt --recursive
-#echo $instance_id | aws s3 cp - s3://tmc-operations/operator-instance-us-east-2.txt
-#echo
+aws s3 rm s3://vmware-tanzu-operations/${operator_name} --recursive
+echo $instance_id | aws s3 cp - s3://vmware-tanzu-operations/${operator_name}
+echo
 
 echo
 echo "OPERATOR DNS:"
