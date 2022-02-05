@@ -24,7 +24,9 @@ dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 #echo
 
 echo
-echo "Operator Dns: " $dns
+echo "OPERATOR DNS:"
+$dns
 echo
-echo "User Data: http://169.254.169.254/latest/user-data"
+echo "USER DATA:"
+echo http://169.254.169.254/latest/user-data
 echo
