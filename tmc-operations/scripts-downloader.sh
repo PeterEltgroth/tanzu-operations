@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-install-wavefront.sh -O tmc/21-install-wavefront.sh
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/100-demo-pre-reqs.sh -O tmc/100-demo-pre-reqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/30-demo-pre-reqs.sh -O tmc/30-demo-pre-reqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/101-demo-security-policy.sh -O tmc/101-demo-security-policy.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/102-demo-quota-policy-gke.sh -O tmc/102-demo-quota-policy-gke.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/103-demo-quota-policy-aks.sh -O tmc/103-demo-quota-policy-aks.sh
@@ -37,10 +37,10 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 mkdir tmc/configs
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-web-namespace.yaml -O tmc/configs/network-web-namespace.yaml
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-api-namespace.yaml -O tmc/configs/network-api-namespace.yaml
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-app-namespace.yaml -O tmc/configs/network-app-namespace.yaml
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-data-namespace.yaml -O tmc/configs/network-data-namespace.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-web.yaml -O tmc/configs/namespace-web.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-api.yaml -O tmc/configs/namespace-api.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-app.yaml -O tmc/configs/namespace-app.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-data.yaml -O tmc/configs/namespace-data.yaml
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/network-policy.yaml -O tmc/configs/network-policy.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/quota-exceeds.yaml -O tmc/configs/quota-exceeds.yaml
