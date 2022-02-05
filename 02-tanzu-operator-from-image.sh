@@ -15,6 +15,7 @@ if [[ $aws_region_code = "us-east-2" ]]
 then
 	instance_id=$(aws ec2 run-instances --image-id $image_id --instance-type t3a.2xlarge --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 500}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --output text --query "Instances[0].InstanceId")
 elif [[ $aws_region_code = "us-west-1" ]]
+then
 	instance_id=$(aws ec2 run-instances --image-id $image_id --instance-type t3a.2xlarge --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 500}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --output text --query "Instances[0].InstanceId")
 fi
 
