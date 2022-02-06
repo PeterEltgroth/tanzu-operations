@@ -2,7 +2,6 @@ read -p "Azure Subscription: " subscription
 
 development_cluster_group=development-cluster-group
 
-tmc_build_cluster=tmc-build-cluster
 tmc_development_cluster=tmc-development-cluster
 tmc_staging_cluster=tmc-staging-cluster
 
@@ -20,21 +19,6 @@ read -p "Create cluster groups"
 echo
 
 tmc clustergroup create --name $development_cluster_group #--description "Demonstrates the cluster-only policies; security, and custom."
-echo
-
-
-#ATTACH BUILD CLUSTER
-read -p "Attach TKG Build Cluster"
-echo
-
-kubectl config use-context ${tmc_build_cluster}-admin@${tmc_build_cluster}
-echo
-
-rm ./k8s-attach-manifest.yaml
-tmc cluster attach --name $tmc_build_cluster --cluster-group $development_cluster_group
-echo
-
-kubectl apply -f ./k8s-attach-manifest.yaml
 echo
 
 
