@@ -51,10 +51,10 @@ pe "clear"
 
 
 #CREATE WORKSPACES
-pe "tmc workspace create --name ${web_workspace} --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
+pe "tmc workspace create --name ${web_workspace}" # --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
 echo
 
-pe "tmc workspace create --name ${app_workspace} --description 'Demonstrates microsegmentation between pods.'"
+pe "tmc workspace create --name ${app_workspace}" # --description 'Demonstrates microsegmentation between pods.'"
 echo
 
 
