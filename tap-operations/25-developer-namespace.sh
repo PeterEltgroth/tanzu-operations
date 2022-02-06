@@ -1,6 +1,16 @@
 read -p "Azure Subscription: " subscription
-read -p "Container Registry (without domain): " registry_name
-read -p "Namespace: " namespace
+read -p "Container Registry (tanzuapplicationregistry): " registry_name
+read -p "Namespace (default): " namespace
+
+if [[ -z $registry_name ]]
+then
+	registry_name=tanzuapplicationregistry
+fi
+
+if [[ -z $namespace ]]
+then
+	namespace=default
+fi
 
 registry_password=$(az keyvault secret show --name tanzu-application-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 

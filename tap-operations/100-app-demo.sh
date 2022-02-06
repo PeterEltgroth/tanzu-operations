@@ -30,7 +30,10 @@ read -p "App Name: " app_name
 read -p "Git App Url: " git_app_url
 echo
 
-pe "tanzu apps workload delete --all"
+pe "kubectl config use-context tap-build"
+echo
+
+pe "tanzu apps workload delete --all --yes"
 echo
 
 pe "tanzu apps workload list"
@@ -41,6 +44,8 @@ echo
 
 pe "tanzu apps workload create ${app_name} --git-repo ${git_app_url} --git-branch main --type web --label app.kubernetes.io/part-of=${app_name} --yes"
 echo
+
+pe "clear"
 
 pe "tanzu apps workload tail ${app_name} --since 10m --timestamp"
 echo

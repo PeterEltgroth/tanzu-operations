@@ -52,12 +52,12 @@ ootb_supply_chain_basic:
     server: ${registry_name}.azurecr.io
     repository: "supply-chain"
   gitops:
-	repository_prefix: git@github.com:nycpivot/
-	branch: main
-	user_name: nycpivot
-	user_email: mijames@vmware.com
-	commit_message: supplychain@cluster.local
-	ssh_secret: git-ssh
+    repository_prefix: "git@github.com:nycpivot/"
+    branch: main
+    user_name: nycpivot
+    user_email: mijames@vmware.com
+    commit_message: supplychain@cluster.local
+    ssh_secret: git-ssh
   cluster_builder: default
   service_account: default
 tap_gui:
