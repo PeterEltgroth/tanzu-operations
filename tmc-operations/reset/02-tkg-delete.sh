@@ -1,13 +1,22 @@
 #!/bin/bash
 
-read -p "AWS Region Code (us-east-2): " aws_region_code
-read -p "Workload Cluster Name: " workload_cluster_name
-read -p "Management Cluster Name: " mgmt_cluster_name
+tmc cluster list
 
-if [ -z $aws_region_code ]
-then
-    aws_region_code=us-east-2
-fi
+read -p "Cluster Name: " cluster_name
+
+tmc cluster delete $cluster_name --management-cluster-name aws-hosted --provisioner-name tmc-aws-provisioner
+
+
+
+
+
+
+
+
+
+
+
+
 
 tanzu cluster delete $workload_cluster_name --yes
 

@@ -9,6 +9,9 @@ fullName:
   name: $cluster_name
   orgId: 86514df0-46a7-4b33-857d-954ba2970773
   provisionerName: tmc-aws-provisioner
+meta:
+  labels:
+    tmc.cloud.vmware.com/creator: mijames
 spec:
   clusterGroupName: $cluster_group
   tkgAws:
