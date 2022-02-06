@@ -1,7 +1,22 @@
 read -p "Azure Subscription: " subscription
-read -p "Container Registry (without domain): " registry_name
-read -p "Git Catalog Url (https://abc.com): " git_catalog_url
-read -p "Domain Name (apps.tap.us-east-2.nycpivot.com): " app_domain
+read -p "Container Registry (tanzuapplicationregistry): " registry_name
+read -p "Git Catalog Repository (tanzu-application-platform): " git_catalog_repository
+read -p "Domain Name (apps.tap.nycpivot.com): " app_domain
+
+if [[ -z $registry_name ]]
+then
+	registry_name=tanzuapplicationregistry
+fi
+
+if [[ -z $git_catalog_repository ]]
+then
+	git_catalog_repository=tanzu-application-platform
+fi
+
+if [[ -z $app_domain ]]
+then
+	app_domain=apps.tap.nycpivot.com
+fi
 
 pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 registry_password=$(az keyvault secret show --name tanzu-application-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
@@ -49,7 +64,7 @@ tap_gui:
     catalog:
       locations:
         - type: url
-          target: $git_catalog_url/catalog-info.yaml
+          target: https://github.com/nycpivot/${git_catalog_repository}/catalog-info.yaml
     backend:
         baseUrl: http://tap-gui.${app_domain}
         cors:
@@ -59,7 +74,7 @@ tap_gui:
         - host: github.com
           token: $github_token
 learningcenter:
-  ingressDomain: "learningcenter.run.tap.us-east-2.nycpivot.com"
+  ingressDomain: "learningcenter.run.tap.nycpivot.com"
 metadata_store:
   app_service_type: LoadBalancer
 grype:
