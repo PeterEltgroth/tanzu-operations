@@ -1,6 +1,6 @@
 fullName:
-  name: registry
-  clusterName: tmc-registry-and-network-cluster
+  name: production-web
+  clusterName: tmc-production-cluster
   managementClusterName: attached
   provisionerName: attached
 meta:
@@ -9,7 +9,7 @@ meta:
   description: ""
   labels: null
 spec:
-  workspaceName: registry-workspace
+  workspaceName: web-workspace
 type:
   kind: Namespace
   package: vmware.tanzu.manage.v1alpha1.cluster.namespace

@@ -1,6 +1,6 @@
 fullName:
   name: registry-policy
-  workspaceName: registry-workspace
+  workspaceName: web-workspace
 spec:
   input:
     audit: false
