@@ -24,24 +24,24 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
+cluster_name=tmc-production-cluster
 
 #REGISTRY POLICY
 DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
 
-pe "kubectl config use-context ${tmc_registry_and_network_cluster}"
+pe "kubectl config use-context ${cluster_name}"
 echo
 
-pe "kubectl get pods -n registry"
+pe "kubectl get pods -n production-web"
 echo
 
-pe "kubectl run docker-nginx-web --image nginx -n registry"
+pe "kubectl run docker-nginx-web --image nginx -n production-web"
 echo
 
-pe "kubectl get pods -n registry"
+pe "kubectl get pods -n production-web"
 echo
 
-pe "kubectl delete pod docker-nginx-web -n registry"
+pe "kubectl delete pod docker-nginx-web -n production-web"
 echo
 
 pe "tmc workspace image-policy create -f tmc/configs/registry-policy.yaml --dry-run"
@@ -55,14 +55,14 @@ echo
 pe "watch kubectl get pods -n gatekeeper-system"
 echo
 
-pe "kubectl run docker-nginx-web --image nginx -n registry"
+pe "kubectl run docker-nginx-web --image nginx -n production-web"
 echo
 
-pe "kubectl get pods -n registry"
+pe "kubectl get pods -n production-web"
 echo
 
-pe "kubectl run gcr-nginx-web --image gcr.io/google-containers/nginx -n registry"
+pe "kubectl run gcr-nginx-web --image gcr.io/google-containers/nginx -n production-web --labels tier=web"
 echo
 
-pe "kubectl get pods -n registry"
+pe "kubectl get pods -n production-web"
 echo

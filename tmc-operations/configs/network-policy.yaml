@@ -1,6 +1,6 @@
 fullName:
   name: network-policy
-  workspaceName: network-workspace
+  workspaceName: app-workspace
 spec:
   input:
     rules:

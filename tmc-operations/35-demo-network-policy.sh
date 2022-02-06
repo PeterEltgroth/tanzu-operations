@@ -24,29 +24,29 @@ TYPE_SPEED=20
 # hide the evidence
 clear
 
-tmc_registry_and_network_cluster=tmc-registry-and-network-cluster
+cluster_name=tmc-production-cluster
 
 #NETWORK POLICY
 DEMO_PROMPT="${GREEN}➜ TMC NETWORK POLICY ${CYAN}\W "
 
-pe "kubectl config use-context ${tmc_registry_and_network_cluster}"
+pe "kubectl config use-context ${cluster_name}"
 echo
 
-pe "kubectl run nginx-web --image nginx -n network --labels tier=web"
+pe "kubectl run nginx-api --image nginx -n production-api --labels tier=api"
 echo
 
-pe "kubectl run nginx-app --image nginx -n network --labels tier=app"
+pe "kubectl run nginx-app --image nginx -n production-app --labels tier=app"
 echo
 
-pe "kubectl run nginx-data --image nginx -n network --labels tier=data"
+pe "kubectl run nginx-data --image nginx -n production-data --labels tier=data"
 echo
 
 pe "clear"
 
-pe "kubectl get pods -n network -o wide"
+pe "kubectl get pods -A -o wide"
 echo
 
-pe "kubectl exec nginx-web -it -n network -- sh"
+pe "kubectl exec nginx-api -it -n production-api -- sh"
 echo
 
 pe "clear"
@@ -59,14 +59,14 @@ pe "clear"
 pe "tmc workspace network-policy create -f tmc/configs/network-policy.yaml"
 echo
 
-pe "watch kubectl get networkpolicies -n network"
+pe "watch kubectl get networkpolicies -A"
 echo
 
-pe "kubectl get pods -n network -o wide"
+pe "kubectl get pods -A -o wide"
 echo
 
-pe "kubectl exec nginx-web -it -n network -- sh"
+pe "kubectl exec nginx-api -it -n production-api -- sh"
 echo
 
-pe "kubectl exec nginx-app -it -n network -- sh"
+pe "kubectl exec nginx-app -it -n production-app -- sh"
 echo
