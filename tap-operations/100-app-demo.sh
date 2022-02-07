@@ -30,8 +30,10 @@ read -p "App Name: " app_name
 read -p "Git App Url: " git_app_url
 echo
 
-pe "kubectl config use-context tap-build"
-echo
+kubectl config get-contexts
+read -p "Select context: " kube_context
+
+kubectl config use-context $kube_context
 
 pe "tanzu apps workload delete --all --yes"
 echo
