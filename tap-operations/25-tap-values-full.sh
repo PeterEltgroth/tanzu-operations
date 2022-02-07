@@ -52,12 +52,14 @@ ootb_supply_chain_basic:
     repository: "supply-chain"
   gitops:
     repository_prefix: "git@github.com:nycpivot/"
-    branch: main
+    branch: delivery
     user_name: nycpivot
     user_email: mijames@vmware.com
     commit_message: supplychain@cluster.local
     ssh_secret: git-ssh
   cluster_builder: default
+  service_account: default
+ootb_delivery_basic:
   service_account: default
 tap_gui:
   service_type: LoadBalancer
