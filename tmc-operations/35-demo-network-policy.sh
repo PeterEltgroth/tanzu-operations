@@ -43,7 +43,7 @@ echo
 
 pe "clear"
 
-pe "kubectl get pods -A -o wide"
+pe "kubectl get pods -A -o wide | grep nginx"
 echo
 
 pe "kubectl exec nginx-api -it -n production-api -- sh"
@@ -62,7 +62,7 @@ echo
 pe "watch kubectl get networkpolicies -A"
 echo
 
-pe "kubectl get pods -A -o wide"
+pe "kubectl get pods -A -o wide | grep nginx"
 echo
 
 pe "kubectl exec nginx-api -it -n production-api -- sh"

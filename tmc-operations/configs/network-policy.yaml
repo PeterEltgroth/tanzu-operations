@@ -5,6 +5,9 @@ spec:
   input:
     rules:
     - ruleSpec:
+      - namespaceSelector:
+        - key: tier
+          value: app
       - podSelector:
         - key: tier
           value: app

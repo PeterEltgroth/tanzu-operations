@@ -7,7 +7,8 @@ meta:
   annotations:
     vmware.tanzu.manage.template: default
   description: ""
-  labels: null
+  labels:
+    tier: data
 spec:
   workspaceName: app-workspace
 type:
