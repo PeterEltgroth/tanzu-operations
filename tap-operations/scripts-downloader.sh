@@ -9,13 +9,13 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/13-eks-full-setup.sh -O tap/13-eks-full-setup.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/20-pre-reqs-tanzu.sh -O tap/20-pre-reqs-tanzu.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/20-tap-packages.sh -O tap/20-tap-packages.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/21-gitops-configuration.sh -O tap/21-gitops-configuration.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/22-tap-values-build.sh -O tap/22-tap-values-build.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/23-tap-values-run.sh -O tap/23-tap-values-run.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/24-tap-values-full.sh -O tap/24-tap-values-full.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/25-developer-namespace.sh -O tap/25-developer-namespace.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/26-tilt.sh -O tap/26-tilt.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/21-tap-packages.sh -O tap/21-tap-packages.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/22-gitops-configuration.sh -O tap/22-gitops-configuration.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/23-tap-values-build.sh -O tap/23-tap-values-build.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/24-tap-values-run.sh -O tap/24-tap-values-run.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/25-tap-values-full.sh -O tap/25-tap-values-full.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/26-developer-namespace.sh -O tap/26-developer-namespace.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/27-tilt.sh -O tap/27-tilt.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/30-reset-rabbitmq-operator.sh -O tap/30-reset-rabbitmq-operator.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/31-deploy-rabbitmq-operator.sh -O tap/31-deploy-rabbitmq-operator.sh
