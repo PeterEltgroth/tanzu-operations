@@ -14,6 +14,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/20-attach-clusters.sh -O tmc/20-attach-clusters.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/21-provision-clusters.sh -O tmc/21-provision-clusters.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/22-merge-tkg-kubeconfig.sh -O tmc/22-merge-tkg-kubeconfig.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/30-demo-pre-reqs.sh -O tmc/30-demo-pre-reqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/31-demo-quota-policy-tkg.sh -O tmc/31-demo-quota-policy-tkg.sh

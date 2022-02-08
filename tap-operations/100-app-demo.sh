@@ -56,4 +56,14 @@ pe "tanzu apps workload list"
 echo
 
 pe "tanzu apps workload get ${app_name}"
+echo
+
+pe "kubectl api-resources | grep knative"
+echo
+
+kubectl get ksvc
+
+kubectl get deliverable
+
+kubectl get services.serving.knative
 

@@ -15,6 +15,23 @@ sudo snap install jq
 sudo snap install helm --classic
 sudo apt install unzip
 
+yes | sudo apt install python3-pip
+pip3 install yq
+
+#KREW
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+
+echo "export PATH='${KREW_ROOT:-$HOME/.krew}/bin:$PATH'" >> .bashrc
+
+
 #AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -57,6 +74,6 @@ chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
 
-echo "Press Enter to reboot"
+echo "***REBOOTING***"
 
 sudo reboot

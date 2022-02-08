@@ -26,9 +26,9 @@ tanzu package repository add tanzu-tap-repository \
 #tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 --namespace tap-install
 
 tanzu package repository get tanzu-tap-repository --namespace tap-install
-read -p "Press Enter to continue"
+#read -p "Press Enter to continue"
 
-tanzu package available list --namespace tap-install
-read -p "Press Enter to continue"
+#tanzu package available list --namespace tap-install
+#read -p "Press Enter to continue"
 
-tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+#tanzu package available list tap.tanzu.vmware.com --namespace tap-install

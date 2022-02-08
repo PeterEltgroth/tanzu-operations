@@ -50,9 +50,3 @@ tanzu plugin list
 
 cd $HOME
 
-#DEMO-MAGIC
-wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
-sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
-chmod +x /usr/local/bin/demo-magic.sh
-
-sudo apt install pv #required for demo-magic
