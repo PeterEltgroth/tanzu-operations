@@ -74,11 +74,11 @@ kubectl version
 mkdir tanzu
 cd tanzu
 
-wget https://tanzustorage.blob.core.windows.net/tanzu/tanzu-cli-bundle-linux-amd64-v1.4.tar
-tar -xvf tanzu-cli-bundle-linux-amd64-v1.4.tar
-rm tanzu-cli-bundle-linux-amd64-v1.4.tar
+wget https://tanzustorage.blob.core.windows.net/tanzu/tanzu-cli-bundle-linux-amd64-v1.4.1.tar
+tar -xvf tanzu-cli-bundle-linux-amd64-v1.4.1.tar
+rm tanzu-cli-bundle-linux-amd64-v1.4.1.tar
 
-sudo install cli/core/v1.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+sudo install cli/core/v1.4.1/tanzu-core-linux_amd64 /usr/local/bin/tanzu
 tanzu version
 
 tanzu plugin install --local cli all
