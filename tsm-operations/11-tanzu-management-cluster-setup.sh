@@ -15,6 +15,8 @@ then
     ssh_key_name=${mgmt_cluster_name}-${aws_region_code}
 fi
 
+rm -rf .config/tanzu/tkg/clusterconfigs
+mkdir .config/tanzu/tkg/clusterconfigs
 
 rm .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
 cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
@@ -75,8 +77,5 @@ OS_VERSION: "20.04"
 SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
-
-touch .kube/config
-mkdir .config/tanzu/tkg/clusterconfigs
 
 tanzu management-cluster create $mgmt_cluster_name -f .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
