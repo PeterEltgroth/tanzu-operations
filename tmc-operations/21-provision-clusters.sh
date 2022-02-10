@@ -1,6 +1,17 @@
-read -p "Cluster Name: " cluster_name
-read -p "Cluster Group: " cluster_group
+read -p "Cluster Name (tmc-build-cluster): " cluster_name
+read -p "Cluster Group (development-cluster-group): " cluster_group
 read -p "AWS Region Code: " aws_region_code
+
+if [[ -z $cluster_name ]]
+then
+	cluster_name=tmc-build-cluster
+fi
+
+if [[ -z $cluster_group ]]
+then
+    cluster_group=development-cluster-group
+fi
+
 
 rm tmc/configs/cluster-provisioned.yaml
 cat <<EOF | tee tmc/configs/cluster-provisioned.yaml
@@ -44,4 +55,6 @@ EOF
 
 tmc cluster create -f tmc/configs/cluster-provisioned.yaml
 
+
+#tmc cluster validate?
 
