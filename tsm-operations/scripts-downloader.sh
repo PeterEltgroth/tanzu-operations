@@ -7,7 +7,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/10-aks-create.sh -O tsm/10-aks-create.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-tanzu-management-cluster-setup.sh -O tmc/11-tanzu-management-cluster-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-tkg-create.sh -O tmc/12-tkg-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-tanzu-management-cluster-setup.sh -O tsm/11-tanzu-management-cluster-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-tkg-create.sh -O tsm/12-tkg-create.sh
 
 
