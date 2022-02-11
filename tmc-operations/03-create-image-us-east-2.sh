@@ -1,7 +1,14 @@
 read -p "Operator Name: " operator_name
+read -p "AWS Region Code (us-east-2): " aws_region_code
 
-aws s3 cp s3://vmware-tanzu-operations/${operator_name} ./
-instance_id=$(cat $operator_name)
+if [[ -z $aws_region_code ]]
+then
+	aws_region_code=us-east-2
+fi
 
-aws ec2 create-image --instance-id $instance_id --name "tmc-operator-image-us-east-2" --no-reboot \
-	--tag-specifications 'ResourceType=image,Tags=[{Key=Name,Value=tmc-operator-image-us-east-2}]'
+key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}-${aws_region_code}"}]"
+
+aws s3 cp s3://vmware-tanzu-operations/${operator_name}-${aws_region_code} ./
+instance_id=$(cat ${operator_name}-${aws_region_code})
+
+aws ec2 create-image --instance-id $instance_id --name "${operator_name}-${aws_region_code}" --no-reboot --tag-specifications "${key_name}"
