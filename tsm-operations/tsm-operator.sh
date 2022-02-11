@@ -7,5 +7,5 @@ fi
 
 if [[ $aws_region_code = "us-east-2" ]]
 then
-    ssh ubuntu@ec2-18-216-127-148.us-east-2.compute.amazonaws.com -i ../keys/tanzu-operations-${aws_region_code}.pem
+    ssh ubuntu@ec2-18-220-166-224.us-east-2.compute.amazonaws.com -i ../keys/tanzu-operations-${aws_region_code}.pem
 fi

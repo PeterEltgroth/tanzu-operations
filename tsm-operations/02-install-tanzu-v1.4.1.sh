@@ -39,15 +39,3 @@ chmod ugo+x cli/imgpkg-linux-amd64-v0.10.0+vmware.1
 sudo mv cli/imgpkg-linux-amd64-v0.10.0+vmware.1 /usr/local/bin/imgpkg
 
 cd $HOME
-
-#TMC CLI
-wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
-sudo mv tmc-cli /usr/local/bin/tmc
-chmod +x /usr/local/bin/tmc
-
-TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-echo $TMC_API_TOKEN
-
-tmc login
-echo
