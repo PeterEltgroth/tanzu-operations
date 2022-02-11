@@ -6,9 +6,7 @@ then
 	aws_region_code=us-east-2
 fi
 
-key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}-${aws_region_code}"}]"
-
 aws s3 cp s3://vmware-tanzu-operations/${operator_name}-${aws_region_code} ./
 instance_id=$(cat ${operator_name}-${aws_region_code})
 
-aws ec2 create-image --instance-id $instance_id --name "${operator_name}-${aws_region_code}" --no-reboot --tag-specifications "${key_name}"
+aws ec2 create-image --instance-id $instance_id --name "${operator_name}-${aws_region_code}" --no-reboot
