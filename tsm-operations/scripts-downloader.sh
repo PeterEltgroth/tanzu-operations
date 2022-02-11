@@ -8,8 +8,9 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/03-create-snapshot-us-east-2.sh -O tsm/03-create-snapshot-us-east-2.sh
 
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/10-aks-create.sh -O tsm/10-aks-create.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-tanzu-management-cluster-setup.sh -O tsm/11-tanzu-management-cluster-setup.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-tkg-create.sh -O tsm/12-tkg-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/10-aks-acme-fitness-web-create.sh -O tsm/10-aks-acme-fitness-web-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-gke-acme-fitness-catalog-create.sh -O tsm/11-gke-acme-fitness-catalog-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-tanzu-management-cluster-setup.sh -O tsm/12-tanzu-management-cluster-setup.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/13-tkg-acme-fitness-catalog-create.sh -O tsm/13-tkg-acme-fitness-catalog-create.sh
 
 
