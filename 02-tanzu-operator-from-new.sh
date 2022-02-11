@@ -1,10 +1,12 @@
 read -p "Operator Name: " operator_name
 read -p "AWS Region Code: " aws_region_code
+read -p "Initializer prefix: " initializer_prefix
 
 instance_id=''
 operator_name=${operator_name}-${aws_region_code}
 key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}"}]"
-initializer_url=$(cat tmc-scripts-initializer)
+
+initializer_url=$(cat ${initializer_prefix)-scripts-initializer)
 
 export AWS_REGION=$aws_region_code
 
