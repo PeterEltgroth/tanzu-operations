@@ -13,4 +13,4 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-tanzu-management-cluster-create.sh -O tsm/12-tanzu-management-cluster-create.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/13-tkg-nyc-fitness-catalog-create.sh -O tsm/13-tkg-nyc-fitness-catalog-create.sh
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/20-tsm-authenticate.sh -O tsm/20-tsm-authenticate.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/20-cluster-onboard.sh -O tsm/20-cluster-onboard.sh
