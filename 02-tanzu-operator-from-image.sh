@@ -23,5 +23,6 @@ public_dns=$(aws ec2 describe-instances --instance-ids $instance_id | jq "[.Rese
 dns=$(eval "echo \${public_dns} | jq '.[] | .PublicDnsName'" | tr -d '"')
 
 echo
-echo "Operator Dns: " $dns
+echo "OPERATOR DNS:"
+echo $dns
 echo
