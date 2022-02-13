@@ -1,5 +1,6 @@
 read -p "AWS Region Code (us-east-2): " aws_region_code
-read -p "Workload Cluster Name: " workload_cluster_name
+
+cluster_name=acme-fitness-catalog
 
 aws ec2 describe-key-pairs
 
@@ -17,8 +18,8 @@ read -p "Private Subnet Id: " private_subnet_id
 read -p "Public Subnet Id: " public_subnet_id
 
 
-rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
-cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
+rm .config/tanzu/tkg/clusterconfigs/${cluster_name}.yaml
+cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${cluster_name}.yaml
 AWS_AMI_ID: ami-08f4095e19c367152
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ""
@@ -41,7 +42,7 @@ AWS_VPC_CIDR: 10.0.0.0/16
 AWS_VPC_ID: "${vpc_id}"
 BASTION_HOST_ENABLED: "true"
 CLUSTER_CIDR: 100.96.0.0/11
-CLUSTER_NAME: ${workload_cluster_name}
+CLUSTER_NAME: ${cluster_name}
 CLUSTER_PLAN: dev
 CONTROL_PLANE_MACHINE_TYPE: t3a.2xlarge
 ENABLE_AUDIT_LOGGING: ""
@@ -77,6 +78,6 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
-tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --worker-machine-count 3 --plan dev
+tanzu cluster create $cluster_name -f .config/tanzu/tkg/clusterconfigs/${cluster_name}.yaml --worker-machine-count 3 --plan dev
 
-tanzu cluster kubeconfig get $workload_cluster_name --admin
+tanzu cluster kubeconfig get $cluster_name --admin
