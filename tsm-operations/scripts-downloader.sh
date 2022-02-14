@@ -18,7 +18,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 mkdir tsm/reset
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/01-tsm-delete.sh -O tsm/reset/01-tsm-delete.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/02-aks-delete -O tsm/reset/02-aks-delete.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/03-3ks-delete -O tsm/reset/03-eks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/02-aks-delete.sh -O tsm/reset/02-aks-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/03-3ks-delete.sh -O tsm/reset/03-eks-delete.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/reset/04-gke-delete.sh -O tsm/reset/04-gke-delete.sh
 
