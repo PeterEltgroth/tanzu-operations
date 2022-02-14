@@ -21,7 +21,7 @@ aws eks create-nodegroup \
         --cluster-name $cluster_name \
         --nodegroup-name "${cluster_name}-node-group" \
         --disk-size 500 \
-        --scaling-config minSize=1,maxSize=1,desiredSize=1 \
+        --scaling-config minSize=3,maxSize=3,desiredSize=3 \
         --subnets "subnet-0d01ac4a005d833fd" "subnet-0ac6020705178c3b5" "subnet-0f315a4b0eb3c0e88" \
         --instance-types t3a.2xlarge \
         --node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
