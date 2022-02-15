@@ -14,6 +14,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/14-tkg-nyc-fitness-catalog-create.sh -O tsm/14-tkg-nyc-fitness-catalog-create.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/20-cluster-onboard.sh -O tsm/20-cluster-onboard.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/21-acme-fitness-deploy.sh -O tsm/21-acme-fitness-deploy.sh
 
 mkdir tsm/reset
 
