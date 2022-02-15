@@ -1,4 +1,4 @@
-read -p "EKS Region Code (us-east-2): " aws_region_code
+read -p "AWS Region Code (us-east-2): " aws_region_code
 
 if [ -z $aws_region_code ]
 then
