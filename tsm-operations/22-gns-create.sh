@@ -12,6 +12,43 @@ token=$(curl "https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-token
 access_token=$(echo ${token} | jq -r .access_token)
 
 
+echo <<EOF | request
+{
+   "name":"acme-fitness",
+   "display_name":"Acme Fitness",
+   "domain_name":"nycpivot.com",
+   "description":"Acme Fitness",
+   "mtls_enforced":true,
+   "ca_type":"PreExistingCA",
+   "ca":"default",
+   "version":"1.0",
+   "match_conditions":[
+      {
+         "namespace":{
+            "type":"EXACT",
+            "match":"default"
+         },
+         "cluster":{
+            "type":"START_WITH",
+            "match":"EU"
+         }
+      },
+      {
+         "namespace":{
+            "type":"EXACT",
+            "match":"default"
+         },
+         "cluster":{
+            "type":"START_WITH",
+            "match":"CA"
+         }
+      }
+   ]
+}
+EOF
+
+response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d 
+
 
 #GET THE REGISTRATION YAML
 registration_yaml=$(curl "https://${server_name}/tsm/v1alpha1/clusters/onboard-url" -H "accept: application/json" -H "csp-auth-token: ${access_token}")
@@ -35,5 +72,3 @@ sleep 600
 get_status=$(curl "https://${server_name}/tsm/v1alpha1/clusters/${cluster_name}" -H "accept: application/json" -H "csp-auth-token: ${access_token}")
 
 echo $get_status
-
-kubectl label namespace default istio-injection=enabled
