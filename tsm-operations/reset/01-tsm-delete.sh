@@ -1,5 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "Cluster Name: " cluster_name
 
 server_name=prod-2.nsxservicemesh.vmware.com
 
@@ -11,11 +10,14 @@ token=$(curl "https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-token
 
 access_token=$(echo ${token} | jq -r .access_token)
 
-id=$(curl -X DELETE "https://${server_name}/tsm/v1alpha1/clusters/${cluster_name}")
 
+#DELETE NYC-FITNESS-WEB
+id=$(curl -X DELETE "https://${server_name}/tsm/v1alpha1/clusters/nyc-fitness-web" -H "csp-auth-token: ${access_token}")
 delete_status=$(curl GET "https://${server_name}/tsm/v1alpha1/jobs/${id}")
 
 
-GET https://{server_name}/tsm/v1alpha1/jobs/{id}/download
+#DELETE NYC-FITNESS-CATALOG
+id=$(curl -X DELETE "https://${server_name}/tsm/v1alpha1/clusters/nyc-fitness-catalog" -H "csp-auth-token: ${access_token}")
+delete_status=$(curl GET "https://${server_name}/tsm/v1alpha1/jobs/${id}")
 
 

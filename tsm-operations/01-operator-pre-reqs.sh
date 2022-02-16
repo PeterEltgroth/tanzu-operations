@@ -50,6 +50,7 @@ sudo snap install google-cloud-sdk --classic
 gcloud auth login
 gcloud config set project pa-mjames
 
+#AWS
 aws_access_key_id=$(az keyvault secret show --name aws-account-access-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 aws_secret_access_key=$(az keyvault secret show --name aws-account-secret-key --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
@@ -68,6 +69,11 @@ gzip -d kubectl-linux-v1.21.2+vmware.1.gz
 sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
+
+
+#ISTIO
+curl -sL https://istio.io/downloadIstioctl | sh -
+export PATH=$PATH:$HOME/.istioctl/bin
 
 
 #DEMO-MAGIC

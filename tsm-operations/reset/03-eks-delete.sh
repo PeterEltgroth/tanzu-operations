@@ -7,7 +7,7 @@ then
     aws_region_code=us-east-2
 fi
 
-cluster_name=tmc-staging-cluster
+cluster_name=nyc-fitness-web
 arn=arn:aws:eks:${aws_region_code}:964978768106:cluster
 
 aws eks delete-nodegroup --cluster-name $cluster_name --nodegroup-name ${cluster_name}-node-group

@@ -13,13 +13,6 @@ tanzu version
 tanzu plugin install --local cli all
 tanzu plugin list
 
-#VELERO
-wget https://tanzustorage.blob.core.windows.net/tanzu/velero-linux-v1.6.2_vmware.1.gz
-gzip -d velero-linux-v1.6.2_vmware.1.gz
-
-sudo install velero-linux-v1.6.2_vmware.1 /usr/local/bin/velero
-rm velero-linux-v1.6.2_vmware.1
-
 
 #CARVEL (YTT, KAPP, KBLD, IMGPKG)
 gunzip cli/ytt-linux-amd64-v0.34.0+vmware.1.gz
@@ -39,6 +32,14 @@ chmod ugo+x cli/imgpkg-linux-amd64-v0.10.0+vmware.1
 sudo mv cli/imgpkg-linux-amd64-v0.10.0+vmware.1 /usr/local/bin/imgpkg
 
 cd $HOME
+
+#VELERO
+wget https://tanzustorage.blob.core.windows.net/tanzu/velero-linux-v1.6.2_vmware.1.gz
+gzip -d velero-linux-v1.6.2_vmware.1.gz
+
+sudo install velero-linux-v1.6.2_vmware.1 /usr/local/bin/velero
+rm velero-linux-v1.6.2_vmware.1
+
 
 #TMC CLI
 wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli

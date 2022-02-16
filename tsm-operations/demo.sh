@@ -18,7 +18,10 @@ clear
 #TSM
 DEMO_PROMPT="${GREEN}➜ TSM ${CYAN}\W "
 
-pe "kubectl config use-context acme-fitness-web"
+pe "kubectl config use-context nyc-fitness-web"
+echo
+
+pe "kubectl get virtualservices"
 echo
 
 pe "kubectl get services -A | grep ingress"
