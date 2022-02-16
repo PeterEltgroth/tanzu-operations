@@ -40,16 +40,3 @@ gzip -d velero-linux-v1.6.2_vmware.1.gz
 sudo install velero-linux-v1.6.2_vmware.1 /usr/local/bin/velero
 rm velero-linux-v1.6.2_vmware.1
 
-
-#TMC CLI
-wget https://tanzustorage.blob.core.windows.net/tanzu/tmc -O tmc-cli
-sudo mv tmc-cli /usr/local/bin/tmc
-chmod +x /usr/local/bin/tmc
-
-TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-echo $TMC_API_TOKEN
-
-tmc login
-echo
-
