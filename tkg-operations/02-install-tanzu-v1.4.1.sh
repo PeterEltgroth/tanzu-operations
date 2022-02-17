@@ -1,5 +1,3 @@
-read -p "Azure Subscription: " subscription
-
 mkdir tanzu
 cd tanzu
 
