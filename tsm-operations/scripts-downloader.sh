@@ -7,11 +7,11 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/03-image-create-us-east-2.sh -O tsm/03-image-create-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/03-snapshot-create-us-east-2.sh -O tsm/03-snapshot-create-us-east-2.sh
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/10-aks-nyc-fitness-web-create.sh -O tsm/10-aks-nyc-fitness-web-create.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-eks-nyc-fitness-web-create.sh -O tsm/11-eks-nyc-fitness-web-create.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-gke-nyc-fitness-catalog-create.sh -O tsm/12-gke-nyc-fitness-catalog-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/10-aks-tsm-fitness-web-create.sh -O tsm/10-aks-tsm-fitness-web-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/11-eks-tsm-fitness-web-create.sh -O tsm/11-eks-tsm-fitness-web-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/12-gke-tsm-fitness-catalog-create.sh -O tsm/12-gke-tsm-fitness-catalog-create.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/13-tanzu-management-cluster-create.sh -O tsm/13-tanzu-management-cluster-create.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/14-tkg-nyc-fitness-catalog-create.sh -O tsm/14-tkg-nyc-fitness-catalog-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/14-tkg-tsm-fitness-catalog-create.sh -O tsm/14-tkg-tsm-fitness-catalog-create.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/20-cluster-onboard.sh -O tsm/20-cluster-onboard.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/21-acme-fitness-deploy.sh -O tsm/21-acme-fitness-deploy.sh

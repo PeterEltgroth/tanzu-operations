@@ -1,7 +1,7 @@
 #!/bin/bash
 
 prefix=clusterUser_tanzu-service-mesh
-cluster_name=acme-fitness-web
+cluster_name=tsm-fitness-web
 
 az aks delete --name $cluster_name --resource-group tanzu-service-mesh
 

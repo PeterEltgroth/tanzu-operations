@@ -1,6 +1,11 @@
 read -p "AWS Region Code (us-east-2): " aws_region_code
 
-cluster_name=acme-fitness-catalog
+if [[ -z $aws_region_code ]]
+then
+	aws_region_code=us-east-2
+fi
+
+cluster_name=tsm-fitness-catalog
 
 aws ec2 describe-key-pairs
 

@@ -5,7 +5,7 @@ then
     gke_region_code=us-east1
 fi
 
-cluster_name=nyc-fitness-catalog
+cluster_name=tsm-fitness-catalog
 
 
 #QUOTA POLICY CLUSTER

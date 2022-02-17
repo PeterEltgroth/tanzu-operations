@@ -5,7 +5,7 @@ then
     aws_region_code=us-east-2
 fi
 
-cluster_name=nyc-fitness-web
+cluster_name=tsm-fitness-web
 arn=arn:aws:eks:${aws_region_code}:964978768106:cluster
 
 aws eks create-cluster \

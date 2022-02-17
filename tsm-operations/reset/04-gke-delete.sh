@@ -7,7 +7,7 @@ then
     gke_region_code=us-east1
 fi
 
-cluster_name=acme-fitness-catalog
+cluster_name=tsm-fitness-catalog
 
 #DELETE GKE REGISTRY AND NETWORK CLUSTER
 prefix=gke_pa-mjames_${gke_region_code}
