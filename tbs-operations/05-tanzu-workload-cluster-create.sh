@@ -1,20 +1,29 @@
 read -p "AWS Region Code (us-east-2): " aws_region_code
-read -p "Management Cluster Name: " mgmt_cluster_name
+read -p "Workload Cluster Name: " workload_cluster_name
 
-if [ -z $aws_region_code ]
+if [[ -z $aws_region_code ]]
 then
-    aws_region_code=us-east-2
+	aws_region_code=us-east-2
 fi
 
 aws ec2 describe-key-pairs
 
 read -p "Input Key Name: " ssh_key_name
 
-rm .config/tanzu/tkg/clusterconfigs
-mkdir .config/tanzu/tkg/clusterconfigs
+#aws ec2 describe-vpcs | jq "[.Vpcs[] | { VpcId }, (.Tags[]) | { Value }]" #.Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]'
 
-rm .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
-cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
+aws ec2 describe-vpcs
+
+read -p "VPC Id: " vpc_id
+
+aws ec2 describe-subnets
+
+read -p "Private Subnet Id: " private_subnet_id
+read -p "Public Subnet Id: " public_subnet_id
+
+
+rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
+cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
 AWS_AMI_ID: ami-08f4095e19c367152
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ""
@@ -22,22 +31,22 @@ AWS_NODE_AZ_2: ""
 AWS_PRIVATE_NODE_CIDR: 10.0.16.0/20
 AWS_PRIVATE_NODE_CIDR_1: ""
 AWS_PRIVATE_NODE_CIDR_2: ""
-AWS_PRIVATE_SUBNET_ID: ""
+AWS_PRIVATE_SUBNET_ID: "${private_subnet_id}"
 AWS_PRIVATE_SUBNET_ID_1: ""
 AWS_PRIVATE_SUBNET_ID_2: ""
 AWS_PUBLIC_NODE_CIDR: 10.0.0.0/20
 AWS_PUBLIC_NODE_CIDR_1: ""
 AWS_PUBLIC_NODE_CIDR_2: ""
-AWS_PUBLIC_SUBNET_ID: ""
+AWS_PUBLIC_SUBNET_ID: "${public_subnet_id}"
 AWS_PUBLIC_SUBNET_ID_1: ""
 AWS_PUBLIC_SUBNET_ID_2: ""
 AWS_REGION: us-east-2
 AWS_SSH_KEY_NAME: ${ssh_key_name}
 AWS_VPC_CIDR: 10.0.0.0/16
-AWS_VPC_ID: ""
+AWS_VPC_ID: "${vpc_id}"
 BASTION_HOST_ENABLED: "true"
 CLUSTER_CIDR: 100.96.0.0/11
-CLUSTER_NAME: ${mgmt_cluster_name}
+CLUSTER_NAME: ${workload_cluster_name}
 CLUSTER_PLAN: dev
 CONTROL_PLANE_MACHINE_TYPE: t3a.2xlarge
 ENABLE_AUDIT_LOGGING: ""
@@ -73,6 +82,6 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
-touch .kube/config
+tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan dev
 
-tanzu management-cluster create $mgmt_cluster_name -f .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
+tanzu cluster kubeconfig get $workload_cluster_name --admin
