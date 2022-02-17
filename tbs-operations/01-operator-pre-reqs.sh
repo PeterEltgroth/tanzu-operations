@@ -52,6 +52,9 @@ sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
 rm kubectl-linux-v1.21.2+vmware.1
 kubectl version
 
+mkdir .kube
+touch .kube/config
+
 
 #DEMO-MAGIC
 wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
