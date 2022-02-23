@@ -1,0 +1,12 @@
+kp image status <image-name>
+kp clusterbuilder status <clusterbuilder-name>
+
+kp clusterstack status <clusterstack-name> --verbose
+kp clusterstore status <clusterstore-name> --verbose
+
+kubectl describe image <image-name>
+kubectl describe clusterbuilder <clusterbuilder-name>
+
+
+
+kubectl describe configMap build-service-version -n build-service

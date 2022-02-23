@@ -1,5 +1,0 @@
----
-registry:
-  server: "registry.pivotal.io"
-  username: "TANZU-NET-USER"
-  password: "TANZU-NET-PASSWORD"
