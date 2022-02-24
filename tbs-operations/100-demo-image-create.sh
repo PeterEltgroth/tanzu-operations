@@ -31,7 +31,7 @@ echo
 
 read -p "Cluster name: " cluster_name
 
-pe "kubectl config use-context ${cluster_name}-admin@${cluster_name}"
+pe "kubectl config use-context ${cluster_name}"
 echo
 
 pe "kp image delete spring-petclinic"
@@ -44,11 +44,14 @@ pe "clear"
 
 
 #CREATE IMAGES NOW - DURING EXECUTION EXPLAIN COMMAND PARAMS, LIST ALL TARGET CLUSTERS, CHECK STATUS or CHECK BUILD LOGS
-pe "kp image create spring-petclinic --tag tanzubuildservice.azurecr.io/tanzu-spring-petclinic --git https://gitlab.com/gitlab-com/alliances/vmware/sandbox/tkg-cluster/spring-music" #--sub-path src/GitLab.Dotnet.Core.Web
+pe "kp image create spring-petclinic --tag tanzubuildservice.azurecr.io/tanzu-spring-petclinic --git https://github.com/nycpivot/tanzu-spring-petclinic" #--sub-path src/GitLab.Dotnet.Core.Web
 echo
 
 pe "clear"
 echo
 
 pe "kp image status spring-petclinic"
+echo
+
+pe "kp build logs spring-petclinic"
 echo
