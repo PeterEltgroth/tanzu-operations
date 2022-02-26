@@ -15,7 +15,7 @@ mkdir .config/tanzu/tkg/clusterconfigs
 
 rm .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
 cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
-AWS_AMI_ID: ami-08f4095e19c367152
+AWS_AMI_ID: ami-0954a3d2fbcc97789
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ""
 AWS_NODE_AZ_2: ""

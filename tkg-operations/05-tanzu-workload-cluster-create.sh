@@ -6,6 +6,8 @@ then
 	aws_region_code=us-east-2
 fi
 
+export AWS_REGION=${aws_region_code}
+
 aws ec2 describe-key-pairs
 
 read -p "Input Key Name: " ssh_key_name
@@ -24,7 +26,7 @@ read -p "Public Subnet Id: " public_subnet_id
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
 cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
-AWS_AMI_ID: ami-08f4095e19c367152
+AWS_AMI_ID: ami-0954a3d2fbcc97789
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ""
 AWS_NODE_AZ_2: ""
@@ -82,6 +84,12 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
+tanzu login
+
 tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan dev
 
 tanzu cluster kubeconfig get $workload_cluster_name --admin
+
+#TAG THE PUBLIC SUBNET TO BE ABLE TO CREATE ELBs
+#aws ec2 delete-tags --resources YOUR-PUBLIC-SUBNET-ID-OR-IDS
+aws ec2 create-tags --resources $public_subnet_id --tags Key=kubernetes.io/cluster/${workload_cluster_name},Value=shared

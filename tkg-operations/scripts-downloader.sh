@@ -10,3 +10,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/04-tanzu-management-cluster-setup-ui.sh -O tkg/04-tanzu-management-cluster-setup-ui.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/05-tanzu-workload-cluster-create.sh -O tkg/05-tanzu-workload-cluster-create.sh
 
+mkdir tkg/reset
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/reset/01-workload-cluster-delete.sh -O tkg/reset/01-workload-cluster-delete.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/reset/02-management-cluster-delete.sh -O tkg/reset/02-management-cluster-delete.sh
+
