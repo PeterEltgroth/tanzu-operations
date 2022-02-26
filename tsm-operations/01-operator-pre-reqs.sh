@@ -63,11 +63,11 @@ aws configure
 
 
 #KUBECTL
-wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.21.2+vmware.1.gz
-gzip -d kubectl-linux-v1.21.2+vmware.1.gz
+wget https://tanzustorage.blob.core.windows.net/tanzu/kubectl-linux-v1.22.5+vmware.1.gz
+gzip -d kubectl-linux-v1.22.5+vmware.1.gz
 
-sudo install kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl
-rm kubectl-linux-v1.21.2+vmware.1
+sudo install kubectl-linux-v1.22.5+vmware.1 /usr/local/bin/kubectl
+rm kubectl-linux-v1.22.5+vmware.1
 kubectl version
 
 
