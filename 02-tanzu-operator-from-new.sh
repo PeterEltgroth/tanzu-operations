@@ -6,7 +6,7 @@ instance_id=''
 operator_name=${operator_name}-${aws_region_code}
 key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}"}]"
 
-bootstrapper_url=https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/${operator_prefix}-operations/scripts-bootstrapper.sh
+bootstrapper_url=https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/01-operator-prereqs.sh
 
 export AWS_REGION=$aws_region_code
 

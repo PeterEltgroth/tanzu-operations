@@ -1,11 +1,10 @@
 rm -rf tmc
 mkdir tmc
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-operator-prereqs.sh -O tmc/01-operator-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/00-create-image-us-east-2.sh -O tmc/00-create-image-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/00-create-snapshot-us-east-2.sh -O tmc/00-create-snapshot-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-operator-scripts.sh -O tmc/01-operator-scripts.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-tmc-cli-install.sh -O tmc/02-tmc-cli-install.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/03-create-image-us-east-2.sh -O tmc/03-create-image-us-east-2.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/03-create-snapshot-us-east-2.sh -O tmc/03-create-snapshot-us-east-2.sh
-
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-aks-create-development.sh -O tmc/10-aks-create-development.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-create-staging.sh -O tmc/11-eks-create-staging.sh
