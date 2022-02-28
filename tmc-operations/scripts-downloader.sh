@@ -1,9 +1,8 @@
 rm -rf tmc
 mkdir tmc
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-operator-pre-reqs.sh -O tmc/01-operator-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-install-tanzu-v1.4.0.sh -O tmc/02-install-tanzu-v1.4.0.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-install-tanzu-v1.4.1.sh -O tmc/02-install-tanzu-v1.4.1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/01-operator-prereqs.sh -O tmc/01-operator-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/02-tmc-cli-install.sh -O tmc/02-tmc-cli-install.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/03-create-image-us-east-2.sh -O tmc/03-create-image-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/03-create-snapshot-us-east-2.sh -O tmc/03-create-snapshot-us-east-2.sh
 
