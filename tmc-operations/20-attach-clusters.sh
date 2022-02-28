@@ -6,14 +6,6 @@ tmc_development_cluster=tmc-development-cluster
 tmc_staging_cluster=tmc-staging-cluster
 
 
-TMC_API_TOKEN=$(az keyvault secret show --name tanzu-cloud-services-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-
-echo $TMC_API_TOKEN
-
-tmc login
-echo
-
-
 #CREATE CLUSTER GROUPS
 read -p "Create cluster groups"
 echo
