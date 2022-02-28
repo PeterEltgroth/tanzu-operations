@@ -5,15 +5,15 @@ yes | sudo apt upgrade
 sudo snap install jq
 sudo apt install unzip
 
-cat <<EOF | tee bootstrapper-files.txt
-{
-	prereqs: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/01-operator-prereqs.sh,
-	tap: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/scripts-bootstrapper.sh,
-	tbs: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tbs-operations/scripts-bootstrapper.sh,
-	tkg: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/scripts-bootstrapper.sh,
-	tmc: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/scripts-bootstrapper.sh,
-	tsm: https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tsm-operations/scripts-bootstrapper.sh
-}
+cat <<EOF | tee operator-bootstrapper.sh
+read -p "Operator Prefix: " operator_prefix
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/01-operator-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/10-operator-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/11-image-create-us-east-2.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/11-snapshot-create-us-east-2.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/${operator_prefix}-operations/scripts-bootstrapper.sh
 EOF
 
 #AWS CLI

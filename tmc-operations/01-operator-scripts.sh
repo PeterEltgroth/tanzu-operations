@@ -1,4 +1,8 @@
 read -p "Operator Prefix: " operator_prefix
 
+prereqs=$(cat user-data | jq .prereqs)
+scripts=$(cat user-data | jq .${operator_prefix})
+
 #DOWNLOAD OPERATOR SCRIPTS
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/${operator_prefix}-operations/scripts-bootstrapper.sh
+wget prereqs
+wget scripts
