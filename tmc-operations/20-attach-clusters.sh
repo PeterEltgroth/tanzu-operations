@@ -7,6 +7,7 @@ tmc_staging_cluster=tmc-staging-cluster
 
 
 #CREATE CLUSTER GROUPS
+echo
 read -p "Create cluster groups"
 echo
 

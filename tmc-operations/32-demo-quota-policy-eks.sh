@@ -28,7 +28,7 @@ cluster_name=tmc-staging-cluster
 
 
 #QUOTA POLICY
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${cluster_name}"

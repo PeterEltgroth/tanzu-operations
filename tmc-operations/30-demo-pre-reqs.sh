@@ -31,7 +31,7 @@ app_workspace=app-workspace
 tmc_production_cluster=tmc-production-cluster
 
 
-DEMO_PROMPT="${GREEN}➜ TMC ATTACH CLUSTERS ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 echo
 
 #CREATE PRODUCTION CLUSTER GROUP

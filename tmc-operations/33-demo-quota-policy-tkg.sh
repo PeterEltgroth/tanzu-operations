@@ -28,7 +28,7 @@ tmc_build_cluster=tmc-build-cluster
 
 
 #QUOTA POLICY
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_build_cluster}-admin@${tmc_build_cluster}"

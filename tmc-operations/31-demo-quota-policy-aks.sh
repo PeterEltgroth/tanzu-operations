@@ -28,14 +28,31 @@ tmc_development_cluster=tmc-development-cluster
 
 
 #QUOTA POLICY
-DEMO_PROMPT="${GREEN}➜ TMC QUOTA POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_development_cluster}"
 echo
 
+pe "kubectl get pods"
+echo
+
+pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml --dry-run"
+echo
+
+pe "clear"
+
+pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml"
+echo
+
+#QUOTA POLICY
+pe "cat tmc/configs/quota-exceeds.yaml"
+echo
+
 pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"
 echo
+
+pe "clear"
 
 pe "kubectl get events | grep FailedCreate"
 echo
@@ -43,3 +60,13 @@ echo
 pe "kubectl get pods"
 echo
 
+pe "clear"
+
+pe "cat tmc/configs/quota-within.yaml"
+echo
+
+pe "kubectl apply -f tmc/configs/quota-within.yaml"
+echo
+
+pe "kubectl get pods"
+echo
