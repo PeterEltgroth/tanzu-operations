@@ -27,6 +27,6 @@ echo "OPERATOR DNS:"
 echo $dns
 echo
 echo "DOWNLOAD SCRIPTS INITIALIZER:"
-echo "wget http://169.254.169.254/latest/user-data"
+echo "wget http://169.254.169.254/latest/user-data -O operator-bootstrapper.sh"
 echo
 
