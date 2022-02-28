@@ -1,3 +1,5 @@
+read -p "Operator Prefix: " operator_prefix
+
 subscription=nycpivot
 
 sudo apt update
@@ -76,6 +78,8 @@ sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh
 chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/${operator_prefix}-operations/scripts-bootstrapper.sh
 
 echo
 echo "***REBOOTING***"
