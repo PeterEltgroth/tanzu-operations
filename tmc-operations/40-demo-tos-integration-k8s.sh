@@ -31,7 +31,7 @@ echo
 
 tmc_production_cluster=tmc-production-cluster
 
-pe "tmc cluster integration create -f configs/integration-wavefront.yaml"
+pe "tmc cluster integration create -f tmc/configs/integration-wavefront.yaml"
 echo
 
 

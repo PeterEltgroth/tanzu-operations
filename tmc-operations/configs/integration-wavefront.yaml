@@ -1,20 +1,12 @@
 fullName:
-  clusterName: tmc-staging-cluster
+  clusterName: tmc-production-cluster
   managementClusterName: attached
   name: tanzu-observability-saas
   orgId: 86514df0-46a7-4b33-857d-954ba2970773
   provisionerName: attached
-meta:
-  creationTime: "2022-03-01T21:58:31.505997Z"
-  parentReferences:
-  - rid: rid:c:86514df0-46a7-4b33-857d-954ba2970773:attached:attached:tmc-staging-cluster
-    uid: c:01FX3CXYCHCHER0GBCTTJSC1KY
-  resourceVersion: "53067062"
-  uid: cintg:01FX3QVXAGSD02MHQ08Z732ZYS
-  updateTime: "2022-03-01T21:58:45.400865Z"
 spec:
   configurations:
-    clusterName: tmc-staging-cluster.attached.attached.tmc
+    clusterName: tmc-production-cluster.attached.attached.tmc
     url: https://vmware.wavefront.com
     wavefront-collector-config: |
       # DO NOT EDIT THE FOLLOWING LINE
