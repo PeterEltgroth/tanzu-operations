@@ -29,28 +29,14 @@ clear
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo
 
+tmc_production_cluster=tmc-production-cluster
 
-tmc_build_cluster=tmc-build-cluster
-tmc_development_cluster=tmc-development-cluster
-tmc_staging_cluster=tmc-staging-cluster
-
-#wavefront_token=$(az keyvault secret show --name wavefront-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
-
-#pe "kubectl config use-context ${cluster_name}"
-#echo
-
-#pe "helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update"
-#echo
-
-#pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmware.wavefront.com --set wavefront.token=${wavefront_token} --set clusterName=${cluster_name} --namespace wavefront"
-#echo
-
-#ADD TO DEVELOPMENT CLUSTER
-pe "kubectl config use-context ${tmc_development_cluster}"
-pe "kubectl apply -f tmc/configs/tos-node-stressor.yaml"
+pe "tmc cluster integration create -f configs/integration-wavefront.yaml"
 echo
 
 
-#ADD TO STAGING CLUSTER
-pe "kubectl config use-context ${tmc_staging_cluster}"
+#ADD TO PRODUCTION CLUSTER
+pe "kubectl config use-context ${tmc_production_cluster}"
+echo
+
 pe "kubectl apply -f tmc/configs/tos-node-stressor.yaml"
