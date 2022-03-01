@@ -47,13 +47,3 @@ echo
 pe "kubectl get pods"
 echo
 
-pe "clear"
-
-pe "cat tmc/configs/quota-within.yaml"
-echo
-
-pe "kubectl apply -f tmc/configs/quota-within.yaml"
-echo
-
-pe "kubectl get pods"
-echo
