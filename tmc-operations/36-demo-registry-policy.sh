@@ -27,7 +27,7 @@ clear
 cluster_name=tmc-production-cluster
 
 #REGISTRY POLICY
-DEMO_PROMPT="${GREEN}➜ TMC REGISTRY POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 
 pe "kubectl config use-context ${cluster_name}"
 echo

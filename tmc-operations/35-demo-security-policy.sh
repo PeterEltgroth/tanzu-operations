@@ -28,7 +28,7 @@ tmc_staging_cluster=tmc-staging-cluster
 
 
 #SECURITY POLICY
-DEMO_PROMPT="${GREEN}➜ TMC SECURITY POLICY ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ TMC ${CYAN}\W "
 echo
 
 pe "kubectl config use-context ${tmc_staging_cluster}"

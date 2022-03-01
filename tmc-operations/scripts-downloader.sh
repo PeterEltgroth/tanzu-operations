@@ -14,17 +14,17 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/22-merge-tkg-kubeconfig.sh -O tmc/22-merge-tkg-kubeconfig.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/30-demo-pre-reqs.sh -O tmc/30-demo-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/31-demo-quota-policy-aks.sh -O tmc/31-demo-quota-policy-aks.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/32-demo-quota-policy-eks.sh -O tmc/32-demo-quota-policy-eks.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/33-demo-quota-policy-tkg.sh -O tmc/33-demo-quota-policy-tkg.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/34-demo-security-policy.sh -O tmc/34-demo-security-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/35-demo-registry-policy.sh -O tmc/35-demo-registry-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/36-demo-network-policy.sh -O tmc/36-demo-network-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/37-demo-access-policy.sh -O tmc/37-demo-access-policy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/38-demo-custom-policy.sh -O tmc/38-demo-custom-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/31-demo-wavefront-prereqs.sh -O tmc/31-demo-wavefront-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/32-demo-quota-policy-aks.sh -O tmc/32-demo-quota-policy-aks.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/33-demo-quota-policy-eks.sh -O tmc/33-demo-quota-policy-eks.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/34-demo-quota-policy-tkg.sh -O tmc/34-demo-quota-policy-tkg.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/35-demo-security-policy.sh -O tmc/35-demo-security-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/36-demo-registry-policy.sh -O tmc/36-demo-registry-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/37-demo-network-policy.sh -O tmc/37-demo-network-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/38-demo-access-policy.sh -O tmc/38-demo-access-policy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/39-demo-custom-policy.sh -O tmc/39-demo-custom-policy.sh
 
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/40-install-wavefront.sh -O tmc/40-install-wavefront.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/41-demo-tos-integration-k8s.sh -O tmc/41-demo-tos-integration-k8s.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/40-demo-tos-integration-k8s.sh -O tmc/40-demo-tos-integration-k8s.sh
 
 
 mkdir tmc/reset

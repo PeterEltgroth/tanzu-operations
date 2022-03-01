@@ -37,22 +37,9 @@ echo
 pe "kubectl get pods"
 echo
 
-pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml --dry-run"
-echo
-
-pe "clear"
-
-pe "tmc clustergroup namespace-quota-policy create -f tmc/configs/quota-policy.yaml"
-echo
-
 #QUOTA POLICY
-pe "cat tmc/configs/quota-exceeds.yaml"
-echo
-
 pe "kubectl apply -f tmc/configs/quota-exceeds.yaml"
 echo
-
-pe "clear"
 
 pe "kubectl get events | grep FailedCreate"
 echo

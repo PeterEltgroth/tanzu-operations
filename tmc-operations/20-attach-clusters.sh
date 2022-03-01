@@ -1,5 +1,3 @@
-read -p "Azure Subscription: " subscription
-
 development_cluster_group=development-cluster-group
 
 tmc_development_cluster=tmc-development-cluster
