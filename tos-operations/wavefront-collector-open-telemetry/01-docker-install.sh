@@ -10,6 +10,7 @@ docker run -d wavefronthq/proxy:latest
       -p 2878:2878 \
       -p 30001:30001
 
+mkdir tos/wavefront-collector-open-telemetry/bin
 cd tos/wavefront-collector-open-telemetry/bin
 wget https://github.com/open-telemetry/opentelemetry-collector-contrib/releases/download/v0.42.0/otelcontribcol_linux_amd64 -O otelcontribcol_linux_amd64
 chmod +x otelcontribcol_linux_amd64
