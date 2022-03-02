@@ -40,7 +40,7 @@ service:
     pipelines:
       metrics:
         receivers: [otlp]
-        exporters: [tansuobservability]
+        exporters: [tanzuobservability]
         processors: [memory_limiter, batch]
       traces:
         receivers: [otlp]
@@ -48,6 +48,6 @@ service:
         processors: [memory_limiter, batch]
 EOF
 
-otelcontribcol_linux_amd64 --config otel_collector_config.yaml
+./otelcontribcol_linux_amd64 --config otel_collector_config.yaml
 
 ch $HOME
