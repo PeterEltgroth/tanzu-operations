@@ -35,6 +35,9 @@ tmc cluster namespace delete $production_data --cluster-name $tmc_production_clu
 tmc workspace delete $app_workspace
 tmc workspace delete $web_workspace
 
+#DELETE INTEGRATIONS
+tmc cluster integration delete tanzu-observability-saas --cluster-name $tmc_production_cluster --management-cluster-name attached --provisioner-name attached
+
 #DELETE CLUSTERS
 tmc cluster delete $tmc_build_cluster --management-cluster-name aws-hosted --provisioner-name tmc-aws-provisioner
 tmc cluster delete $tmc_staging_cluster --management-cluster-name attached --provisioner-name attached
