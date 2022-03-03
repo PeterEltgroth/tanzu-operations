@@ -2,20 +2,23 @@ subscription=nycpivot
 
 wavefront_token=$(az keyvault secret show --name wavefront-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-docker run -d wavefronthq/proxy:latest
+docker run -d \
       -e WAVEFRONT_URL=https://vmware.wavefront.com/api/ \
       -e WAVEFRONT_TOKEN=${wavefront_token} \
       -e JAVA_HEAP_USAGE=512m \
       -e WAVEFRONT_PROXY_ARGS="--customTracingListenerPorts 30001" \
       -p 2878:2878 \
-      -p 30001:30001
+      -p 30001:30001 \
+	  wavefronthq/proxy:latest
+	  
+wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.46.0/otelcol_0.46.0_linux_amd64.tar.gz
+gzip -d otelcol_0.46.0_linux_amd64.tar.gz
+sudo install otelcol /usr/local/bin/otelcol
 
-mkdir tos/wavefront-collector-open-telemetry/bin
-cd tos/wavefront-collector-open-telemetry/bin
-wget https://github.com/open-telemetry/opentelemetry-collector-contrib/releases/download/v0.42.0/otelcontribcol_linux_amd64 -O otelcontribcol_linux_amd64
-chmod +x otelcontribcol_linux_amd64
+rm otelcol_0.46.0_linux_amd64.tar.gz
+rm otelcol
 
-cat <<EOF | tee otel_collector_config.yaml
+cat <<EOF | tee tos/wavefront-collector-open-telemetry/otel_collector_config.yaml
 receivers:
    otlp:
       protocols:
@@ -49,6 +52,6 @@ service:
         processors: [memory_limiter, batch]
 EOF
 
-./otelcontribcol_linux_amd64 --config otel_collector_config.yaml
+otelcol --config tos/wavefront-collector-open-telemetry/otel_collector_config.yaml
 
-ch $HOME
+cd $HOME
