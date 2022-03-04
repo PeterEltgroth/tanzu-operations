@@ -1,3 +1,12 @@
+#PERSIST ENV VARIABLES
+#envs=$(cat /etc/environment) | tr -d '"'
+#envs=PATH="${envs}:/usr/lib/java/jdk-17/bin:/usr/lib/maven/apache-maven-3.8.4/bin:/snap/dotnet-sdk/current"
+#echo $envs >> envs
+#echo JAVA_HOME="/usr/lib/java/jdk-17" >> envs
+#sudo rm /etc/environment
+#sudo mv envs /etc/environment
+
+
 #INSTALL JAVA
 wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
 gzip -d openjdk-17_linux-x64_bin.tar.gz
@@ -28,3 +37,9 @@ sudo snap install dotnet-runtime-60 --classic
 sudo snap alias dotnet-runtime-60.dotnet dotnet
 
 export DOTNET_ROOT=/snap/dotnet-sdk/current
+
+#CLONE SOME REPOS
+cd tos
+rm -rf spring-petclinic
+
+git clone https://github.com/nycpivot/tanzu-spring-petclinic
