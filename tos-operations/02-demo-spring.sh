@@ -26,6 +26,10 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
+export JAVA_HOME=/usr/lib/java/jdk-17
+export PATH=$PATH:/usr/lib/java/jdk-17/bin
+export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
+
 read -p "Repository Name: " repo_name
 
 if [ -z $repo_name ]
@@ -47,12 +51,13 @@ pe "cat pom.xml | grep wavefront"
 echo
 
 pe "cd src/main/resources"
-pe "cat application.properties"
+pe "cat application.properties | grep wavefront"
 echo
 
 pe "cd ${HOME}/tos/${repo_name}"
 echo
 
+chmod +x mvnw
 pe "./mvnw spring-boot:run"
 
 cd $HOME
