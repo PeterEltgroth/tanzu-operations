@@ -26,7 +26,20 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
-read -p "Project Name: " project_name
+echo "PROJECTS LIST:"
+echo "1) spring-petclinic-opentracing-freemium"
+echo "2) spring-petclinic-sleuth-freemium"
+
+read -p "Input Project Number: " project_number
+project_name="spring-petclinic-opentracing-freemium"
+
+if [ "${project_number}" == "1")
+then
+	project_name=spring-petclinic-opentracing-freemium
+elif [ "${project_number}" == "2" ]
+then
+	project_name=spring-petclinic-sleuth-freemium
+fi
 
 subscription=nycpivot
 
@@ -36,7 +49,7 @@ export JAVA_HOME=/usr/lib/java/jdk-17
 export PATH=$PATH:/usr/lib/java/jdk-17/bin
 export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
 
-pe "cd tos"
+cd tos
 pe "rm -rf tanzu-observability"
 echo
 
@@ -46,16 +59,16 @@ echo
 pe "cat tanzu-observability/${project_name}/pom.xml"
 echo
 
-rm 
-cat <<EOF | tee -a tanzu-observability/${project_name}/src/main/resources/application.properties
-management.metrics.export.wavefront.uri=https://vmware.wavefront.com
-management.metrics.export.wavefront.api-token=${wavefront_sandbox_token}
-EOF
+#cat <<EOF | tee -a tanzu-observability/${project_name}/src/main/resources/application.properties
+
+#management.metrics.export.wavefront.uri=https://vmware.wavefront.com
+#management.metrics.export.wavefront.api-token=${wavefront_sandbox_token}
+#EOF
 
 pe "cat tanzu-observability/${project_name}/src/main/resources/application.properties"
 echo
 
-pe "cd ${HOME}/tos/tanzu-observability/${project_name}"
+cd ${HOME}/tos/tanzu-observability/${project_name}
 echo
 
 chmod +x mvnw
