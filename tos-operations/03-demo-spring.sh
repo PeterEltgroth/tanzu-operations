@@ -29,16 +29,21 @@ DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo "PROJECTS LIST:"
 echo "1) spring-petclinic-opentracing-freemium"
 echo "2) spring-petclinic-sleuth-freemium"
+echo "3) spring-petclinic-jaeger-freemium"
+echo
 
 read -p "Input Project Number: " project_number
 project_name="spring-petclinic-opentracing-freemium"
 
-if [ "${project_number}" == "1")
+if [ "${project_number}" == "1" ]
 then
 	project_name=spring-petclinic-opentracing-freemium
 elif [ "${project_number}" == "2" ]
 then
 	project_name=spring-petclinic-sleuth-freemium
+elif [ "${project_number}" == "3" ]
+then
+	project_name=spring-petclinic-jaeger-freemium
 fi
 
 subscription=nycpivot
@@ -72,6 +77,9 @@ cd ${HOME}/tos/tanzu-observability/${project_name}
 echo
 
 chmod +x mvnw
+pe "./mvnw spring-javaformat:apply"
+echo
+
 pe "./mvnw spring-boot:run"
 
 cd $HOME
