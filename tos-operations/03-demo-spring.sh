@@ -44,7 +44,63 @@ then
 elif [ "${project_number}" == "3" ]
 then
 	project_name=spring-petclinic-jaeger-freemium
+	
+	read -p "Wavefront Url (wavefront.surf): " wavefront_url
+	read -p "Proxy Token (14813b68-1037-416d-97fb-a2f3e8f7de99): " proxy_token
+	
+	if [ -z $wavefront_url ]
+	then
+		wavefront_url=wavefront.surf
+	fi
+	
+	if [ -z $proxy_token ]
+	then
+		proxy_token=14813b68-1037-416d-97fb-a2f3e8f7de99
+	fi
+	
+	pe "sudo bash -c \"$(curl -sL https://wavefronthq.github.io/wavefront-cli/install.sh)\" -- install --proxy --wavefront-url https://${wavefront_url} --api-token ${proxy_token}"
+	echo
+	
+	pe "echo -e \"test.metric 1 source=test-host\n\" | nc ${wavefront_url} 2878"
+	echo
+	
+	#sudo cat <<EOF | tee -a /etc/wavefront/wavefront-proxy/wavefront.conf
+	#traceJaegerGrpcListenerPorts=6831
+	#EOF
+	
+	pe "sudo lsof -i -P -n | grep LISTEN"
+	echo
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	pe "docker run jaegertracing/jaeger-agent:latest --reporter.grpc.host-port=localhost:6931"
+	echo
+	
+	#pe "docker run -d --name jaeger -p 5775:5775/udp -p 16686:16686 jaegertracing/all-in-one:latest --reporter.grpc.host-port=localhost:6931"
+	#pe "docker run -d --name jaeger -p6831:6831/udp -p16686:16686 jaegertracing/all-in-one:latest --reporter.grpc.host-port=localhost:6931"
+	#echo
+	
+	#pe "docker run --rm --link jaeger --env JAEGER_AGENT_HOST=ip-172-31-42-215 --env JAEGER_AGENT_PORT=2878 -p 8080-8083:8080-8083 jaegertracing/example-hotrod:latest all"
+	#echo
+	
+	#pe "git clone https://github.com/jaegertracing/jaeger.git tos/tanzu-observability/jaeger"
+	#echo
+	
+	#pe "go run tos/tanzu-observability/jaeger/examples/hotrod/main."
+	
+
+	
+	sudo service wavefront-proxy restart
 fi
+
+
+
 
 subscription=nycpivot
 
@@ -64,11 +120,8 @@ echo
 pe "cat tanzu-observability/${project_name}/pom.xml"
 echo
 
-#cat <<EOF | tee -a tanzu-observability/${project_name}/src/main/resources/application.properties
-
-#management.metrics.export.wavefront.uri=https://vmware.wavefront.com
-#management.metrics.export.wavefront.api-token=${wavefront_sandbox_token}
-#EOF
+echo management.metrics.export.wavefront.uri=https://vmware.wavefront.com >> tanzu-observability/${project_name}/src/main/resources/application.properties
+echo management.metrics.export.wavefront.api-token=${wavefront_sandbox_token} >> tanzu-observability/${project_name}/src/main/resources/application.properties
 
 pe "cat tanzu-observability/${project_name}/src/main/resources/application.properties"
 echo

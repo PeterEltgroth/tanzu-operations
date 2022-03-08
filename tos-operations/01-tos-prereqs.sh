@@ -31,15 +31,19 @@ rm apache-maven-3.8.4-bin.tar
 export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
 
 #INSTALL DOTNET
-sudo snap install dotnet-sdk --classic
-sudo snap alias dotnet-sdk.dotnet dotnet
-sudo snap install dotnet-runtime-60 --classic
-sudo snap alias dotnet-runtime-60.dotnet dotnet
+#sudo snap install dotnet-sdk --classic
+#sudo snap alias dotnet-sdk.dotnet dotnet
+#sudo snap install dotnet-runtime-60 --classic
+#sudo snap alias dotnet-runtime-60.dotnet dotnet
 
-export DOTNET_ROOT=/snap/dotnet-sdk/current
+#export DOTNET_ROOT=/snap/dotnet-sdk/current
+
+#INSTALL GO
+#wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
+sudo snap install go --classic
 
 #CLONE SOME REPOS
-cd tos
-rm -rf spring-petclinic
+#cd tos
+#rm -rf spring-petclinic
 
-git clone https://github.com/nycpivot/tanzu-spring-petclinic
+#git clone https://github.com/nycpivot/tanzu-spring-petclinic
