@@ -13,15 +13,17 @@ aws ec2 describe-key-pairs
 read -p "Input Key Name: " ssh_key_name
 
 #aws ec2 describe-vpcs | jq "[.Vpcs[] | { VpcId }, (.Tags[]) | { Value }]" #.Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]'
-
-aws ec2 describe-vpcs
+aws ec2 describe-vpcs --filters 'Name=tag:Name,Values=tanzu-management-cluster-vpc' | jq '.Vpcs | .[] | { VpcId: .VpcId }'
 
 read -p "VPC Id: " vpc_id
 
-aws ec2 describe-subnets
+aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
 
-read -p "Private Subnet Id: " private_subnet_id
 read -p "Public Subnet Id: " public_subnet_id
+
+aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+
+read -p "Public Subnet Id: " private_subnet_id
 
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml

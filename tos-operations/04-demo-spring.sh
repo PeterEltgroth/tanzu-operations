@@ -27,23 +27,23 @@ clear
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
 echo "PROJECTS LIST:"
-echo "1) spring-petclinic-opentracing-freemium"
-echo "2) spring-petclinic-sleuth-freemium"
-echo "3) spring-petclinic-jaeger-freemium"
+echo "1) spring-petclinic-opentracing"
+echo "2) dropwizard-wavefront"
+#echo "3) spring-petclinic-jaeger"
 echo
 
 read -p "Input Project Number: " project_number
-project_name="spring-petclinic-opentracing-freemium"
+project_name="spring-petclinic-opentracing"
 
 if [ "${project_number}" == "1" ]
 then
-	project_name=spring-petclinic-opentracing-freemium
+	project_name=spring-petclinic-opentracing
 elif [ "${project_number}" == "2" ]
 then
-	project_name=spring-petclinic-sleuth-freemium
+	project_name=dropwizard-wavefront
 elif [ "${project_number}" == "3" ]
 then
-	project_name=spring-petclinic-jaeger-freemium
+	project_name=spring-petclinic-jaeger
 	
 	read -p "Wavefront Url (wavefront.surf): " wavefront_url
 	read -p "Proxy Token (14813b68-1037-416d-97fb-a2f3e8f7de99): " proxy_token
@@ -58,18 +58,17 @@ then
 		proxy_token=14813b68-1037-416d-97fb-a2f3e8f7de99
 	fi
 	
-	pe "sudo bash -c \"$(curl -sL https://wavefronthq.github.io/wavefront-cli/install.sh)\" -- install --proxy --wavefront-url https://${wavefront_url} --api-token ${proxy_token}"
-	echo
+	#pe "sudo bash -c \"$(curl -sL https://wavefronthq.github.io/wavefront-cli/install.sh)\" -- install --proxy --wavefront-url https://${wavefront_url} --api-token ${proxy_token}"
+	#echo
 	
-	pe "echo -e \"test.metric 1 source=test-host\n\" | nc ${wavefront_url} 2878"
-	echo
+
 	
 	#sudo cat <<EOF | tee -a /etc/wavefront/wavefront-proxy/wavefront.conf
 	#traceJaegerGrpcListenerPorts=6831
 	#EOF
 	
-	pe "sudo lsof -i -P -n | grep LISTEN"
-	echo
+	#pe "sudo lsof -i -P -n | grep LISTEN"
+	#echo
 	
 	
 	

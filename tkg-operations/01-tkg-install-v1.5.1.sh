@@ -35,6 +35,12 @@ sudo mv cli/imgpkg-linux-amd64-v0.18.0+vmware.1 /usr/local/bin/imgpkg
 
 cd $HOME
 
+#CLUSTERCTL
+curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.1.2/clusterctl-linux-amd64 -o clusterctl
+sudo mv ./clusterctl /usr/local/bin/clusterctl
+chmod +x /usr/local/bin/clusterctl
+
+
 #VELERO
 wget https://tanzustorage.blob.core.windows.net/tanzu/velero-linux-v1.7.0+vmware.1.gz
 gzip -d velero-linux-v1.7.0+vmware.1.gz
