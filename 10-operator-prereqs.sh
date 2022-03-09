@@ -80,6 +80,8 @@ chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
 
+rm operator-bootstrapper.sh
+
 echo
 echo "***REBOOTING***"
 echo

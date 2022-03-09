@@ -123,6 +123,7 @@ echo
 echo management.metrics.export.wavefront.uri=https://vmware.wavefront.com >> tanzu-observability/${project_name}/src/main/resources/application.properties
 echo management.metrics.export.wavefront.api-token=${wavefront_sandbox_token} >> tanzu-observability/${project_name}/src/main/resources/application.properties
 
+pe "clear"
 pe "cat tanzu-observability/${project_name}/src/main/resources/application.properties"
 echo
 
