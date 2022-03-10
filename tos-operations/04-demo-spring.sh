@@ -90,23 +90,13 @@ then
 	
 	./loadgen.sh 5
 	
-elif [ "${project_number}" == "3" ]
+elif [ "${project_number}" == "3" ] #JAEGER
 then
 
-	project_name=spring-petclinic-jaeger
+	#project_name=spring-petclinic-jaeger
 	
-	read -p "Wavefront Url (wavefront.surf): " wavefront_url
-	read -p "Proxy Token (14813b68-1037-416d-97fb-a2f3e8f7de99): " proxy_token
-	
-	if [ -z $wavefront_url ]
-	then
-		wavefront_url=wavefront.surf
-	fi
-	
-	if [ -z $proxy_token ]
-	then
-		#proxy_token=14813b68-1037-416d-97fb-a2f3e8f7de99
-	fi
+	#read -p "Wavefront Url (wavefront.surf): " wavefront_url
+	#read -p "Proxy Token (14813b68-1037-416d-97fb-a2f3e8f7de99): " proxy_token
 	
 	#sudo cat <<EOF | tee -a /etc/wavefront/wavefront-proxy/wavefront.conf
 	#traceJaegerGrpcListenerPorts=6831
