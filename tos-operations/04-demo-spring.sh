@@ -42,14 +42,11 @@ export JAVA_HOME=/usr/lib/java/jdk-17
 export PATH=$PATH:/usr/lib/java/jdk-17/bin
 export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
 
-cd tos
-pe "rm -rf tanzu-observability"
+pe "rm -rf tos/tanzu-observability"
 echo
 
-pe "git clone https://github.com/nycpivot/tanzu-observability"
+pe "git clone https://github.com/nycpivot/tanzu-observability tos/tanzu-observability"
 echo
-
-cd $HOME
 
 if [ "${project_number}" == "1" ] #OPEN-TRACING
 then
