@@ -26,8 +26,25 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
-cd tos/tanzu-observability/02-dropwizard-wavefront
+subscription=nycpivot
+project_name=02-dropwizard-wavefront
 
-pe "java -jar ./styling/target/styling-1.0-SNAPSHOT.jar server ./styling/app.yaml"
+wavefront_prod_token=$(az keyvault secret show --name wavefront-prod-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+
+export JAVA_HOME=/usr/lib/java/jdk-17
+export PATH=$PATH:/usr/lib/java/jdk-17/bin
+export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
+
+pe "cat tos/tanzu-observability/${project_name}/pom.xml"
+echo
+	
+cd tos/tanzu-observability/02-dropwizard-wavefront
+		
+pe "mvn clean install"
+
+pe "Start supporting services (a,b,c)"
+echo
+	
+./loadgen.sh 5
 
 cd $HOME

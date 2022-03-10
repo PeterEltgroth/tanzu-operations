@@ -26,6 +26,12 @@ clear
 
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
+export JAVA_HOME=/usr/lib/java/jdk-17
+export PATH=$PATH:/usr/lib/java/jdk-17/bin
+export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
+
 cd tos/tanzu-observability/02-dropwizard-wavefront
 
-pe "java -jar ./shopping/target/shopping-1.0-SNAPSHOT.jar server ./shopping/app.yaml"
+pe "java -jar ./styling/target/styling-1.0-SNAPSHOT.jar server ./styling/app.yaml"
+
+cd $HOME
