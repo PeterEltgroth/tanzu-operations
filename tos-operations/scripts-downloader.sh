@@ -3,15 +3,20 @@ rm -rf tos
 mkdir tos
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/01-tos-prereqs.sh -O tos/01-tos-prereqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/02-demo-ec2-integration.sh -O tos/02-demo-ec2-integration.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/03-demo-wavefront-proxy.sh -O tos/03-demo-wavefront-proxy.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/04-demo-k8s-integration.sh -O tos/04-demo-k8s-integration.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/10-demo-github-prereqs.sh -O tos/10-demo-github-prereqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/11-demo-spring-petclinic-opentracing.sh -O tos/11-demo-spring-petclinic-opentracing.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/12-demo-dropwizard-wavefront.sh -O tos/12-demo-dropwizard-wavefront.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/12a-demo-dropwizard-wavefront-shopping.sh -O tos/12a-demo-dropwizard-wavefront-shopping.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/12b-demo-dropwizard-wavefront-styling.sh -O tos/12b-demo-dropwizard-wavefront-styling.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/12c-demo-dropwizard-wavefront-delivery.sh -O tos/12c-demo-dropwizard-wavefront-delivery.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/02-k8s-prereqs.sh -O tos/02-k8s-prereqs.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/10-demo-ec2-integration.sh -O tos/10-demo-ec2-integration.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/11-demo-k8s-integration.sh -O tos/11-demo-k8s-integration.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/20-demo-github-prereqs.sh -O tos/20-demo-github-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/21-demo-spring-petclinic-direct-ingestion.sh -O tos/21-demo-spring-petclinic-direct-ingestion.sh
+
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/30-demo-wavefront-proxy.sh -O tos/30-demo-wavefront-proxy.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/31-demo-dropwizard-wavefront.sh -O tos/31-demo-dropwizard-wavefront.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/32a-demo-dropwizard-wavefront-shopping.sh -O tos/32a-demo-dropwizard-wavefront-shopping.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/32b-demo-dropwizard-wavefront-styling.sh -O tos/32b-demo-dropwizard-wavefront-styling.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tos-operations/32c-demo-dropwizard-wavefront-delivery.sh -O tos/32c-demo-dropwizard-wavefront-delivery.sh
+
 
 mkdir tos/wavefront-collector-open-telemetry
 
