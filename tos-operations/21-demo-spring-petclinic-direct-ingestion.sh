@@ -27,7 +27,7 @@ clear
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
 subscription=nycpivot
-project_name=01-spring-petclinic-opentracing
+project_name=01-spring-petclinic-direct-ingestion
 
 wavefront_prod_token=$(az keyvault secret show --name wavefront-prod-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
