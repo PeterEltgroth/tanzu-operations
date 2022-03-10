@@ -30,7 +30,7 @@ subscription=nycpivot
 
 wavefront_token=$(az keyvault secret show --name wavefront-prod-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
-pe "docker run -d -e WAVEFRONT_URL=vmwareprod.wavefront.com -e WAVEFRONT_TOKEN=${wavefront_token} -e JAVA_HEAP_USAGE=512m -p 2878:2878 wavefronthq/proxy:latest"
+pe "docker run -d -e WAVEFRONT_URL=https://vmwareprod.wavefront.com -e WAVEFRONT_TOKEN=${wavefront_token} -e JAVA_HEAP_USAGE=512m -p 2878:2878 wavefronthq/proxy:latest"
 echo
 
 read -p "Metric name (test.metric): " metric_name
@@ -40,5 +40,5 @@ then
 	metric_name=test.metric
 fi
 
-pe "echo -e \"${metric_name} 1 source=test-host\n\" | nc vmwareprod.wavefront.com 2878"
+pe "echo -e \"${metric_name} 1 source=test.host\n\" | nc localhost 2878"
 
