@@ -27,7 +27,7 @@ clear
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
 subscription=nycpivot
-project_name=02-dropwizard-wavefront
+project_name=02-dropwizard-proxy
 
 wavefront_prod_token=$(az keyvault secret show --name wavefront-prod-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
@@ -38,7 +38,7 @@ export PATH=$PATH:/usr/lib/maven/apache-maven-3.8.4/bin
 pe "cat tos/tanzu-observability/${project_name}/pom.xml"
 echo
 	
-cd tos/tanzu-observability/02-dropwizard-wavefront
+cd tos/tanzu-observability/${project_name}
 		
 pe "mvn clean install"
 
