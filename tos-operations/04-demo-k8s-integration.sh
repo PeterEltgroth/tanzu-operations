@@ -28,7 +28,7 @@ DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 
 read -p "Azure subscription: " subscription
 
-wavefront_token=$(az keyvault secret show --name wavefront-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+wavefront_token=$(az keyvault secret show --name wavefront-prod-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
 
 pe "kubectl config get-contexts"
 echo
@@ -42,6 +42,6 @@ echo
 pe "helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update"
 echo
 
-pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmware.wavefront.com --set wavefront.token=${wavefront_token} --set clusterName=${cluster_name} --namespace wavefront"
+pe "kubectl create namespace wavefront && helm install wavefront wavefront/wavefront --set wavefront.url=https://vmwareprod.wavefront.com --set wavefront.token=${wavefront_token} --set clusterName=${cluster_name} --namespace wavefront"
 echo
 
