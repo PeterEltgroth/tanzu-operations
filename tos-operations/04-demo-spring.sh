@@ -50,29 +50,51 @@ echo
 pe "git clone https://github.com/nycpivot/tanzu-observability"
 echo
 
-pe "cat tanzu-observability/${project_name}/pom.xml"
+cd $HOME
+
+pe "cat tos/tanzu-observability/${project_name}/pom.xml"
 echo
 
 
 if [ "${project_number}" == "1" ] #OPEN-TRACING
 then
-	project_name=spring-petclinic-opentracing
+
+	project_name=01-spring-petclinic-opentracing
 	
-	echo management.metrics.export.wavefront.uri=https://vmwareprod.wavefront.com >> tanzu-observability/${project_name}/src/main/resources/application.properties
-	echo management.metrics.export.wavefront.api-token=${wavefront_prod_token} >> tanzu-observability/${project_name}/src/main/resources/application.properties
+	echo management.metrics.export.wavefront.uri=https://vmwareprod.wavefront.com >> tos/tanzu-observability/${project_name}/src/main/resources/application.properties
+	echo management.metrics.export.wavefront.api-token=${wavefront_prod_token} >> tos/tanzu-observability/${project_name}/src/main/resources/application.properties
 	
 	pe "clear"
-	pe "cat tanzu-observability/${project_name}/src/main/resources/application.properties"
+	pe "cat tos/tanzu-observability/${project_name}/src/main/resources/application.properties"
+	echo
+	
+	cd ${HOME}/tos/tanzu-observability/${project_name}
 	echo
 
+	chmod +x mvnw
+	pe "./mvnw spring-javaformat:apply"
+	echo
+
+	pe "./mvnw spring-boot:run"
+	
 elif [ "${project_number}" == "2" ] #DROP-WIZARD
 then
-	project_name=dropwizard-wavefront
+
+	project_name=02-dropwizard-wavefront
 	
+	cd tos/tanzu-observability/02-dropwizard-wavefront
+		
 	mvn clean install
+	
+	java -jar ./shopping/target/shopping-1.0-SNAPSHOT.jar server ./shopping/app.yaml
+	java -jar ./styling/target/styling-1.0-SNAPSHOT.jar server ./styling/app.yaml
+	java -jar ./delivery/target/delivery-1.0-SNAPSHOT.jar server ./delivery/app.yaml
+	
+	./loadgen.sh 5
 	
 elif [ "${project_number}" == "3" ]
 then
+
 	project_name=spring-petclinic-jaeger
 	
 	read -p "Wavefront Url (wavefront.surf): " wavefront_url
@@ -109,17 +131,7 @@ then
 	#echo
 	
 	#pe "go run tos/tanzu-observability/jaeger/examples/hotrod/main."
+	
 fi
-
-
-
-cd ${HOME}/tos/tanzu-observability/${project_name}
-echo
-
-chmod +x mvnw
-pe "./mvnw spring-javaformat:apply"
-echo
-
-pe "./mvnw spring-boot:run"
 
 cd $HOME
