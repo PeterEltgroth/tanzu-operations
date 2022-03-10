@@ -33,7 +33,6 @@ echo "2) dropwizard-wavefront"
 echo
 
 read -p "Input Project Number: " project_number
-project_name="spring-petclinic-opentracing"
 
 subscription=nycpivot
 
@@ -52,14 +51,13 @@ echo
 
 cd $HOME
 
-pe "cat tos/tanzu-observability/${project_name}/pom.xml"
-echo
-
-
 if [ "${project_number}" == "1" ] #OPEN-TRACING
 then
 
 	project_name=01-spring-petclinic-opentracing
+	
+	pe "cat tos/tanzu-observability/${project_name}/pom.xml"
+	echo
 	
 	echo management.metrics.export.wavefront.uri=https://vmwareprod.wavefront.com >> tos/tanzu-observability/${project_name}/src/main/resources/application.properties
 	echo management.metrics.export.wavefront.api-token=${wavefront_prod_token} >> tos/tanzu-observability/${project_name}/src/main/resources/application.properties
@@ -81,6 +79,9 @@ elif [ "${project_number}" == "2" ] #DROP-WIZARD
 then
 
 	project_name=02-dropwizard-wavefront
+	
+	pe "cat tos/tanzu-observability/${project_name}/pom.xml"
+	echo
 	
 	cd tos/tanzu-observability/02-dropwizard-wavefront
 		
