@@ -47,6 +47,7 @@ az account set --subscription $subscription
 #GCLOUD CLI
 sudo snap install google-cloud-sdk --classic
 
+gcloud init --console-only
 gcloud auth login
 gcloud config set project pa-mjames
 

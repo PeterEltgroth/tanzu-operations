@@ -42,9 +42,9 @@ cd tos/tanzu-observability/${project_name}
 		
 pe "mvn clean install"
 
-pe "Start supporting services (a,b,c)"
+pe "Start supporting services (shopping, styling, delivery)"
 echo
 	
-./loadgen.sh 5
+bash ./loadgen.sh 60
 
 cd $HOME
