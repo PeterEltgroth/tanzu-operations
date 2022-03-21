@@ -1,5 +1,6 @@
-read -p "AWS Region Code (us-east-2): " aws_region_code
+read -p "Management Cluster Name: " mgmt_cluster_name
 read -p "Workload Cluster Name: " workload_cluster_name
+read -p "AWS Region Code (us-east-2): " aws_region_code
 
 if [[ -z $aws_region_code ]]
 then
@@ -12,18 +13,36 @@ aws ec2 describe-key-pairs
 
 read -p "Input Key Name: " ssh_key_name
 
+filters="Name=tag:Name,Values=${mgmt_cluster_name}-vpc"
+
 #aws ec2 describe-vpcs | jq "[.Vpcs[] | { VpcId }, (.Tags[]) | { Value }]" #.Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]'
-aws ec2 describe-vpcs --filters 'Name=tag:Name,Values=tanzu-management-cluster-vpc' | jq '.Vpcs | .[] | { VpcId: .VpcId }'
+aws ec2 describe-vpcs --filters $filters | jq '.Vpcs | .[] | { VpcId: .VpcId }'
 
 read -p "VPC Id: " vpc_id
 
-aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}a"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Public Subnet A: " public_subnet_id_a
 
-read -p "Public Subnet Id: " public_subnet_id
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}b"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Public Subnet B: " public_subnet_id_b
 
-aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}c"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Public Subnet C: " public_subnet_id_c
 
-read -p "Public Subnet Id: " private_subnet_id
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}a"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Private Subnet A: " private_subnet_id_a
+
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}b"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Private Subnet B: " private_subnet_id_b
+
+filters="Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}c"
+aws ec2 describe-subnets --filters $filters | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
+read -p "Private Subnet C: " private_subnet_id_c
 
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
@@ -35,15 +54,15 @@ AWS_NODE_AZ_2: ""
 AWS_PRIVATE_NODE_CIDR: 10.0.16.0/20
 AWS_PRIVATE_NODE_CIDR_1: ""
 AWS_PRIVATE_NODE_CIDR_2: ""
-AWS_PRIVATE_SUBNET_ID: "${private_subnet_id}"
-AWS_PRIVATE_SUBNET_ID_1: ""
-AWS_PRIVATE_SUBNET_ID_2: ""
+AWS_PRIVATE_SUBNET_ID: "${private_subnet_id_a}"
+AWS_PRIVATE_SUBNET_ID_1: "${private_subnet_id_b}"
+AWS_PRIVATE_SUBNET_ID_2: "${private_subnet_id_c}"
 AWS_PUBLIC_NODE_CIDR: 10.0.0.0/20
 AWS_PUBLIC_NODE_CIDR_1: ""
 AWS_PUBLIC_NODE_CIDR_2: ""
-AWS_PUBLIC_SUBNET_ID: "${public_subnet_id}"
-AWS_PUBLIC_SUBNET_ID_1: ""
-AWS_PUBLIC_SUBNET_ID_2: ""
+AWS_PUBLIC_SUBNET_ID: "${public_subnet_id_a}"
+AWS_PUBLIC_SUBNET_ID_1: "${public_subnet_id_b}"
+AWS_PUBLIC_SUBNET_ID_2: "${public_subnet_id_c}"
 AWS_REGION: us-east-2
 AWS_SSH_KEY_NAME: ${ssh_key_name}
 AWS_VPC_CIDR: 10.0.0.0/16
