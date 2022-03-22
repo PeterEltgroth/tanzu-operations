@@ -23,7 +23,7 @@ read -p "Public Subnet Id: " public_subnet_id
 
 aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
 
-read -p "Public Subnet Id: " private_subnet_id
+read -p "Private Subnet Id: " private_subnet_id
 
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
@@ -95,3 +95,5 @@ tanzu cluster kubeconfig get $workload_cluster_name --admin
 #TAG THE PUBLIC SUBNET TO BE ABLE TO CREATE ELBs
 #aws ec2 delete-tags --resources YOUR-PUBLIC-SUBNET-ID-OR-IDS
 aws ec2 create-tags --resources $public_subnet_id --tags Key=kubernetes.io/cluster/${workload_cluster_name},Value=shared
+
+tanzu cluster kubeconfig get $workload_cluster_name --admin --export-file ${workload_cluster_name}.yaml
