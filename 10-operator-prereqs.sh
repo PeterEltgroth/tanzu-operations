@@ -15,6 +15,9 @@ sudo snap install jq
 sudo snap install helm --classic
 sudo apt install unzip
 
+sudo apt install python-is-python3
+alias python=python3
+
 yes | sudo apt install python3-pip
 pip3 install yq
 

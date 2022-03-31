@@ -1,5 +1,6 @@
-read -p "AWS Region Code (us-east-2): " aws_region_code
+read -p "Management Cluster Name: " mgmt_cluster_name
 read -p "Workload Cluster Name: " workload_cluster_name
+read -p "AWS Region Code (us-east-2): " aws_region_code
 
 if [[ -z $aws_region_code ]]
 then
@@ -8,22 +9,21 @@ fi
 
 export AWS_REGION=${aws_region_code}
 
+#GET SSH KEY
 aws ec2 describe-key-pairs
-
 read -p "Input Key Name: " ssh_key_name
 
-#aws ec2 describe-vpcs | jq "[.Vpcs[] | { VpcId }, (.Tags[]) | { Value }]" #.Instances[] | (.BlockDeviceMappings[] | { VolumeId: .Ebs.VolumeId })]'
-aws ec2 describe-vpcs --filters 'Name=tag:Name,Values=tanzu-management-cluster-vpc' | jq '.Vpcs | .[] | { VpcId: .VpcId }'
+#GET VPC ID
+vpc_filters="Name=tag:Name,Values=${mgmt_cluster_name}-vpc"
+vpc_id=$(aws ec2 describe-vpcs --filters $vpc_filters | jq '.Vpcs | .[] | { VpcId: .VpcId } | .VpcId' | tr -d '"')
 
-read -p "VPC Id: " vpc_id
+#GET PUBLIC SUBNET ID
+public_subnet_filters="Name=tag:Name,Values=${mgmt_cluster_name}-subnet-public-${aws_region_code}a"
+public_subnet_id=$(aws ec2 describe-subnets --filters $public_subnet_filters | jq '.Subnets | .[] | { SubnetId: .SubnetId } | .SubnetId' | tr -d '"')
 
-aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-public-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
-
-read -p "Public Subnet Id: " public_subnet_id
-
-aws ec2 describe-subnets --filters 'Name=tag:Name,Values=tanzu-management-cluster-subnet-private-${aws_region_code}a' | jq '.Subnets | .[] | { SubnetId: .SubnetId }'
-
-read -p "Private Subnet Id: " private_subnet_id
+#GET PRIVATE SUBNET ID
+private_subnet_filters="Name=tag:Name,Values=${mgmt_cluster_name}-subnet-private-${aws_region_code}a"
+private_subnet_id=$(aws ec2 describe-subnets --filters $private_subnet_filters | jq '.Subnets | .[] | { SubnetId: .SubnetId } | .SubnetId' | tr -d '"')
 
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
@@ -32,27 +32,27 @@ AWS_AMI_ID: ami-0954a3d2fbcc97789
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ""
 AWS_NODE_AZ_2: ""
-AWS_PRIVATE_NODE_CIDR: 10.0.16.0/20
+AWS_PRIVATE_NODE_CIDR: 10.0.0.0/24
 AWS_PRIVATE_NODE_CIDR_1: ""
 AWS_PRIVATE_NODE_CIDR_2: ""
 AWS_PRIVATE_SUBNET_ID: "${private_subnet_id}"
 AWS_PRIVATE_SUBNET_ID_1: ""
 AWS_PRIVATE_SUBNET_ID_2: ""
-AWS_PUBLIC_NODE_CIDR: 10.0.0.0/20
+AWS_PUBLIC_NODE_CIDR: 10.0.1.0/24
 AWS_PUBLIC_NODE_CIDR_1: ""
 AWS_PUBLIC_NODE_CIDR_2: ""
 AWS_PUBLIC_SUBNET_ID: "${public_subnet_id}"
 AWS_PUBLIC_SUBNET_ID_1: ""
 AWS_PUBLIC_SUBNET_ID_2: ""
-AWS_REGION: us-east-2
+AWS_REGION: ${aws_region_code}
 AWS_SSH_KEY_NAME: ${ssh_key_name}
 AWS_VPC_CIDR: 10.0.0.0/16
 AWS_VPC_ID: "${vpc_id}"
-BASTION_HOST_ENABLED: "true"
+BASTION_HOST_ENABLED: "false"
 CLUSTER_CIDR: 100.96.0.0/11
 CLUSTER_NAME: ${workload_cluster_name}
 CLUSTER_PLAN: dev
-CONTROL_PLANE_MACHINE_TYPE: t3a.2xlarge
+CONTROL_PLANE_MACHINE_TYPE: t3.large
 ENABLE_AUDIT_LOGGING: ""
 ENABLE_CEIP_PARTICIPATION: "false"
 ENABLE_MHC: "true"
@@ -90,10 +90,11 @@ tanzu login
 
 tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan dev
 
+rm ${workload_cluster_name}-kubeconfig.yaml
+
 tanzu cluster kubeconfig get $workload_cluster_name --admin
+tanzu cluster kubeconfig get $workload_cluster_name --admin --export-file ${workload_cluster_name}-kubeconfig.yaml
 
 #TAG THE PUBLIC SUBNET TO BE ABLE TO CREATE ELBs
 #aws ec2 delete-tags --resources YOUR-PUBLIC-SUBNET-ID-OR-IDS
 aws ec2 create-tags --resources $public_subnet_id --tags Key=kubernetes.io/cluster/${workload_cluster_name},Value=shared
-
-tanzu cluster kubeconfig get $workload_cluster_name --admin --export-file ${workload_cluster_name}.yaml
