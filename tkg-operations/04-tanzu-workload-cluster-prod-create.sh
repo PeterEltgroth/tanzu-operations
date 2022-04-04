@@ -1,7 +1,13 @@
 read -p "Management Cluster Name: " mgmt_cluster_name
 read -p "Workload Cluster Name: " workload_cluster_name
+read -p "Bastion Host Enabled (true/false): " bastion_enabled
 read -p "AWS Region Code (us-east-2): " aws_region_code
 read -p "Worker Machine Count: " worker_machine_count
+
+if [[ -z $bastion_enabled ]]
+then
+	bastion_enabled=false
+fi
 
 if [[ -z $aws_region_code ]]
 then
@@ -58,7 +64,7 @@ AWS_REGION: ${aws_region_code}
 AWS_SSH_KEY_NAME: ${ssh_key_name}
 AWS_VPC_CIDR: 10.0.0.0/16
 AWS_VPC_ID: "${vpc_id}"
-BASTION_HOST_ENABLED: "false"
+BASTION_HOST_ENABLED: "${bastion_enabled}"
 CLUSTER_CIDR: 100.96.0.0/11
 CLUSTER_NAME: ${workload_cluster_name}
 CLUSTER_PLAN: prod

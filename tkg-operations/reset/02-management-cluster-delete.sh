@@ -8,6 +8,8 @@ fi
 
 export AWS_REGION=${aws_region_code}
 
+tanzu login
+
 tanzu management-cluster delete
 
 kubectl config delete-context ${mgmt_cluster_name}-admin@${mgmt_cluster_name}
