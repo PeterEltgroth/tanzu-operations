@@ -103,6 +103,7 @@ TKG_HTTP_PROXY_ENABLED: "false"
 WORKER_MACHINE_COUNT: $worker_machine_count
 EOF
 
+echo
 tanzu login
 
 tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan prod

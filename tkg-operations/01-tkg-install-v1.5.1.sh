@@ -1,9 +1,9 @@
 mkdir tanzu
 cd tanzu
 
-wget https://tanzustorage.blob.core.windows.net/tanzu/tanzu-cli-bundle-linux-amd64-v1.5.1.tar
-tar -xvf tanzu-cli-bundle-linux-amd64-v1.5.1.tar
-rm tanzu-cli-bundle-linux-amd64-v1.5.1.tar
+wget https://tanzustorage.blob.core.windows.net/tanzu/tanzu-cli-bundle-linux-amd64-v1.5.2.tar
+tar -xvf tanzu-cli-bundle-linux-amd64-v1.5.2.tar
+rm tanzu-cli-bundle-linux-amd64-v1.5.2.tar
 
 sudo install cli/core/v0.11.1/tanzu-core-linux_amd64 /usr/local/bin/tanzu
 

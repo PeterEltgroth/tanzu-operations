@@ -92,6 +92,7 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
+echo
 tanzu login
 
 tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan dev
