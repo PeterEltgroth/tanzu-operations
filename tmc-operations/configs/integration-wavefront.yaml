@@ -2,7 +2,7 @@ fullName:
   clusterName: tmc-production-cluster
   managementClusterName: attached
   name: tanzu-observability-saas
-  orgId: 86514df0-46a7-4b33-857d-954ba2970773
+  #orgId: 86514df0-46a7-4b33-857d-954ba2970773
   provisionerName: attached
 spec:
   configurations:

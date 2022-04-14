@@ -36,6 +36,7 @@ tmc workspace delete $app_workspace
 tmc workspace delete $web_workspace
 
 #DELETE INTEGRATIONS
+tmc cluster integration delete tanzu-service-mesh --cluster-name $tmc_production_cluster --management-cluster-name attached --provisioner-name attached
 tmc cluster integration delete tanzu-observability-saas --cluster-name $tmc_production_cluster --management-cluster-name attached --provisioner-name attached
 
 #DELETE CLUSTERS

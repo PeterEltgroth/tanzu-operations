@@ -2,6 +2,7 @@ rm -rf tkg
 mkdir tkg
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/01-tkg-install-v1.5.1.sh -O tkg/01-tkg-install-v1.5.1.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/01-tkg-install-v1.5.2.sh -O tkg/01-tkg-install-v1.5.2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/02-create-image-us-east-2.sh -O tkg/02-create-image-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/02-create-snapshot-us-east-2.sh -O tkg/02-create-snapshot-us-east-2.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tkg-operations/03-tanzu-management-cluster-dev-setup.sh -O tkg/03-tanzu-management-cluster-dev-setup.sh
