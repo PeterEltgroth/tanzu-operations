@@ -1,5 +1,4 @@
 read -p "Azure Subscription: " subscription
-read -p "Cluster Name: " cluster_name
 
 server_name=prod-2.nsxservicemesh.vmware.com
 
@@ -11,8 +10,8 @@ token=$(curl "https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-token
 
 access_token=$(echo ${token} | jq -r .access_token)
 
-
-echo <<EOF | request
+rm request.json
+cat <<EOF | tee request.json
 {
    "name":"acme-fitness",
    "display_name":"Acme Fitness",
@@ -47,7 +46,7 @@ echo <<EOF | request
 }
 EOF
 
-response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d $request)
+response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d $(cat request.json))
 echo
 
 echo $response
