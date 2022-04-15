@@ -6,6 +6,9 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/10-aks-create-development.sh -O tmc/10-aks-create-development.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/11-eks-create-staging.sh -O tmc/11-eks-create-staging.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/12-gke-create-production.sh -O tmc/12-gke-create-production.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-backups-create.sh -O tmc/13-backups-create.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/14-backups-restore.sh -O tmc/14-backups-restore.sh
+
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/13-tanzu-management-cluster-setup.sh -O tmc/13-tanzu-management-cluster-setup.sh
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/14-tkg-create-build.sh -O tmc/14-tkg-create-build.sh
 

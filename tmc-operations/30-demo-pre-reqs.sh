@@ -51,29 +51,30 @@ pe "clear"
 
 
 #CREATE WORKSPACES
-pe "tmc workspace create --name ${web_workspace}" # --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
+pei "tmc workspace create --name ${web_workspace}" # --description 'Demonstrates an image registry policy applicable to all namespaces therein.'"
 echo
 
-pe "tmc workspace create --name ${app_workspace}" # --description 'Demonstrates microsegmentation between pods.'"
+pei "tmc workspace create --name ${app_workspace}" # --description 'Demonstrates microsegmentation between pods.'"
 echo
 
+pe "clear"
 
 #CREATE NAMESPACES
-pe "kubectl get ns"
+pei "kubectl get ns"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/namespace-web.yaml"
+pei "tmc cluster namespace create -f tmc/configs/namespace-web.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/namespace-api.yaml"
+pei "tmc cluster namespace create -f tmc/configs/namespace-api.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/namespace-app.yaml"
+pei "tmc cluster namespace create -f tmc/configs/namespace-app.yaml"
 echo
 
-pe "tmc cluster namespace create -f tmc/configs/namespace-data.yaml"
+pei "tmc cluster namespace create -f tmc/configs/namespace-data.yaml"
 echo
 
-pe "kubectl get ns"
+pei "kubectl get ns"
 echo
 
