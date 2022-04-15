@@ -44,7 +44,8 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 mkdir tmc/configs
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/integration-wavefront.yaml -O tmc/configs/integration-wavefront.yaml
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/integration-tsm.yaml -O tmc/configs/integration-tsm.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/integration-tsm-tmc-development-cluster.yaml -O tmc/configs/integration-tsm-tmc-development-cluster.yaml
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/integration-tsm-tmc-staging-cluster.yaml -O tmc/configs/integration-tsm-tmc-staging-cluster.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-web.yaml -O tmc/configs/namespace-web.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-api.yaml -O tmc/configs/namespace-api.yaml
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/configs/namespace-app.yaml -O tmc/configs/namespace-app.yaml

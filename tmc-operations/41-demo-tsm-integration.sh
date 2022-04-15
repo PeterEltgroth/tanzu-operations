@@ -30,9 +30,10 @@ DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo
 
 read -p "Cluster Name: " cluster_name
+echo
 
 pe "kubectl config use-context ${cluster_name}"
 echo
 
-pe "tmc cluster integration create -f tmc/configs/integration-tsm.yaml"
+pe "tmc cluster integration create -f tmc/configs/integration-tsm-${cluster_name}.yaml"
 echo
