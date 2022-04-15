@@ -52,4 +52,3 @@ read -p "Enter to continue"
 #DELETE CLUSTER GROUPS
 tmc clustergroup delete $development_cluster_group
 tmc clustergroup delete $production_cluster_group
-

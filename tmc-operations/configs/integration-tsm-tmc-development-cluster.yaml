@@ -3,7 +3,10 @@ fullName:
   clusterName: tmc-development-cluster
   managementClusterName: attached
   provisionerName: attached
-meta:
-  description: Tanzu Service Mesh allows you to exercise consistent control and security
-    for microservices, end users, and data across all of your clusters and clouds.
+spec:
+  configurations:
+    clusterName: tmc-development-cluster
+    enableNamespaceExclusions: true
+  secrets:
+    token: REDACTED
 
