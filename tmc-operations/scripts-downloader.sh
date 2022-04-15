@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/22-merge-tkg-kubeconfig.sh -O tmc/22-merge-tkg-kubeconfig.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/30-demo-pre-reqs.sh -O tmc/30-demo-pre-reqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/31-demo-wavefront-prereqs.sh -O tmc/31-demo-wavefront-prereqs.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/31-demo-wavefront-prereqs.sh -O tmc/31-demo-wavefront-prereqs.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/32-demo-quota-policy-aks.sh -O tmc/32-demo-quota-policy-aks.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/33-demo-quota-policy-eks.sh -O tmc/33-demo-quota-policy-eks.sh
 #wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/34-demo-quota-policy-tkg.sh -O tmc/34-demo-quota-policy-tkg.sh
@@ -25,7 +25,10 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/39-demo-custom-policy.sh -O tmc/39-demo-custom-policy.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/40-demo-tos-integration-k8s.sh -O tmc/40-demo-tos-integration-k8s.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/41-demo-tsm-integration.sh -O tmc/41-demo-tsm-integration.sh
 
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/50-tsm-integration-prereqs.sh -O tmc/50-tsm-integration-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/51-tsm-global-ns-create.sh -O tmc/51-tsm-global-ns-create.sh
 
 mkdir tmc/reset
 

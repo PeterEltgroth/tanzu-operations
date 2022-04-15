@@ -47,7 +47,7 @@ echo <<EOF | request
 }
 EOF
 
-response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d) 
+response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d)
 
 
 #GET THE REGISTRATION YAML
