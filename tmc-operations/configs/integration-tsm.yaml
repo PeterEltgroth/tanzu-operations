@@ -1,0 +1,6 @@
+fullName:
+  name: tanzu-service-mesh
+meta:
+  description: Tanzu Service Mesh allows you to exercise consistent control and security
+    for microservices, end users, and data across all of your clusters and clouds.
+

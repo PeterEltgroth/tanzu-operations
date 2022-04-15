@@ -29,14 +29,10 @@ clear
 DEMO_PROMPT="${GREEN}➜ TOS ${CYAN}\W "
 echo
 
-tmc_production_cluster=tmc-production-cluster
+read -p "Cluster Name: " cluster_name
 
-pe "tmc cluster integration create -f tmc/configs/integration-wavefront.yaml"
+pe "kubectl config use-context ${cluster_name}"
 echo
 
-
-#ADD TO PRODUCTION CLUSTER
-pe "kubectl config use-context ${tmc_production_cluster}"
+pe "tmc cluster integration create -f tmc/configs/integration-tsm.yaml"
 echo
-
-pe "kubectl apply -f tmc/configs/tos-node-stressor.yaml"
