@@ -53,5 +53,7 @@ spec:
     token: $TSM_API_TOKEN
 EOF
 
+echo
+
 pe "tmc cluster integration create -f tmc/configs/integration-tsm-${cluster_name}.yaml"
 echo

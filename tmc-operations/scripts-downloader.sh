@@ -28,10 +28,9 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/39-demo-custom-policy.sh -O tmc/39-demo-custom-policy.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/40-demo-tos-integration-k8s.sh -O tmc/40-demo-tos-integration-k8s.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/41-demo-tsm-integration.sh -O tmc/41-demo-tsm-integration.sh
-
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/50-tsm-integration-prereqs.sh -O tmc/50-tsm-integration-prereqs.sh
-wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/51-tsm-global-ns-create.sh -O tmc/51-tsm-global-ns-create.sh
+#wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/41-demo-tsm-integration.sh -O tmc/41-demo-tsm-integration.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/42-tsm-apps-prereqs.sh -O tmc/42-tsm-apps-prereqs.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tmc-operations/43-tsm-gns-create.sh -O tmc/43-tsm-gns-create.sh
 
 mkdir tmc/reset
 

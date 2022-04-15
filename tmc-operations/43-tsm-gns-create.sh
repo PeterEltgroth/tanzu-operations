@@ -47,28 +47,7 @@ echo <<EOF | request
 }
 EOF
 
-response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d)
+response=$(curl -X POST "https://${server_name}/tsm/v1alpha1/global-namespaces" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d $request)
+echo
 
-
-#GET THE REGISTRATION YAML
-registration_yaml=$(curl "https://${server_name}/tsm/v1alpha1/clusters/onboard-url" -H "accept: application/json" -H "csp-auth-token: ${access_token}")
-registration_url=$(echo $registration_yaml | jq .url)
-
-#APPLY THE REGISTRATION YAML AND INSTALL AGENTS
-kubectl config use-context $cluster_name
-kubectl apply -f $registration_url
-
-sleep 120
-
-#REGISTER THE CLUSTER
-put_response=$(curl -X PUT "https://${server_name}/tsm/v1alpha1/clusters/${cluster_name}" -H "content-type: application/json" -H "accept: application/json" -H "csp-auth-token: ${access_token}" -d "{\"displayName\":\"${cluster_name}\",\"description\":\"${cluster_name}\",\"tags\":[],\"labels\":[],\"namespaceExclusions\":[],\"autoInstallServiceMesh\":true,\"enableNamespaceExclusions\":false}")
-
-cluster_token=$(echo $put_response | jq .token | tr -d '"')
-
-kubectl -n vmware-system-tsm create secret generic cluster-token --from-literal=token=$cluster_token
-
-sleep 600
-
-get_status=$(curl "https://${server_name}/tsm/v1alpha1/clusters/${cluster_name}" -H "accept: application/json" -H "csp-auth-token: ${access_token}")
-
-echo $get_status
+echo $response
