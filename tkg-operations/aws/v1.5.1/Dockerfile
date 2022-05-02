@@ -35,8 +35,8 @@ RUN gunzip cli/imgpkg-linux-amd64-v0.18.0+vmware.1.gz
 RUN chmod ugo+x cli/imgpkg-linux-amd64-v0.18.0+vmware.1
 RUN mv cli/imgpkg-linux-amd64-v0.18.0+vmware.1 /usr/local/bin/imgpkg
 
-ENV AWS_ACCESS_KEY_ID=AKIA6BLJXPDVKQQLDE7K
-ENV AWS_SECRET_ACCESS_KEY=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
+ENV AWS_ACCESS_KEY_ID=
+ENV AWS_SECRET_ACCESS_KEY=
 ENV AWS_DEFAULT_REGION=us-east-1
 ENV MGMT_CLUSTER_NAME=tanzu-management-cluster
 
