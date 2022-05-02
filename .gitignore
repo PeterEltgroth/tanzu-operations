@@ -260,6 +260,9 @@ paket-files/
 __pycache__/
 *.pyc
 
+*.tar
+*.gz
+
 keys/
 secrets/
 certs/

@@ -77,6 +77,11 @@ rm kubectl-linux-v1.22.5+vmware.1
 kubectl version
 
 
+#MINIKUBE
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+
 #DEMO-MAGIC
 wget https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 sudo mv demo-magic.sh /usr/local/bin/demo-magic.sh

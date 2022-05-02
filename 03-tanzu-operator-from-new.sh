@@ -7,9 +7,12 @@ key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}"}]"
 
 export AWS_REGION=$aws_region_code
 
-if [[ $aws_region_code = "us-east-2" ]]
+if [[ $aws_region_code = "us-east-1" ]]
 then
-    instance_id=$(aws ec2 run-instances --image-id ami-0fb653ca2d3203ac1 --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --user-data file://operator-bootstrapper.sh --output text --query "Instances[0].InstanceId")
+	instance_id=$(aws ec2 run-instances --image-id ami-04505e74c0741db8d --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --user-data file://operator-bootstrapper.sh --output text --query "Instances[0].InstanceId")
+elif [[ $aws_region_code = "us-east-2" ]]
+then
+	instance_id=$(aws ec2 run-instances --image-id ami-0fb653ca2d3203ac1 --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --user-data file://operator-bootstrapper.sh --output text --query "Instances[0].InstanceId")
 fi
 #elif [[ $aws_region_code = "us-west-1" ]]
 #then

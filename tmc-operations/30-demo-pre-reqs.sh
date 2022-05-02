@@ -78,8 +78,4 @@ echo
 pei "kubectl get ns"
 echo
 
-pei "clear"
-
-echo https://vplpsamer.tmc.cloud.vmware.com/clusters/tmc-production-cluster/attached/attached/overview
-
 pe "clear"

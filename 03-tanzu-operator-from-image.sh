@@ -11,10 +11,12 @@ key_name="ResourceType=instance,Tags=[{Key=Name,Value="${operator_name}"}]"
 
 export AWS_REGION=$aws_region_code
 
-if [[ $aws_region_code = "us-east-2" ]]
-then
-	instance_id=$(aws ec2 run-instances --image-id $image_id --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --output text --query "Instances[0].InstanceId")
-fi
+instance_id=$(aws ec2 run-instances --image-id $image_id --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --output text --query "Instances[0].InstanceId")
+
+#if [[ $aws_region_code = "us-east-2" ]]
+#then
+#	instance_id=$(aws ec2 run-instances --image-id $image_id --instance-type t3.large --block-device-mappings '{"DeviceName": "/dev/sda1", "Ebs": {"DeleteOnTermination": true, "VolumeSize": 200}}' --tag-specifications "${key_name}" --security-group-ids tanzu-operations-${aws_region_code} --key-name tanzu-operations-${aws_region_code} --output text --query "Instances[0].InstanceId")
+#fi
 #elif [[ $aws_region_code = "us-west-1" ]]
 #then
 	#DO NOT USE SPOT INSTANCE TYPE PERSISTENT, NEW ONES WILL LAUNCH EVERY TIME THEY ARE TERMINATED

@@ -13,6 +13,9 @@ then
 	aws_region_code=us-east-2
 fi
 
+suffix=$(echo $RANDOM | md5sum | head -c 20)
+workload_cluster_name=${workload_cluster_name}-${suffix}
+
 export AWS_REGION=${aws_region_code}
 
 #GET SSH KEY
