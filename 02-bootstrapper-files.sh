@@ -1,3 +1,6 @@
+#!bin/bash
+
+rm operator-bootstrapper.sh
 cat <<EOF | tee operator-bootstrapper.sh
 read -p "Operator Prefix: " operator_prefix
 

@@ -47,7 +47,6 @@ private_subnet_id_c=$(aws ec2 describe-subnets --filters $private_subnet_filters
 
 rm .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
 cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml
-AWS_AMI_ID: ami-0954a3d2fbcc97789
 AWS_NODE_AZ: ${aws_region_code}a
 AWS_NODE_AZ_1: ${aws_region_code}b
 AWS_NODE_AZ_2: ${aws_region_code}c

@@ -1,32 +1,24 @@
-read -p "AWS Region Code (us-east-2): " aws_region_code
-read -p "Management Cluster Name: " mgmt_cluster_name
+#!bin/bash
 
-if [ -z $aws_region_code ]
-then
-    aws_region_code=us-east-2
-fi
+aws_region_code=$AWS_DEFAULT_REGION
+ssh_key_name=$AWS_SSH_KEYNAME
+mgmt_cluster_name=$MGMT_CLUSTER_NAME
 
-aws ec2 describe-key-pairs
+mkdir -p .config/tanzu/tkg/clusterconfigs
 
-read -p "Input Key Name: " ssh_key_name
-
-rm .config/tanzu/tkg/clusterconfigs
-mkdir .config/tanzu/tkg/clusterconfigs
-
-rm .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
 cat <<EOF | tee .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
 AWS_NODE_AZ: ${aws_region_code}a
-AWS_NODE_AZ_1: ${aws_region_code}b
-AWS_NODE_AZ_2: ${aws_region_code}c
+AWS_NODE_AZ_1: ""
+AWS_NODE_AZ_2: ""
 AWS_PRIVATE_NODE_CIDR: 10.0.0.0/24
-AWS_PRIVATE_NODE_CIDR_1: 10.0.2.0/24
-AWS_PRIVATE_NODE_CIDR_2: 10.0.4.0/24
+AWS_PRIVATE_NODE_CIDR_1: ""
+AWS_PRIVATE_NODE_CIDR_2: ""
 AWS_PRIVATE_SUBNET_ID: ""
 AWS_PRIVATE_SUBNET_ID_1: ""
 AWS_PRIVATE_SUBNET_ID_2: ""
 AWS_PUBLIC_NODE_CIDR: 10.0.1.0/24
-AWS_PUBLIC_NODE_CIDR_1: 10.0.3.0/24
-AWS_PUBLIC_NODE_CIDR_2: 10.0.5.0/24
+AWS_PUBLIC_NODE_CIDR_1: ""
+AWS_PUBLIC_NODE_CIDR_2: ""
 AWS_PUBLIC_SUBNET_ID: ""
 AWS_PUBLIC_SUBNET_ID_1: ""
 AWS_PUBLIC_SUBNET_ID_2: ""
@@ -37,7 +29,7 @@ AWS_VPC_ID: ""
 BASTION_HOST_ENABLED: "false"
 CLUSTER_CIDR: 100.96.0.0/11
 CLUSTER_NAME: ${mgmt_cluster_name}
-CLUSTER_PLAN: prod
+CLUSTER_PLAN: dev
 CONTROL_PLANE_MACHINE_TYPE: t3.large
 ENABLE_AUDIT_LOGGING: ""
 ENABLE_CEIP_PARTICIPATION: "false"
@@ -72,6 +64,6 @@ SERVICE_CIDR: 100.64.0.0/13
 TKG_HTTP_PROXY_ENABLED: "false"
 EOF
 
-touch .kube/config
+mkdir .kube
 
 tanzu management-cluster create $mgmt_cluster_name -f .config/tanzu/tkg/clusterconfigs/${mgmt_cluster_name}.yaml
