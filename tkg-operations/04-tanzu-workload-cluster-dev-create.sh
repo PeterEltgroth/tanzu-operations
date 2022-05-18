@@ -1,7 +1,7 @@
 read -p "Management Cluster Name: " mgmt_cluster_name
 read -p "Workload Cluster Name: " workload_cluster_name
 read -p "Bastion Host Enabled (true/false): " bastion_enabled
-read -p "AWS Region Code (us-east-2): " aws_region_code
+read -p "AWS Region Code (us-east-1): " aws_region_code
 
 if [[ -z $bastion_enabled ]]
 then
@@ -10,11 +10,11 @@ fi
 
 if [[ -z $aws_region_code ]]
 then
-	aws_region_code=us-east-2
+	aws_region_code=us-east-1
 fi
 
-suffix=$(echo $RANDOM | md5sum | head -c 20)
-workload_cluster_name=${workload_cluster_name}-${suffix}
+#suffix=$(echo $RANDOM | md5sum | head -c 20)
+#workload_cluster_name=${workload_cluster_name}-${suffix}
 
 export AWS_REGION=${aws_region_code}
 
@@ -79,7 +79,7 @@ LDAP_USER_SEARCH_BASE_DN: ""
 LDAP_USER_SEARCH_FILTER: ""
 LDAP_USER_SEARCH_NAME_ATTRIBUTE: ""
 LDAP_USER_SEARCH_USERNAME: userPrincipalName
-NODE_MACHINE_TYPE: t3a.2xlarge
+NODE_MACHINE_TYPE: t3a.xlarge
 OIDC_IDENTITY_PROVIDER_CLIENT_ID: ""
 OIDC_IDENTITY_PROVIDER_CLIENT_SECRET: ""
 OIDC_IDENTITY_PROVIDER_GROUPS_CLAIM: ""
