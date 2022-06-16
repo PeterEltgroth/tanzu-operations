@@ -14,8 +14,8 @@ then
 	aws_region_code=us-east-1
 fi
 
-suffix=$(echo $RANDOM | md5sum | head -c 20)
-workload_cluster_name=${workload_cluster_name}-${suffix}
+#suffix=$(echo $RANDOM | md5sum | head -c 20)
+#workload_cluster_name=${workload_cluster_name}-${suffix}
 
 export AWS_REGION=${aws_region_code}
 
@@ -108,7 +108,7 @@ EOF
 echo
 tanzu login
 
-tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan prod
+tanzu cluster create $workload_cluster_name -f .config/tanzu/tkg/clusterconfigs/${workload_cluster_name}.yaml --plan prod 
 
 rm ${workload_cluster_name}-kubeconfig.yaml
 
