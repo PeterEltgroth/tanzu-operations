@@ -6,7 +6,7 @@ read -p "Worker Machine Count: " worker_machine_count
 
 if [[ -z $bastion_enabled ]]
 then
-	bastion_enabled=false
+	bastion_enabled=true
 fi
 
 if [[ -z $aws_region_code ]]
@@ -89,7 +89,7 @@ LDAP_USER_SEARCH_BASE_DN: ""
 LDAP_USER_SEARCH_FILTER: ""
 LDAP_USER_SEARCH_NAME_ATTRIBUTE: ""
 LDAP_USER_SEARCH_USERNAME: userPrincipalName
-NODE_MACHINE_TYPE: r6g.2xlarge
+NODE_MACHINE_TYPE: m4.4xlarge
 OIDC_IDENTITY_PROVIDER_CLIENT_ID: ""
 OIDC_IDENTITY_PROVIDER_CLIENT_SECRET: ""
 OIDC_IDENTITY_PROVIDER_GROUPS_CLAIM: ""

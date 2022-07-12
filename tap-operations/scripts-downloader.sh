@@ -16,6 +16,7 @@ wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operat
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/25-tap-values-full.sh -O tap/25-tap-values-full.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/26-developer-namespace.sh -O tap/26-developer-namespace.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/27-tilt.sh -O tap/27-tilt.sh
+wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/28-accelerator-publish.sh -O tap/28-accelerator-publish.sh
 
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/30-reset-rabbitmq-operator.sh -O tap/30-reset-rabbitmq-operator.sh
 wget https://raw.githubusercontent.com/nycpivot/tanzu-operations/main/tap-operations/31-deploy-rabbitmq-operator.sh -O tap/31-deploy-rabbitmq-operator.sh

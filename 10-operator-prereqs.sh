@@ -90,6 +90,8 @@ chmod +x /usr/local/bin/demo-magic.sh
 
 sudo apt install pv #required for demo-magic
 
+git clone https://github.com/nycpivot/tanzu-operations
+
 rm operator-bootstrapper.sh
 
 echo
