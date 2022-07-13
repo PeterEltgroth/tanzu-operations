@@ -1,14 +1,24 @@
 read -p "AWS Region Code (us-east-1): " aws_region_code
-read -p "Management Cluster Name: " mgmt_cluster_name
+read -p "Management Cluster Name (tanzu-management-cluster): " mgmt_cluster_name
 
 if [ -z $aws_region_code ]
 then
     aws_region_code=us-east-1
 fi
 
+if [ -z $mgmt_cluster_name ]
+then
+    mgmt_cluster_name=tanzu-management-cluster
+fi
+
 aws ec2 describe-key-pairs
 
-read -p "Input Key Name: " ssh_key_name
+read -p "Input Key Name (tanzu-operations-${aws_region_code}): " ssh_key_name
+
+if [ -z $ssh_key_name ]
+then
+    ssh_key_name=tanzu-operations-${aws_region_code}
+fi
 
 rm .config/tanzu/tkg/clusterconfigs
 mkdir .config/tanzu/tkg/clusterconfigs

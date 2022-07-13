@@ -1,16 +1,21 @@
-read -p "Management Cluster Name: " mgmt_cluster_name
+read -p "AWS Region Code (us-east-1): " aws_region_code
+read -p "Management Cluster Name (tanzu-management-cluster): " mgmt_cluster_name
 read -p "Workload Cluster Name: " workload_cluster_name
 read -p "Bastion Host Enabled (true/false): " bastion_enabled
-read -p "AWS Region Code (us-east-1): " aws_region_code
-
-if [[ -z $bastion_enabled ]]
-then
-	bastion_enabled=true
-fi
 
 if [[ -z $aws_region_code ]]
 then
 	aws_region_code=us-east-1
+fi
+
+if [ -z $mgmt_cluster_name ]
+then
+    mgmt_cluster_name=tanzu-management-cluster
+fi
+
+if [[ -z $bastion_enabled ]]
+then
+	bastion_enabled=true
 fi
 
 #suffix=$(echo $RANDOM | md5sum | head -c 20)
