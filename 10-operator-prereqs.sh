@@ -92,8 +92,8 @@ sudo apt install pv #required for demo-magic
 
 git clone https://github.com/nycpivot/tanzu-operations
 
-bash tanzu-operations/tkg-operations/01-tkg-install-v1.5.2.sh
-bash tanzu-operations/tmc-operations/01-tmc-cli-install.sh
+#bash tanzu-operations/tkg-operations/01-tkg-install-v1.5.2.sh
+#bash tanzu-operations/tmc-operations/01-tmc-cli-install.sh
 
 rm operator-bootstrapper.sh
 
