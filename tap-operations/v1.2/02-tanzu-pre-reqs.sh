@@ -1,19 +1,37 @@
-#https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-general.html
-
-read -p "Azure Subscription: " subscription
-
 kubectl config get-contexts
+
 read -p "Select context: " kube_context
 
 kubectl config use-context $kube_context
 
 #CREDS
-pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-refresh_token=$(az keyvault secret show --name pivnet-api-refresh-token --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
+refresh_token=$(az keyvault secret show --name pivnet-api-refresh-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 token=$(curl -X POST https://network.pivotal.io/api/v2/authentication/access_tokens -d '{"refresh_token":"'${refresh_token}'"}')
 access_token=$(echo ${token} | jq -r .access_token)
 
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer ${access_token}" -X GET https://network.pivotal.io/api/v2/authentication
+
+#INSTALL TANZU FRAMEWORK BUNDLE
+mkdir $HOME/tanzu
+cd tanzu
+
+wget https://network.pivotal.io/api/v2/products/tanzu-application-platform/releases/1127796/product_files/1246421/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu/tanzu-framework-linux-amd64-v0.11.6.tar
+
+export TANZU_CLI_NO_INIT=true
+export VERSION=v0.11.6
+
+sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+
+tanzu version
+sleep 5
+
+tanzu plugin install --local cli all
+tanzu plugin list
+
+
+
+
 
 #INSTALL CLUSTER ESSENTIALS FOR VMWARE TANZU
 mkdir $HOME/tanzu-cluster-essentials
