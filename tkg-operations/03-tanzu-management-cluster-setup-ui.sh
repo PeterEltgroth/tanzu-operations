@@ -8,3 +8,7 @@ read -p "Cluster Config: " filename
 read -p "New Cluster Config: " new_filename
 
 mv .config/tanzu/tkg/clusterconfigs/$filename .config/tanzu/tkg/clusterconfigs/$new_filename
+
+https://tanzustorage.blob.core.windows.net/vsphere-lab/id_rsa-pub.txt.
+
+
