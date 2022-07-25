@@ -41,10 +41,6 @@ buildservice:
   kp_default_repository: ${registry_name}.azurecr.io/build-service
   kp_default_repository_username: $registry_name
   kp_default_repository_password: $registry_password
-  tanzunet_username: "mjames@pivotal.io"
-  tanzunet_password: "${pivnet_password}"
-  descriptor_name: "tap-1.0.0-full"
-  enable_automatic_dependency_updates: true
 supply_chain: basic
 ootb_supply_chain_basic:
   registry:

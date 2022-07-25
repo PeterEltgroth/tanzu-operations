@@ -19,6 +19,10 @@ then
 	registry_pass=$tap_registry_secret
 fi
 
+registry_url=tanzuapplicationplatform.azurecr.io
+registry_user=tanzuapplicationplatform
+registry_pass=sYAy+hdakxWOuCIjzH6YLDG1pBIT4f26
+
 docker login $registry_url -u $registry_user -p $registry_pass
 
 export INSTALL_REGISTRY_HOSTNAME=$registry_url
