@@ -1,10 +1,4 @@
-read -p "Pivnet User: " pivnet_user
-read -p "Pivnet Pass: " pivnet_pass 
-
-if [[ -z $pivnet_user ]]
-then
-	pivnet_user=mjames@pivotal.io
-fi
+pivnet_user=mjames@pivotal.io
 
 kubectl config get-contexts
 
@@ -47,11 +41,6 @@ mkdir $HOME/tanzu-cluster-essentials
 
 wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1130414/product_files/1263760/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.2.0.tgz
 tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.2.0.tgz -C $HOME/tanzu-cluster-essentials
-
-if [[ -z $pivnet_pass ]]
-then
-	pivnet_pass=$pivnet_password
-fi
 
 export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:e00f33b92d418f49b1af79f42cb13d6765f1c8c731f4528dfff8343af042dc3e
 export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com

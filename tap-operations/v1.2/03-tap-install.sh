@@ -1,33 +1,12 @@
-read -p "Registry Url: " registry_url
-read -p "Registry Username: " registry_user
-read -p "Registry Password: " registry_pass
+target_registry=tanzuapplicationplatform
 
-if [[ -z $registry_url ]]
-then
-	registry_url=tanzuapplicationplatform.azurecr.io
-fi
+target_registry_secret=$(az keyvault secret show --name tanzu-application-platform-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
-if [[ -z $registry_user ]]
-then
-	registry_user=tanzuapplicationregistry
-fi
+docker login ${target_registry}.azurecr.io -u $target_registry -p $target_registry_secret
 
-tap_registry_secret=$(az keyvault secret show --name tanzu-application-platform-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
-
-if [[ -z $registry_pass ]]
-then
-	registry_pass=$tap_registry_secret
-fi
-
-registry_url=tanzuapplicationplatform.azurecr.io
-registry_user=tanzuapplicationplatform
-registry_pass=sYAy+hdakxWOuCIjzH6YLDG1pBIT4f26
-
-docker login $registry_url -u $registry_user -p $registry_pass
-
-export INSTALL_REGISTRY_HOSTNAME=$registry_url
-export INSTALL_REGISTRY_USERNAME=$registry_user
-export INSTALL_REGISTRY_PASSWORD=$tap_registry_secret
+export INSTALL_REGISTRY_HOSTNAME=${target_registry}.azurecr.io
+export INSTALL_REGISTRY_USERNAME=$target_registry
+export INSTALL_REGISTRY_PASSWORD=$target_registry_secret
 export TARGET_REPOSITORY=build-service
 export TAP_VERSION=1.2.0
 
