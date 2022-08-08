@@ -7,7 +7,7 @@ read -p "Select context: " kube_context
 kubectl config use-context $kube_context
 
 #CREDS
-pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
+pivnet_pass=$(az keyvault secret show --name pivnet-registry-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 refresh_token=$(az keyvault secret show --name pivnet-api-refresh-token --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 token=$(curl -X POST https://network.pivotal.io/api/v2/authentication/access_tokens -d '{"refresh_token":"'${refresh_token}'"}')
 access_token=$(echo ${token} | jq -r .access_token)
@@ -55,4 +55,4 @@ sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
 
 cd $HOME
 
-docker login registry.tanzu.vmware.com -u $pivnet_username -p $pivnet_password
+docker login registry.tanzu.vmware.com -u $pivnet_user -p $pivnet_pass

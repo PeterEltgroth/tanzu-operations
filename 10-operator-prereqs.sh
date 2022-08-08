@@ -12,6 +12,7 @@ sudo usermod -aG docker $USER
 
 #MISC TOOLS
 sudo snap install jq
+sudo snap install tree
 sudo snap install helm --classic
 sudo apt install unzip
 
@@ -20,6 +21,10 @@ alias python=python3
 
 yes | sudo apt install python3-pip
 pip3 install yq
+
+wget https://releases.hashicorp.com/terraform/0.13.0/terraform_0.13.0_linux_amd64.zip
+unzip terraform_0.13.0_linux_amd64.zip
+sudo mv terraform /usr/local/bin
 
 #KREW
 (
