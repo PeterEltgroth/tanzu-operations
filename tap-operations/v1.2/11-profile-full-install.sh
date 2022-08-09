@@ -104,6 +104,7 @@ cat <<EOF | tee change-batch.json
         }
     ]
 }
+EOF
 
 aws route53 change-resource-record-sets --hosted-zone-id Z0294944QU6R4X4A718M --change-batch file:///$HOME/change-batch.json
 
