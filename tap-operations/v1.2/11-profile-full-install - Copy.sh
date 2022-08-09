@@ -33,7 +33,12 @@ ootb_supply_chain_basic:
     server: ${target_registry}.azurecr.io
     repository: "supply-chain"
   gitops:
-    ssh_secret: ""
+    repository_prefix: "git@github.com:nycpivot/"
+    branch: delivery
+    user_name: nycpivot
+    user_email: mijames@vmware.com
+    commit_message: supplychain@cluster.local
+    ssh_secret: "git-ssh"
   cluster_builder: default
   service_account: default
 ootb_delivery_basic:
@@ -84,27 +89,7 @@ read -p "Tanzu System Ingress IP: " external_ip
 
 nslookup $external_ip
 
-rm change-batch.json
-cat <<EOF | tee change-batch.json
-{
-    "Comment": "Update IP address.",
-    "Changes": [
-        {
-            "Action": "UPSERT",
-            "ResourceRecordSet": {
-                "Name": "*.${app_domain}",
-                "Type": "A",
-                "TTL": 60,
-                "ResourceRecords": [
-                    {
-                        "Value": "${external_ip}"
-                    }
-                ]
-            }
-        }
-    ]
-}
-
-aws route53 change-resource-record-sets --hosted-zone-id Z0294944QU6R4X4A718M --change-batch file:///$HOME/change-batch.json
+read -p "Configure DNS wildcard"
 
 echo http://tap-gui.${app_domain}
+
