@@ -38,7 +38,7 @@ ootb_supply_chain_basic:
     user_name: nycpivot
     user_email: mijames@vmware.com
     commit_message: supplychain@cluster.local
-    ssh_secret: ""
+    ssh_secret: "git-ssh"
   cluster_builder: default
   service_account: default
 ootb_delivery_basic:
