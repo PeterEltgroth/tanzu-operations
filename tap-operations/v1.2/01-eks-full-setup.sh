@@ -17,10 +17,10 @@ then
 	aws eks create-nodegroup \
 			--cluster-name $full_cluster \
 			--nodegroup-name "${full_cluster}-node-group" \
-			--disk-size 500 \
+			--disk-size 100 \
 			--scaling-config minSize=3,maxSize=3,desiredSize=3 \
 			--subnets "subnet-0c277f0344e18e39b" "subnet-0475a32ab6d3501d6" \
-			--instance-types t3a.2xlarge \
+			--instance-types m5.xlarge \
 			--node-role arn:aws:iam::964978768106:role/vmware-nodegroup-role \
 			--kubernetes-version 1.22
 fi

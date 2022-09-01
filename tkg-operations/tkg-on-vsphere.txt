@@ -1,0 +1,27 @@
+install docker
+
+install jq
+
+install azure cli
+
+
+tanzu cluster create tap-demo -f tanzu/tkg-workload-large.conf
+tanzu cluster kubeconfig get tap-demo --admin --export-file tap-demo-kubeconfig.yaml
+
+kubectl create ns metallb-system
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.200.1-192.168.200.254

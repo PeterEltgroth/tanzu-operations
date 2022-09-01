@@ -52,3 +52,24 @@ gzip -d velero-linux-v1.7.0+vmware.1.gz
 sudo install velero-linux-v1.7.0+vmware.1 /usr/local/bin/velero
 rm velero-linux-v1.7.0+vmware.1
 
+
+
+aws s3api create-bucket \
+	--bucket nycpivot-velero-backups \
+	--region us-west-1 \
+	--create-bucket-configuration LocationConstraint=us-west-1
+
+
+helm install velero vmware-tanzu/velero \
+--namespace velero \
+--create-namespace \
+--set-file credentials.secretContents.cloud=.aws/credentials \
+--set configuration.provider=aws \
+--set configuration.backupStorageLocation.name=default \
+--set configuration.backupStorageLocation.bucket=nycpivot-velero-backups \
+--set configuration.backupStorageLocation.config.region=us-west-1 \
+--set snapshotsEnabled=false \
+--set initContainers[0].name=velero-plugin-for-aws \
+--set initContainers[0].image=velero/velero-plugin-for-aws:v1.2.0 \
+--set initContainers[0].volumeMounts[0].mountPath=/target \
+--set initContainers[0].volumeMounts[0].name=plugins
