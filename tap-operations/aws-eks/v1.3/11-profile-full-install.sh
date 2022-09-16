@@ -1,10 +1,9 @@
-subscription=nycpivot
 target_registry=tanzuapplicationplatform
 git_catalog_repository=tanzu-application-platform
 app_domain=apps.tap.nycpivot.com
 
-pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
-target_registry_password=$(az keyvault secret show --name tanzu-application-platform-secret --subscription $subscription --vault-name tanzuvault --query value --output tsv)
+pivnet_password=$(az keyvault secret show --name pivnet-registry-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
+target_registry_password=$(az keyvault secret show --name tanzu-application-platform-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 github_token=$(az keyvault secret show --name github-token-nycpivot --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
 #export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
@@ -74,7 +73,7 @@ cnrs:
   domain_name: $app_domain
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 1.2.0 --values-file tap-values-full.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0 --values-file tap-values-full.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
