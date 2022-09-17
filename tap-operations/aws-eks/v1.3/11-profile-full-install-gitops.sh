@@ -88,8 +88,32 @@ kubectl get svc -n tanzu-system-ingress
 read -p "Tanzu System Ingress IP: " external_ip
 
 nslookup $external_ip
+read -p "IP Address: " ip_address
 
-read -p "Configure DNS wildcard"
+rm change-batch.json
+cat <<EOF | tee change-batch.json
+{
+    "Comment": "Update IP address.",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "*.${app_domain}",
+                "Type": "A",
+                "TTL": 60,
+                "ResourceRecords": [
+                    {
+                        "Value": "${ip_address}"
+                    }
+                ]
+            }
+        }
+    ]
+}
+EOF
+
+aws route53 change-resource-record-sets --hosted-zone-id Z0294944QU6R4X4A718M --change-batch file:///$HOME/change-batch.json
 
 echo http://tap-gui.${app_domain}
+
 
