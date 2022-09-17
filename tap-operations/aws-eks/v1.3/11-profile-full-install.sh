@@ -73,7 +73,7 @@ cnrs:
   domain_name: $app_domain
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0 --values-file tap-values-full.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0-build.22 --values-file tap-values-full.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
@@ -82,6 +82,7 @@ kubectl get svc -n tanzu-system-ingress
 read -p "Tanzu System Ingress IP: " external_ip
 
 nslookup $external_ip
+read -p "IP Address: " ip_address
 
 rm change-batch.json
 cat <<EOF | tee change-batch.json
@@ -96,7 +97,7 @@ cat <<EOF | tee change-batch.json
                 "TTL": 60,
                 "ResourceRecords": [
                     {
-                        "Value": "${external_ip}"
+                        "Value": "${ip_address}"
                     }
                 ]
             }

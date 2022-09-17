@@ -8,9 +8,9 @@ export INSTALL_REGISTRY_HOSTNAME=${target_registry}.azurecr.io
 export INSTALL_REGISTRY_USERNAME=$target_registry
 export INSTALL_REGISTRY_PASSWORD=$target_registry_secret
 export TARGET_REPOSITORY=build-service
-export TAP_VERSION=1.3.0
+export TAP_VERSION=1.3.0-build.22
 
-imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${TARGET_REPOSITORY}/tap-packages
+imgpkg copy -b dev.registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${TARGET_REPOSITORY}/tap-packages
 
 
 #TAP-INSTALL
