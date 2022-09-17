@@ -61,6 +61,8 @@ subjects:
     name: default
 EOF
 
+kubectl create secret generic git-ssh --from-file=.ssh/git-ssh --from-file=.ssh/git-ssh.pub --from-file=./known_hosts -n tap-install
+kubectl create secret generic git-ssh --from-file=.ssh/git-ssh --from-file=.ssh/git-ssh.pub --from-file=./known_hosts
 
 #GIT-SSH
 #1. ssh-keygen -t rsa
