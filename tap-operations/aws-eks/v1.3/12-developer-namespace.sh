@@ -64,6 +64,6 @@ EOF
 
 #GIT-SSH
 #1. ssh-keygen -t rsa
-#2. vim .ssh/id_rsa.pub -> copy it to the git repo https://github.com/dhadukk/tanzu-java-web-app-latest/settings/keys
+#2. vim .ssh/id_rsa.pub -> copy it to the git repo https://github.com/nycpivot/settings/keys
 #3. ssh-keyscan github.com > ./known_hosts
-#4. kubectl create secret generic git-ssh --from-file=.ssh/id_rsa --from-file=.ssh/id_rsa.pub --from-file=./known_hosts -n tap-install
+#4. kubectl create secret generic git-ssh --from-file=.ssh/git-ssh --from-file=.ssh/git-ssh.pub --from-file=./known_hosts -n tap-install

@@ -20,3 +20,5 @@ tanzu package installed get appliveview-connector -n tap-install
 #CONVENTIONS
 tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.3.0 -n tap-install
 tanzu package installed get appliveview-conventions -n tap-install
+
+tanzu apps workload create steeltoe-app --type web --git-repo https://github.com/sample-accelerators/steeltoe-weatherforecast --git-branch main --annotation autoscaling.knative.dev/min-scale=1 --yes --label app.kubernetes.io/part-of=sample-app

@@ -19,8 +19,8 @@ read -p "Select context: " kube_context
 kubectl config use-context $kube_context
 
 #APPEND GUI SETTINGS
-rm tap-values-full.yaml
-cat <<EOF | tee tap-values-full.yaml
+rm tap-values-full-gitops.yaml
+cat <<EOF | tee tap-values-full-gitops.yaml
 profile: full
 ceip_policy_disclosed: true
 buildservice:
@@ -79,7 +79,7 @@ cnrs:
   domain_name: $app_domain
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 1.2.0 --values-file tap-values-full.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0-build.22 --values-file tap-values-full-gitops.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
