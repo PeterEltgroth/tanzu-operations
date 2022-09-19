@@ -1,0 +1,1 @@
+tanzu package installed delete tanzu-rds -n default
