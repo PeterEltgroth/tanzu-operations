@@ -47,6 +47,10 @@ unzip awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
 
+#AWS EKSCTL
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+
 #AZURE
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login

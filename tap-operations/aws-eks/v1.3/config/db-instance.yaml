@@ -1,0 +1,51 @@
+# dbinstance.yaml
+---
+apiVersion: secretgen.k14s.io/v1alpha1
+kind: Password
+metadata:
+ name: rds-psql-password
+ namespace: default
+spec:
+ length: 64
+ secretTemplate:
+   type: Opaque
+   stringData:
+     password: $(value) # do not edit, this will auto generate a password.
+---
+apiVersion: rds.services.k8s.aws/v1alpha1
+kind: DBInstance
+metadata:
+ name: rds-psql-1
+ namespace: default
+spec:
+ allocatedStorage: 20
+ dbInstanceClass: db.t3.micro
+ dbInstanceIdentifier: rds-psql-1
+ dbName: postgres
+ engine: postgres
+ engineVersion: "14.1"
+ masterUsername: adminUser
+ masterUserPassword:
+   namespace: default
+   name: rds-psql-password
+   key: password
+ vpcSecurityGroupIDs:
+ - "sg-0aaf2bc0571a5b9da"                     # modify value
+ dbSubnetGroupName: "tanzu-rds-subnet-group" # modify value
+
+ # note: due to an issue in the RDS ACK controller, it is recommended to explicitly set the
+ # following optional spec fields.
+ # default values for the optional fields are provided below.
+ # https://github.com/aws-controllers-k8s/community/issues/1346
+ autoMinorVersionUpgrade: true
+ backupRetentionPeriod: 1
+ copyTagsToSnapshot: false
+ deletionProtection: false
+ licenseModel: postgresql-license
+ monitoringInterval: 0
+ multiAZ: false
+ preferredBackupWindow: 23:00-23:30
+ preferredMaintenanceWindow: wed:23:34-thu:00:04
+ publiclyAccessible: false
+ storageEncrypted: false
+ storageType: gp2
