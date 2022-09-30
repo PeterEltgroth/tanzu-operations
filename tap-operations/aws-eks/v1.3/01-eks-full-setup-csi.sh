@@ -67,15 +67,21 @@ cat <<EOF | tee aws-ebs-csi-driver-trust-policy.json
 }
 EOF
 
+aws iam detach-role-policy \
+	--role-name AmazonEKS_EBS_CSI_DriverRole \
+	--policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
+	
+aws iam delete-role \
+	--role-name AmazonEKS_EBS_CSI_DriverRole
+
 aws iam create-role \
   --role-name AmazonEKS_EBS_CSI_DriverRole \
   --assume-role-policy-document file://"aws-ebs-csi-driver-trust-policy.json"
 	
 aws iam attach-role-policy \
-  --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
-  --role-name AmazonEKS_EBS_CSI_DriverRole
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
 	
 kubectl annotate serviceaccount ebs-csi-controller-sa \
     -n kube-system \
     eks.amazonaws.com/role-arn=arn:aws:iam::964978768106:role/AmazonEKS_EBS_CSI_DriverRole
-
