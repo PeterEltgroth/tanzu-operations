@@ -15,7 +15,7 @@ helm install --create-namespace -n $ACK_SYSTEM_NAMESPACE ack-$SERVICE-controller
 
 helm list --namespace $ACK_SYSTEM_NAMESPACE -o yaml
 
-eksctl utils associate-iam-oidc-provider --cluster tap-full-profile --region us-west-1 --approve
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --region us-west-1 --approve
 
 
 # Update the service name variables as needed
@@ -97,17 +97,3 @@ kubectl get pods -n $ACK_K8S_NAMESPACE
 
 read -p "Pod Name: " pod_name
 kubectl describe pod -n $ACK_K8S_NAMESPACE $pod_name | grep "^\s*AWS_"
-
-
-
-
-tanzu apps workload create my-workload \
-  --git-repo https://github.com/sample-accelerators/spring-petclinic \
-  --git-branch main \
-  --git-tag tap-1.2 \
-  --type web \
-  --label app.kubernetes.io/part-of=spring-petclinic \
-  --annotation autoscaling.knative.dev/minScale=1 \
-  --env SPRING_PROFILES_ACTIVE=postgres \
-  --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:ack-rds-claim
-	--yes
