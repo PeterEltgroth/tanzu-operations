@@ -3,12 +3,14 @@ read -p "AWS Region Code: " aws_region_code
 
 kubectl config use-context $full_cluster
 
+#https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html
 #INSTALL CSI DRIVER PLUGIN (REQUIRED FOR K8S 1.23)
 aws eks create-addon \
   --cluster-name $full_cluster \
   --addon-name aws-ebs-csi-driver \
   --service-account-role-arn arn:aws:iam::964978768106:role/AmazonEKS_EBS_CSI_DriverRole
-	
+
+#https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
 aws eks describe-cluster --name $full_cluster --query "cluster.identity.oidc.issuer" --output text
 
 read -p "OIDC ID: " oidc_id
