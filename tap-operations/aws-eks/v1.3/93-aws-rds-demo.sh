@@ -41,24 +41,24 @@ EOF
 
 kubectl apply -f stk-secret-reader.yaml
 
-rm resource-claim-policy.yaml
-cat <<EOF | tee resource-claim-policy.yaml
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ResourceClaimPolicy
-metadata:
-  name: default-can-claim-rds-postgres
-  #namespace: service-instances #namespace where RDS instance is running
-spec:
-  subject:
-    kind: Secret
-    group: ""
-    selector:
-      matchLabels:
-        services.apps.tanzu.vmware.com/class: rds-postgres
-  consumingNamespaces: [ "default" ]
-EOF
+#rm resource-claim-policy.yaml
+#cat <<EOF | tee resource-claim-policy.yaml
+#apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+#kind: ResourceClaimPolicy
+#metadata:
+#  name: default-can-claim-rds-postgres
+#  #namespace: service-instances #namespace where RDS instance is running
+#spec:
+#  subject:
+#    kind: Secret
+#    group: ""
+#    selector:
+#      matchLabels:
+#        services.apps.tanzu.vmware.com/class: rds-postgres
+#  consumingNamespaces: [ "default" ]
+#EOF
 
-kubectl apply -f resource-claim-policy.yaml
+#kubectl apply -f resource-claim-policy.yaml
 
 #CHECKS
 tanzu services classes list
