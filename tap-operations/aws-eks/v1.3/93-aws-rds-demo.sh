@@ -1,3 +1,5 @@
+#https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html
+
 kubectl api-resources --api-group rds.services.k8s.aws
 
 rm cluster-instance-class.yaml
@@ -62,7 +64,10 @@ kubectl apply -f stk-secret-reader.yaml
 
 #CHECKS
 tanzu services classes list
+sleep 5
+
 tanzu services claimable list --class aws-rds-postgres
+sleep 5
 
 tanzu service claim create ack-rds-claim \
   --resource-name rds-bindable \
@@ -70,6 +75,7 @@ tanzu service claim create ack-rds-claim \
   --resource-api-version v1
 
 tanzu service claim list -o wide
+sleep 5
 
 
 tanzu apps workload create my-workload \
