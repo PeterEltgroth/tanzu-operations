@@ -1,3 +1,5 @@
+read -p "RDS Instance Name: " rds_instance
+
 #https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html
 
 kubectl api-resources --api-group rds.services.k8s.aws
@@ -70,7 +72,7 @@ tanzu services claimable list --class aws-rds-postgres
 sleep 5
 
 tanzu service claim create ack-rds-claim \
-  --resource-name rds-bindable \
+  --resource-name ${rds_instance}-bindable \
   --resource-kind Secret \
   --resource-api-version v1
 

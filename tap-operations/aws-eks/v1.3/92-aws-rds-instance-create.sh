@@ -34,6 +34,7 @@ kubectl apply -f db-subnet-group.yaml
 kubectl get DBSubnetGroup -n ack-system $subnet_group_name -o yaml
 sleep 5
 
+#GET SECURITY DESCRIPTION OF EKS CLUSTER
 security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=${vpc_id}" --region $aws_region_code | jq -r '.SecurityGroups[] | select(.Description == "default VPC security group").GroupId')
 
 
