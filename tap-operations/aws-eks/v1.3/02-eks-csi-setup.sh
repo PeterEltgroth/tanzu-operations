@@ -1,4 +1,4 @@
-read -p "Full Cluster Name: " cluster_name
+read -p "Cluster Name: " cluster_name
 read -p "AWS Region Code: " aws_region_code
 
 kubectl config use-context $cluster_name
@@ -53,5 +53,6 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
 	
 kubectl annotate serviceaccount ebs-csi-controller-sa \
-    -n kube-system \
+    -n kube-system --overwrite \
     eks.amazonaws.com/role-arn=arn:aws:iam::964978768106:role/AmazonEKS_EBS_CSI_DriverRole
+		

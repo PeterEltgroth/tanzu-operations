@@ -1,4 +1,4 @@
-read -p "Full Cluster Name: " cluster_name
+read -p "Cluster Name: " cluster_name
 read -p "AWS Region Code: " aws_region_code
 
 export AWS_ACCOUNT_ID=964978768106
