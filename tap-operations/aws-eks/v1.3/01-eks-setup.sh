@@ -31,7 +31,7 @@ fi
 
 aws eks wait nodegroup-active --cluster-name $EKS_CLUSTER_NAME --nodegroup-name ${EKS_CLUSTER_NAME}-node-group
 
-rm $HOME/.kube/config
+#rm $HOME/.kube/config
 
 aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
 

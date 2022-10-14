@@ -18,11 +18,11 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "Au
 #INSTALL TANZU FRAMEWORK BUNDLE
 mkdir $HOME/tanzu
 
-wget https://network.pivotal.io/api/v2/products/tanzu-application-platform/releases/1127796/product_files/1246421/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu/tanzu-framework-linux-amd64-v0.11.6.tar
-tar -xvf $HOME/tanzu/tanzu-framework-linux-amd64-v0.11.6.tar -C $HOME/tanzu
+https://network.tanzu.vmware.com/api/v2/products/tanzu-application-platform/releases/1182301/product_files/1310085/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar
+tar -xvf $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar -C $HOME/tanzu
 
 export TANZU_CLI_NO_INIT=true
-export VERSION=v0.11.6
+export VERSION=v0.25.0
 cd tanzu
 
 sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
@@ -39,10 +39,10 @@ cd $HOME
 #CLUSTER ESSENTIALS
 mkdir $HOME/tanzu-cluster-essentials
 
-wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1130414/product_files/1263760/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.2.0.tgz
-tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.2.0.tgz -C $HOME/tanzu-cluster-essentials
+wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1180593/product_files/1330472/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
+tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz -C $HOME/tanzu-cluster-essentials
 
-export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:e00f33b92d418f49b1af79f42cb13d6765f1c8c731f4528dfff8343af042dc3e
+export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:54bf611711923dccd7c7f10603c846782b90644d48f1cb570b43a082d18e23b9
 export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
 export INSTALL_REGISTRY_USERNAME=$pivnet_user
 export INSTALL_REGISTRY_PASSWORD=$pivnet_pass

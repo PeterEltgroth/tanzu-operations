@@ -1,9 +1,10 @@
-read -p "Cluster Name: " cluster_name
+read -p "Build Cluster Name: " build_cluster_name
+read -p "Run Cluster Name: " run_cluster_name
 read -p "AWS Region Code: " aws_region_code
 
 export AWS_ACCOUNT_ID=964978768106
 export AWS_REGION=$aws_region_code
-export EKS_CLUSTER_NAME=$cluster_name
+export EKS_CLUSTER_NAME=$build_cluster_name
 
 oidcProvider=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 
@@ -102,6 +103,33 @@ cat << EOF > build-service-policy.json
 }
 EOF
 
+
+export EKS_CLUSTER_NAME=$run_cluster_name
+
+oidcProvider=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+
+rm workload-trust-policy.json
+cat << EOF > workload-trust-policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${oidcProvider}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "${oidcProvider}:sub": "system:serviceaccount:default:default",
+                    "${oidcProvider}:aud": "sts.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+EOF
+
 rm workload-policy.json
 cat << EOF > workload-policy.json
 {
@@ -172,29 +200,6 @@ cat << EOF > workload-policy.json
     ]
 }
 EOF
-
-rm workload-trust-policy.json
-cat << EOF > workload-trust-policy.json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${oidcProvider}"
-            },
-            "Action": "sts:AssumeRoleWithWebIdentity",
-            "Condition": {
-                "StringEquals": {
-                    "${oidcProvider}:sub": "system:serviceaccount:default:default",
-                    "${oidcProvider}:aud": "sts.amazonaws.com"
-                }
-            }
-        }
-    ]
-}
-EOF
-
 
 # Create the Build Service Role
 aws iam create-role --role-name tap-build-service --assume-role-policy-document file://build-service-trust-policy.json
