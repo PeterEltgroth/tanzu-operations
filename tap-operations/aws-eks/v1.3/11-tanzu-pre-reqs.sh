@@ -18,7 +18,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "Au
 #INSTALL TANZU FRAMEWORK BUNDLE
 mkdir $HOME/tanzu
 
-https://network.tanzu.vmware.com/api/v2/products/tanzu-application-platform/releases/1182301/product_files/1310085/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar
+rm $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar
+wget https://network.tanzu.vmware.com/api/v2/products/tanzu-application-platform/releases/1182301/product_files/1310085/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar
 tar -xvf $HOME/tanzu/tanzu-framework-linux-amd64-v0.25.0.tar -C $HOME/tanzu
 
 export TANZU_CLI_NO_INIT=true
@@ -39,6 +40,7 @@ cd $HOME
 #CLUSTER ESSENTIALS
 mkdir $HOME/tanzu-cluster-essentials
 
+rm $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
 wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1180593/product_files/1330472/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
 tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz -C $HOME/tanzu-cluster-essentials
 

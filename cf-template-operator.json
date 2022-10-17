@@ -1,0 +1,19 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Creates a Linux operator machine.",
+	"Resources": {
+		"Instance": {
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"ImageId": "ami-04505e74c0741db8d",
+				"InstanceType": "t3.large",
+				"Tags": [
+					{
+						"Key": "Name",
+						"Value": "tanzu-operator"
+					}
+				]
+			}
+		}
+	}
+}
