@@ -1,5 +1,11 @@
 target_registry=tanzuapplicationplatform
 
+kubectl config get-contexts
+
+read -p "Select context: " kube_context
+
+kubectl config use-context $kube_context
+
 target_registry_secret=$(az keyvault secret show --name tanzu-application-platform-secret --subscription nycpivot --vault-name tanzuvault --query value --output tsv)
 
 docker login ${target_registry}.azurecr.io -u $target_registry -p $target_registry_secret
