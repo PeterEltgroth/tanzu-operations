@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pivnet_user=mjames@pivotal.io
 
 kubectl config get-contexts
@@ -41,7 +43,8 @@ cd $HOME
 mkdir $HOME/tanzu-cluster-essentials
 
 rm $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
-wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1180593/product_files/1330472/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
+wget https://network.tanzu.vmware.com/api/v2/products/tanzu-cluster-essentials/releases/1180593/product_files/1330470/download --header="Authorization: Bearer ${access_token}" -O $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
+
 tar -xvf $HOME/tanzu-cluster-essentials/tanzu-cluster-essentials-linux-amd64-1.3.0.tgz -C $HOME/tanzu-cluster-essentials
 
 export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:54bf611711923dccd7c7f10603c846782b90644d48f1cb570b43a082d18e23b9
