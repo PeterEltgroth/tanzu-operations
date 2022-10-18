@@ -177,7 +177,7 @@ appliveview:
   sslDisabled: true
 EOF
 
-tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0 --values-file tap-values-full.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 1.3.0 --values-file tap-values-view.yaml -n tap-install
 tanzu package installed get tap -n tap-install
 tanzu package installed list -A
 
