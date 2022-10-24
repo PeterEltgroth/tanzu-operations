@@ -1,19 +1,23 @@
 read -p "Cluster Name: " cluster_name
 read -p "AWS Region Code: " aws_region_code
+read -p "AWS Account ID: " account_id
 
-kubectl config use-context $cluster_name
+echo "Using context: arn:aws:eks:${aws_region_code}:${account_id}:cluster/${cluster_name}"
+kubectl config use-context "arn:aws:eks:${aws_region_code}:${account_id}:cluster/${cluster_name}"
 
 #https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html
 #INSTALL CSI DRIVER PLUGIN (REQUIRED FOR K8S 1.23)
 aws eks create-addon \
   --cluster-name $cluster_name \
   --addon-name aws-ebs-csi-driver \
-  --service-account-role-arn arn:aws:iam::964978768106:role/AmazonEKS_EBS_CSI_DriverRole
+  --service-account-role-arn "arn:aws:iam::${account_id}:role/AmazonEKS_EBS_CSI_DriverRole"
 
 #https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
 aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text
 
-read -p "OIDC ID: " oidc_id
+#https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
+oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | awk -F '/' '{print $5}')
+echo "OIDC Id: $oidc_id"
 
 rm aws-ebs-csi-driver-trust-policy.json
 cat <<EOF | tee aws-ebs-csi-driver-trust-policy.json
@@ -23,7 +27,7 @@ cat <<EOF | tee aws-ebs-csi-driver-trust-policy.json
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::964978768106:oidc-provider/oidc.eks.${aws_region_code}.amazonaws.com/id/${oidc_id}"
+        "Federated": "arn:aws:iam::${account_id}:oidc-provider/oidc.eks.${aws_region_code}.amazonaws.com/id/${oidc_id}"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
@@ -54,5 +58,4 @@ aws iam attach-role-policy \
 	
 kubectl annotate serviceaccount ebs-csi-controller-sa \
     -n kube-system --overwrite \
-    eks.amazonaws.com/role-arn=arn:aws:iam::964978768106:role/AmazonEKS_EBS_CSI_DriverRole
-		
+    eks.amazonaws.com/role-arn=arn:aws:iam::${account_id}:role/AmazonEKS_EBS_CSI_DriverRole
