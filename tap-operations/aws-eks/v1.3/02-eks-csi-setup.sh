@@ -19,6 +19,18 @@ aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.iss
 oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | awk -F '/' '{print $5}')
 echo "OIDC Id: $oidc_id"
 
+# Check if a IAM OIDC provider exists for the cluster
+# https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+if [[ -z $(aws iam list-open-id-connect-providers | grep $oidc_id) ]]; then
+  echo "Creating IAM OIDC provider"
+  if ! [ -x "$(command -v eksctl)" ]; then
+    echo "Error `eksctl` CLI is required, https://eksctl.io/introduction/#installation" >&2
+    exit 1
+  fi
+
+  eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+fi
+
 rm aws-ebs-csi-driver-trust-policy.json
 cat <<EOF | tee aws-ebs-csi-driver-trust-policy.json
 {
